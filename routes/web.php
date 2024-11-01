@@ -115,6 +115,8 @@ route::get('/blog',[HomeController::class, 'blog']);
 //Home/ProductController Goes Here...
 route::get('/checkout',[CartController::class, 'checkout']);
 route::post('/checkout/apply_discount_code',[CartController::class, 'apply_discount_code']);
+route::post('/checkout/place_order',[CartController::class, 'place_order']);
+
 route::get('/search',[ProductFront::class, 'getProductSearch']);
 route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
 route::get('/cart',[CartController::class, 'getCart']);
