@@ -83,4 +83,8 @@ class CartController extends Controller
 
         echo json_encode($json);
     }
+    public function place_order(Request $request)
+    {
+        dd($request->all());
+    }
 }
