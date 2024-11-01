@@ -36,7 +36,7 @@
                     <div class="toolbox">
                         <div class="toolbox-left">
                             <div class="toolbox-info">
-                                Showing <span>9 of 56</span> Products
+                                Showing <span> {{ $getProduct->perPage() }} of {{ $getProduct->total() }}</span> Products
                             </div>
                         </div>
 
@@ -44,8 +44,9 @@
                             <div class="toolbox-sort">
                                 <label for="sortby">Sort by:</label>
                                 <div class="select-custom">
-                                    <select name="sortby" id="sortby" class="form-control">
-                                        <option value="popularity" selected="selected">Most Popular</option>
+                                    <select name="sortby" id="sortby" class="form-control ChangeSortBy">
+                                        <option value="">Select</option>
+                                        <option value="popularity">Most Popular</option>
                                         <option value="rating">Most Rated</option>
                                         <option value="date">Date</option>
                                     </select>
@@ -54,79 +55,29 @@
                         </div>
                     </div>
 
-                    <div class="products mb-3">
-                        <div class="row justify-content-center">
-                            @foreach($getProduct as $value)
-                            @php
-                            $getProductImage = $value->getImageSingle($value->id);
-                            @endphp
-                            <div class="col-6 col-md-4 col-lg-4">
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <a href="{{$value->slug}}">
-                                            @if(!empty($getProductImage) && !empty($getProductImage->getImage()))
-                                            <img style="height: 280px; width: 280px; object-fit: cover;"
-                                                src="{{$getProductImage->getImage()}}" alt="{{$value->title}}"
-                                                class="product-image">
-                                            @endif
-                                        </a>
+            <div id="getProductAjax">
+                @include('product._list')
+            </div>
 
-
-                                        <form action="{{url('/wishlist')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{$value->id}}">
-                                            <input type="hidden" name="qty" value="1">
-                                            <input type="hidden" name="product_name" value="{{$value->title}}">
-                                            <div class="product-action-vertical">
-                                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>add
-                                                        to wishlist</span></button>
-                                            </div>
-                                        </form>
-                                        
-
-
-                                        <form action="{{url('/cart')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{$value->id}}">
-                                            <input type="hidden" name="qty" value="1">
-                                            <input type="hidden" name="product_name" value="{{$value->title}}">
-                                            <div class="product-action">
-                                                <button type="submit"
-                                                    class="btn-product btn-cart"><span>add to cart</span>
-                                                </button>
-                                            </div>
-
-                                        </form>
-                                    </figure>
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a
-                                                href="{{url($value->category_slug.'/'.$value->sub_category_slug)}}">{{$value->sub_category_name}}</a>
-                                        </div>
-                                        <h3 class="product-title"><a href="{{$value->slug}}">{{$value->title}}</a></h3>
-                                        <div class="product-price">
-                                            NPR {{number_format($value->price, 2)}}
-                                        </div>
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 20%;"></div>
-                                            </div>
-                                            <span class="ratings-text">( 2 Reviews )</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div style="padding: 10px; float: right;">
-                        {!! $getProduct->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                    </div>
+    <div style="text-align: center;">
+        <a href="javascript:;" @if(empty($page)) style="display: none;" @endif
+        data-page="{{ $page }}" class="btn btn-primary LoadMore">Load More</a>
+    </div>
 
                 </div><!-- End .col-lg-9 -->
                 <aside class="col-lg-3 order-lg-first">
+                    <form id="FilterForm" method="post" action="">
+                    {{ csrf_field() }}
+                        <input type="hidden" name="old_sub_category_id" value="{{!empty($getSubCategory) ? $getSubCategory->id
+                        : ''}}">
+                        <input type="hidden" name="old_category_id" value="{{!empty($getCategory) ? $getCategory->id
+                        : ''}}">
+                        <input type="hidden" name="sub_category_id" id="get_sub_category_id">
+                        <input type="hidden" name="sort_by_id" id="get_sort_by_id">
+                        <input type="hidden" name="start_price" id="get_start_price">
+                        <input type="hidden" name="end_price" id="get_end_price">
+
+                    </form>
                     <div class="sidebar sidebar-shop">
                         <div class="widget widget-clean">
                             <label>Filters:</label>
@@ -148,8 +99,8 @@
                                         @foreach($getSubCategoryFilter as $f_category)
                                         <div class="filter-item">
                                             <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    id="cat-{{$f_category->id}}">
+                                                <input type="checkbox" class="custom-control-input ChangeCategory"
+                                                   value="{{$f_category->id}}" id="cat-{{$f_category->id}}">
                                                 <label class="custom-control-label"
                                                     for="cat-{{$f_category->id}}">{{$f_category->name}}</label>
                                             </div>
@@ -189,4 +140,122 @@
     </div><!-- End .page-content -->
 </main><!-- End .main -->
 
+
+@endsection
+
+@section('script')
+<script type = "text/javascript">
+    $('.ChangeSortBy').change(function() {
+        var id = $(this).val();
+    $('#get_sort_by_id').val(id);
+    FilterForm();
+});
+$('.ChangeCategory').change(function() {
+    var ids = '';
+    $('.ChangeCategory').each(function() {
+        if(this.checked)
+        {
+            var id = $(this).val();
+            ids += id+',';
+        }
+    });
+    $('#get_sub_category_id').val(ids);
+    FilterForm();
+}); 
+ var xhr;   
+function FilterForm()
+    {
+        if(xhr && xhr.readyState !=4)
+        {
+            xhr.abort();
+        }
+        xhr = $.ajax({
+            type : "POST",
+            url : "{{ url('get_filter_product_ajax') }}",
+            data : $('#FilterForm').serialize(),
+            dataType : "json",
+            success: function(data) {
+                $('#getProductAjax').html(data.success)
+                $('.LoadMore').attr('data-page', data.page);
+                    if(data.page == 0)
+                    {
+                        $('.LoadMore').hide();
+                    }
+                    else
+                    {
+                        $('.LoadMore').show();
+                    }
+            },
+            error: function (data) {
+            }
+        });
+    }
+    $('body').delegate('.LoadMore', 'click', function()
+    {
+        var page = $(this).attr('data-page');
+        $('.LoadMore').html('Loading, please wait for a sec......');
+        if(xhr && xhr.readyState !=4)
+        {
+            xhr.abort();
+        }
+        xhr = $.ajax({
+            type : "POST",
+            url : "{{ url('get_filter_product_ajax') }}?page="+page,
+            data : $('#FilterForm').serialize(),
+            dataType : "json",
+            success: function(data) {
+                $('#getProductAjax').append(data.success)
+                $('.LoadMore').attr('data-page', data.page);
+                $('.LoadMore').html('Load More');
+                    if(data.page == 0)
+                    {
+                        $('.LoadMore').hide();
+                    }
+                    else
+                    {
+                        $('.LoadMore').show();
+                    }
+            },
+            error: function (data) {
+            }
+        });
+    });
+    var i = 0;
+if ( typeof noUiSlider === 'object' ) {
+var priceSlider  = document.getElementById('price-slider');
+// if (priceSlider == null) return;
+noUiSlider.create(priceSlider, {
+start: [ 0, 10000 ],
+connect: true,
+step: 1,
+margin: 1,
+range: {
+    'min': 0,
+    'max': 10000
+},
+tooltips: true,
+format: wNumb({
+    decimals: 0,
+    prefix: 'NPR'
+})
+});
+// Update Price Range
+priceSlider.noUiSlider.on('update', function( values, handle ){
+var start_price = values[0];
+var end_price = values[1];
+$('#get_start_price').val(start_price);
+$('#get_end_price').val(end_price);
+$('#filter-price-range').text(values.join(' - '));
+if(i == 0 || i == 1)
+    {
+        i++;
+    }
+else
+    {
+        FilterForm();
+    }
+});
+}
+    
+</script>
 @endsection
