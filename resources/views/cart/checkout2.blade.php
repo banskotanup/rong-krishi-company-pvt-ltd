@@ -1,5 +1,6 @@
 @extends('home.layouts.app')
 @section('content')
+
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
@@ -22,7 +23,7 @@
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-9">
-                            <h2 class="checkout-title bill">Billing Details</h2><!-- End .checkout-title -->
+                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>First Name <span style="color: red;">*</span></label>
@@ -236,6 +237,7 @@
 <script type="text/javascript">
     $('body').delegate('#ApplyDiscount', 'click', function(){
         var discount_code = $('#getDiscountCode').val();
+
         $.ajax({
             type : "POST",
             url : "{{ url('/checkout/apply_discount_code') }}",
@@ -245,10 +247,12 @@
             },
             dataType : "json",
             success: function(data){
-                $('#getDiscountAmount').html(data.discountAmount)
-                $('#getPayableTotal').html(data.payableTotal)
-                if(data.status == false){
-                    alert(data.message);
+                if(data.status == true){
+                    $('#getDiscountAmount').html(data.discountAmount)
+                    $('#getPayableTotal').html(data.payableTotal)
+                }
+                else{
+                    $('#messagediv').html(data.html);
                 }
             },
             error: function(data){

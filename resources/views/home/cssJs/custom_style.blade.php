@@ -33,6 +33,6 @@
 
 
 
-/* media queries for responsive design */
+
 
 </style>

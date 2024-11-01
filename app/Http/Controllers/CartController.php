@@ -71,15 +71,14 @@ class CartController extends Controller
             }
             $json['status'] = true;
             $json['discountAmount'] = number_format($discountAmount, 2);
-            $json['payableTotal'] = number_format($payableTotal, 2);
+            $json['payableTotal'] = $payableTotal;
             $json['message'] = 'success';
         }
         else{
             $json['status'] = false;
             $json['discountAmount'] = '0.00';
-            $json['payableTotal'] = number_format(Cart::getSubTotal(), 2);
-            $html = 'Invalid discount code';
-            $json['html'] = $html;
+            $json['payableTotal'] = Cart::getSubTotal();
+            $json['message'] = 'Invalid discount code';
         }
 
         echo json_encode($json);

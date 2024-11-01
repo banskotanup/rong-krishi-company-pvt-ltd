@@ -104,6 +104,8 @@ route::post('/product_image_sortable',[ProductController::class, 'product_image_
 
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
+
+
 route::get('/shop',[HomeController::class, 'getShop']);
 route::get('/about_us',[HomeController::class, 'about_us']);
 route::get('/contact_us',[HomeController::class, 'contact_us']);
@@ -113,14 +115,19 @@ route::get('/blog',[HomeController::class, 'blog']);
 
 
 //Home/ProductController Goes Here...
+
+route::get('/search',[ProductFront::class, 'getProductSearch']);
+route::post('get_filter_product_ajax',[ProductFront::class, 'getFilterProductAjax']);
+route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
 route::get('/checkout',[CartController::class, 'checkout']);
 route::post('/checkout/apply_discount_code',[CartController::class, 'apply_discount_code']);
-route::get('/search',[ProductFront::class, 'getProductSearch']);
-route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
 route::get('/cart',[CartController::class, 'getCart']);
 route::post('/cart',[CartController::class, 'add_to_Cart']);
 route::post('/cart/update',[CartController::class, 'update_cart']);
 route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
+
+
+
 
 route::get('/wishlist',[CartController::class, 'getWishlist']);
 route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
