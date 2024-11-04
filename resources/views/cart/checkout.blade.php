@@ -75,6 +75,11 @@
                             <label>Email address <span style="color: red;">*</span></label>
                             <input type="email" name="email" class="form-control" required>
 
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+                                <label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+                            </div><!-- End .custom-checkbox -->
+
                             <label>Order notes (optional)</label>
                             <textarea class="form-control" name="notes" cols="30" rows="4"
                                 placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
