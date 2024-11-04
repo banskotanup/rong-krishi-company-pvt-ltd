@@ -72,7 +72,7 @@ class CartController extends Controller
 
             }
             $json['status'] = true;
-            $json['discount_amount'] = $discount_amount;
+            $json['discount_amount'] = number_format($discount_amount, 2);
             $json['payable_total'] = $payable_total;
             $json['message'] = "success";
         }
