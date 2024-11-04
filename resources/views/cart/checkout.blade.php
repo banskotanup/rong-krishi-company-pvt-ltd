@@ -133,7 +133,7 @@
                                         <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">
-                                                <input type="radio" value="{{ $shipping->id }}" id="free-shipping{{ $shipping->id }}" name="shipping" required
+                                                <input type="radio" id="free-shipping{{ $shipping->id }}" name="shipping"
                                                 data-price="{{ !empty($shipping->price) ? $shipping->price : 0 }}"
                                                 class="custom-control-input getShippingCharge">
                                                 <label class="custom-control-label" for="free-shipping{{ $shipping->id }}">{{ $shipping->name }}</label>
@@ -153,7 +153,6 @@
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->
-
                                 <input type="hidden" id="getShippingChargeTotal" value="0">
                                 <input type="hidden" id="PayableTotal" value="{{ Cart::subTotal() }}">
 
