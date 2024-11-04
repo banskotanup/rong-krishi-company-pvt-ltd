@@ -57,6 +57,9 @@ class CartController extends Controller
     }
 
     public function apply_discount_code(Request $request){
+        request()->validate([
+
+        ]);
         $getDiscount = DiscountCode::CheckDiscount($request->discount_code);
         if(!empty($getDiscount)){
             $total = Cart::subTotal();

@@ -176,15 +176,6 @@
                      class="custom-control-input">
                     <label class="custom-control-label" for="CreditCard"> Credit Card (Stripe)</label>
                     </div>
-
-                    
-
-                    
-
-                                   
-
-                                   
-                        
                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                     <span class="btn-text">Place Order</span>
                                     <span class="btn-hover-text">Proceed to Checkout</span>
@@ -206,27 +197,47 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    $('body').delegate('#ApplyDiscount', 'click', function(){
-        var discount_code = $('#getDiscountCode').val();
-        $.ajax({
-            type : "POST",
-            url : "{{ url('/checkout/apply_discount_code') }}",
-            data : {
-                discount_code : discount_code,
-                "_token": "{{csrf_token()}}",
-            },
-            dataType : "json",
-            success: function(data){
-                $('#getDiscountAmount').html(data.discountAmount)
-                $('#getPayableTotal').html(data.payableTotal)
-                if(data.status == false){
-                    alert(data.message);
-                }
-            },
-            error: function(data){
 
-            }
-        });
-    });
+    $('body').delegate('.getShippingCharge', 'change', function() {
+				var price = $(this).attr('data-price');
+				var total = $('#PayableTotal').val();
+				$('#getShippingChargeTotal').val(price);
+				var final_total = parseFloat(price) + parseFloat(total);
+				$('#getPayableTotal').html(final_total.toFixed(2));
+
+				
+		});
+
+    $('body').delegate('#ApplyDiscount', 'click', function() {
+            var discount_code = $('#getDiscountCode').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url('/checkout/apply_discount_code') }}",
+                data : {
+                	discount_code : discount_code,
+                	"_token": "{{csrf_token()}}",
+                },
+                dataType : "json",
+                success: function(data) {
+                	$('#getDiscountAmount').html(data.discount_amount);
+                	var shipping = $('#getShippingChargeTotal').val();
+
+                	var final_total = parseFloat(shipping) + parseFloat(data.payable_total);
+
+                	$('#getPayableTotal').html(final_total.toFixed(2));
+                	$('#PayableTotal').val(data.payable_total);
+                	
+                    if(data.status == false)
+                    {
+                   		alert(data.message);
+                    }
+                   
+                },
+                error: function (data) {
+                  
+                }
+            });  
+       });
 </script>
 @endsection
