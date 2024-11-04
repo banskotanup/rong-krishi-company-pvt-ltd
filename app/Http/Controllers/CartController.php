@@ -62,23 +62,23 @@ class CartController extends Controller
         if(!empty($getDiscount)){
             $total = Cart::subTotal();
             if($getDiscount->type == 'Amount'){
-                $discountAmount  = $getDiscount->percent_amount;
-                $payableTotal = $total - $getDiscount->percent_amount;
+                $discount_amount  = $getDiscount->percent_amount;
+                $payable_total = $total - $getDiscount->percent_amount;
             }
             else{
-                $discountAmount  = ($total * $getDiscount->percent_amount) / 100 ;
-                $payableTotal = $total - $discountAmount;
+                $discount_amount  = ($total * $getDiscount->percent_amount) / 100 ;
+                $payable_total = $total - $discount_amount;
             }
             $json['status'] = true;
-            $json['discountAmount'] = number_format($discountAmount, 2);
-            $json['payableTotal'] = $payableTotal;
-            $json['message'] = 'success';
+            $json['discount_amount'] = $discount_amount;
+            $json['payable_total'] = $payable_total;
+            $json['message'] = "success";
         }
         else{
             $json['status'] = false;
-            $json['discountAmount'] = '0.00';
-            $json['payableTotal'] = Cart::getSubTotal();
-            $json['message'] = 'Invalid discount code';
+            $json['discount_amount'] = '0.00';
+            $json['payable_total'] = Cart::subTotal();
+            $json['message'] = "Invalid discount code";
         }
 
         echo json_encode($json);
