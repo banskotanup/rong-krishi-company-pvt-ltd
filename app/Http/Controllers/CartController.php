@@ -12,6 +12,8 @@ use App\Models\User;
 use Auth;
 use Cart;
 use Hash;
+use Stripe\Stripe;
+use Session;
 
 class CartController extends Controller
 {
@@ -192,7 +194,8 @@ class CartController extends Controller
                 $order_item->save();
             }
             $json['status'] = true;
-            $json['message'] = "order success";
+            $json['message'] = "success";
+            $json['redirect'] = url('/checkout/payment?order_id='.base64_encode($order->id)); 
             $html = 'Thank you for your order! We are processing it now and will send you an email with the details shortly.';
             $json['html'] = $html;
         }
@@ -201,5 +204,93 @@ class CartController extends Controller
             $json['message'] = $message;
         }
         echo json_encode($json);
+    }
+
+    public function checkout_payment(Request $request)
+    {
+        if(!empty(Cart::subTotal()) && !empty($request->order_id))
+        {
+            $order_id = base64_decode($request->order_id);
+            $getOrder = OrderModel::getSingle($order_id);
+            if(!empty($getOrder))
+            {
+                if($getOrder->payment_method == 'cash')
+                {
+                    $getOrder->is_payment = 1;
+                    $getOrder->save();
+
+                    Cart::clear();
+
+                    return redirect('cart')->with('success',"Order successfully placed");
+                }
+                else if($getOrder->payment_method == 'paypal')
+                {
+
+                }
+                else if($getOrder->payment_method == 'stripe')
+                {
+                    Stripe::setApikey(env('STRIPE_SECRET'));
+                    $finalprice = $getOrder->total_amount * 100;
+
+                    $session = \Stripe\Checkout\Session::create([
+                        'customer_email' => $getOrder->email,
+                        'payment_method_types' => ['card'],
+                        'line_items' => [[
+                            'price_data' => [
+                                'currency' => 'usd',
+                                'product_data' => [
+                                    'name' => 'Rongkrishi',
+                                ],
+                                'unit_amount' => intval($finalprice),
+                            ],
+                            'quantity' => 1,
+                        ]],
+                        'mode' => 'payment',
+                        'success_url' => url('stripe/payment-success'),
+                        'cancel_url' => url('checkout'),
+                        ]);
+
+                        $getOrder->stripe_sesion_id = $session['id'];
+                        $getOrder->save();
+
+                        $data['session_id'] = $session['id'];
+                        Session::put('stripe_session_id', $session['id']);
+                        $data['setPublicKey'] = env('STRIPE_KEY');
+
+                        return view('cart.stripe_charge', $data);
+                }
+            }
+            else
+            {
+                abort(404);
+            }
+        }
+        else
+        {
+            abort(404);
+        }
+    }
+
+    public function stripe_success_payment(Request $request)
+    {
+        $trans_id = Session::get('stripe_session_id');
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $getdata = \Stripe\Checkout\Session::retrieve($trans_id);
+
+        $getOrder = OrderModel::where('stripe_session_id', '=', $getdata->id)->first();
+
+        if(!empty($getOrder) && !empty($getdata->id) && $getdata->id == $getOrder->stripe_session_id)
+        {
+            $getOrder->is_payment = 1;
+            $getOrder->transaction_id = $getdata->id;
+            $getOrder->payment_data = json_encode($getdata);
+            $getOrder->save();
+
+            Cart::clear();
+        }
+        else
+        {
+            return redirect('cart')->with('error', "Due to some error please try again");
+        }
     }
 }

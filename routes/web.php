@@ -119,6 +119,10 @@ route::get('/blog',[HomeController::class, 'blog']);
 route::get('/checkout',[CartController::class, 'checkout']);
 route::post('/checkout/apply_discount_code',[CartController::class, 'apply_discount_code']);
 route::post('/checkout/place_order',[CartController::class, 'place_order']);
+route::get('/checkout/payment',[CartController::class, 'checkout_payment']);
+route::get('/stripe/payment-success',[CartController::class, 'stripe_success_payment']);
+
+
 
 
 route::get('/search',[ProductFront::class, 'getProductSearch']);

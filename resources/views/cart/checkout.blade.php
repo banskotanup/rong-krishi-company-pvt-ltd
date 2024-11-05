@@ -242,7 +242,11 @@ $('body').delegate('#SubmitForm','submit',function(e){
             if(data.status == false)
             {
                 alert(data.message);
-            }   
+            } 
+            else
+            {
+                window.location.href = data.redirect;
+            }  
         },
         error: function (data) {
 
