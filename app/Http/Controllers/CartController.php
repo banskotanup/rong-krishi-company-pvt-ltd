@@ -8,7 +8,10 @@ use App\Models\DiscountCode;
 use App\Models\ShippingCharge;
 use App\Models\OrderModel;
 use App\Models\OrderItem;
+use App\Models\User;
+use Auth;
 use Cart;
+use Hash;
 class CartController extends Controller
 {
     public function getCart(){
@@ -86,63 +89,108 @@ class CartController extends Controller
 
     public function place_order(Request $request)
     {
-        $getShipping = ShippingCharge::getSingle($request->shipping);
-        $payableTotal = Cart::subTotal();
-        $discountAmount = 0;
-        $discount_code = '';
-        if(!empty($request->discount_code))
+        $validate = 0;
+        $message = '';
+        if(!empty(Auth::check()))
         {
-            $getDiscount = DiscountCode::CheckDiscount($request->discount_code);
-            if(!empty($getDiscount))
+         $user_id = Auth::user()->id;   
+        }
+        else
+        {
+            if(!empty($request->is_create))
             {
-                $discount_code = $request->discount_code;
-                if($getDiscount->type == 'Amount')
+                $checkEmail = User::checkEmail($request->email);
+                if(!empty($checkEmail))
                 {
-                    $discountAmount  = $getDiscount->percent_amount;
-                    $payableTotal = $payableTotal - $getDiscount->percent_amount;
+                    $message = "This email already register please choose another";
+                    $validate = 1;
                 }
                 else
                 {
-                    $discountAmount  = ($payableTotal * $getDiscount->percent_amount) / 100;
-                    $payableTotal = $payableTotal - $discountAmount;
+                    $save = new User;
+                    $save->name = trim($request->first_name);
+                    $save->email = trim($request->email);
+                    $save->password = Hash::make($request->password);
+                    $save->save();
+                    $user_id = $save->id;
                 }
+            }
+            else
+            {
+                $user_id = '';
             }
         }
 
-        $shipping_amount = !empty($getShipping->price) ? $getShipping->price : 0;
-        $total_amount = $payableTotal + $shipping_amount;
-
-        $order = new OrderModel;
-        $order->first_name = trim($request->first_name);
-        $order->last_name = trim($request->last_name);
-        $order->company_name = trim($request->company_name);
-        $order->country = trim($request->country);
-        $order->address_one = trim($request->address_one);
-        $order->address_two = trim($request->address_two);
-        $order->city = trim($request->city);
-        $order->state = trim($request->state);
-        $order->postcode = trim($request->postcode);
-        $order->phone = trim($request->phone);
-        $order->email = trim($request->email);
-        $order->notes= trim($request->notes);
-        $order->discount_amount= trim($discountAmount);
-        $order->discount_code= trim($discount_code);
-        $order->shipping_id= trim($request->shipping);
-        $order->$shipping_amount= trim($shipping_amount);
-        $order->total_amount= trim($total_amount);
-        $order->payment_method= trim($request->payment_method);
-        $order->save();
-
-        foreach (Cart::content() as $key => $data)
+        if(empty($validate))
         {
-            $order_item = new OrderItem;
-            $order_item->order_id = $order->id;
-            $order_item->product_id = $data->id;
-            $order_item->qty = $data->qty;
-            $order_item->price = $data->price;
-            $order_item->total_price = $data->price;
-            $order_item->save();
+            $getShipping = ShippingCharge::getSingle($request->shipping);
+            $payableTotal = Cart::subTotal();
+            $discountAmount = 0;
+            $discount_code = '';
+            if(!empty($request->discount_code))
+            {
+                $getDiscount = DiscountCode::CheckDiscount($request->discount_code);
+                if(!empty($getDiscount))
+                {
+                    $discount_code = $request->discount_code;
+                    if($getDiscount->type == 'Amount')
+                    {
+                        $discountAmount  = $getDiscount->percent_amount;
+                        $payableTotal = $payableTotal - $getDiscount->percent_amount;
+                    }
+                    else
+                    {
+                        $discountAmount  = ($payableTotal * $getDiscount->percent_amount) / 100;
+                        $payableTotal = $payableTotal - $discountAmount;
+                    }
+                }
+            }
+    
+            $shipping_amount = !empty($getShipping->price) ? $getShipping->price : 0;
+            $total_amount = $payableTotal + $shipping_amount;
+    
+            $order = new OrderModel;
+            if(!empty($user_id))
+            {
+                $order->user_id = trim($user_id);  
+            }
+            $order->first_name = trim($request->first_name);
+            $order->last_name = trim($request->last_name);
+            $order->company_name = trim($request->company_name);
+            $order->country = trim($request->country);
+            $order->address_one = trim($request->address_one);
+            $order->address_two = trim($request->address_two);
+            $order->city = trim($request->city);
+            $order->state = trim($request->state);
+            $order->postcode = trim($request->postcode);
+            $order->phone = trim($request->phone);
+            $order->email = trim($request->email);
+            $order->notes= trim($request->notes);
+            $order->discount_amount= trim($discountAmount);
+            $order->discount_code= trim($discount_code);
+            $order->shipping_id= trim($request->shipping);
+            $order->$shipping_amount= trim($shipping_amount);
+            $order->total_amount= trim($total_amount);
+            $order->payment_method= trim($request->payment_method);
+            $order->save();
+    
+            foreach (Cart::content() as $key => $data)
+            {
+                $order_item = new OrderItem;
+                $order_item->order_id = $order->id;
+                $order_item->product_id = $data->id;
+                $order_item->qty = $data->qty;
+                $order_item->price = $data->price;
+                $order_item->total_price = $data->price;
+                $order_item->save();
+            }
+            $json['status'] = true;
+            $json['message'] = "order success";
         }
-        die;
+        else{
+            $json['status'] = false;
+            $json['message'] = $message;
+        }
+        echo json_encode($json);
     }
 }
