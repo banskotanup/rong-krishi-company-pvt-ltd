@@ -124,8 +124,6 @@ route::post('/checkout/place_order',[CartController::class, 'place_order']);
 route::get('/search',[ProductFront::class, 'getProductSearch']);
 route::post('get_filter_product_ajax',[ProductFront::class, 'getFilterProductAjax']);
 route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
-route::get('/checkout',[CartController::class, 'checkout']);
-route::post('/checkout/apply_discount_code',[CartController::class, 'apply_discount_code']);
 route::get('/cart',[CartController::class, 'getCart']);
 route::post('/cart',[CartController::class, 'add_to_Cart']);
 route::post('/cart/update',[CartController::class, 'update_cart']);

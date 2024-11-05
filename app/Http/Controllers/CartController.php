@@ -12,6 +12,7 @@ use App\Models\User;
 use Auth;
 use Cart;
 use Hash;
+
 class CartController extends Controller
 {
     public function getCart(){
@@ -130,7 +131,7 @@ class CartController extends Controller
         if(empty($validate))
         {
             $getShipping = ShippingCharge::getSingle($request->shipping);
-            $payableTotal = Cart::subTotal();
+            $payableTotal = (float)str_replace(',', '', Cart::subTotal());
             $discountAmount = 0;
             $discount_code = '';
             if(!empty($request->discount_code))
@@ -175,7 +176,7 @@ class CartController extends Controller
             $order->discount_amount= trim($discountAmount);
             $order->discount_code= trim($discount_code);
             $order->shipping_id= trim($request->shipping);
-            $order->$shipping_amount= trim($shipping_amount);
+            $order->shipping_amount= trim($shipping_amount);
             $order->total_amount= trim($total_amount);
             $order->payment_method= trim($request->payment_method);
             $order->save();
@@ -192,6 +193,8 @@ class CartController extends Controller
             }
             $json['status'] = true;
             $json['message'] = "order success";
+            $html = 'Thank you for your order! We are processing it now and will send you an email with the details shortly.';
+            $json['html'] = $html;
         }
         else{
             $json['status'] = false;

@@ -16,10 +16,16 @@
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
 
+
+    <div style="text-align: center;">
+        @include('admin.auth.message')
+    </div>
+
+    
     <div class="page-content">
         <div class="checkout">
             <div class="container">
-
+                <div style="margin-bottom: 20px; color:#28a745 ;" id="message">
                 <form action="" id="SubmitForm" method="post">
                     {{ csrf_field() }}
                     <div class="row">
@@ -232,6 +238,7 @@ $('body').delegate('#SubmitForm','submit',function(e){
         contentType:false,
         dataType : "json",
         success: function(data) {
+            $('#message').html(data.html);
             if(data.status == false)
             {
                 alert(data.message);

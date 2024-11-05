@@ -64,4 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         ->orderBy('id', 'asc')
         ->paginate(20);
     }
+
+    static public function checkEmail($email){
+        return User::select('users.*')
+        ->where('email','=', $email)
+        ->first();
+    }
 }
