@@ -159,7 +159,7 @@
                                     </tbody>
                                 </table><!-- End .table table-summary -->
                                 <input type="hidden" id="getShippingChargeTotal" value="0">
-                                <input type="hidden" id="PayableTotal" value="{{ Cart::subTotal() }}">
+                                <input type="hidden" id="PayableTotal" value="{{ (float)str_replace(',', '', Cart::subTotal()) }}">
 
                                 <div class="accordion-summary" id="accordion-payment">
 
