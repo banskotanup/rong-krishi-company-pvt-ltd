@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\ShippingChargeController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Home\ProductController as ProductFront;
@@ -96,6 +97,13 @@ route::post('/shipping_charge_add',[ShippingChargeController::class, 'insert_shi
 route::get('/shipping_charge_edit/{id}',[ShippingChargeController::class, 'edit_shipping_charge'])->middleware('is_admin');
 route::post('/shipping_charge_edit/{id}',[ShippingChargeController::class, 'update_edit_shipping_charge'])->middleware('is_admin');
 route::get('/shipping_charge_delete/{id}',[ShippingChargeController::class, 'delete_shipping_charge'])->middleware('is_admin');
+
+route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is_admin');
+// route::get('/order_add',[OrderController::class, 'order_add'])->middleware('is_admin');
+// route::post('/order_add',[OrderController::class, 'insert_order'])->middleware('is_admin');
+// route::get('/order_edit/{id}',[OrderController::class, 'edit_order'])->middleware('is_admin');
+// route::post('/order_edit/{id}',[OrderController::class, 'update_edit_order'])->middleware('is_admin');
+// route::get('/order_delete/{id}',[OrderController::class, 'delete_order'])->middleware('is_admin');
 
 
 //ImageController Routes Goes Here.....

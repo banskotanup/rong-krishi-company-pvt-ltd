@@ -187,6 +187,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('order_list')}}" class="nav-link {{ Request::is('order_list') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>
+                    Orders
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('category_list')}}" class="nav-link {{ Request::is('category_list') ? 'active' : ''}}">
                   <i class="nav-icon fas fa-list"></i>
                   <p>

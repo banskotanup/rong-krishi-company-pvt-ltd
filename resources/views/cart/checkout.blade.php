@@ -25,7 +25,7 @@
     <div class="page-content">
         <div class="checkout">
             <div class="container">
-                <div style="margin-bottom: 20px; color:#28a745 ;" id="message">
+                <div style="margin-bottom: 20px; color:#28a745 ;" id="message"></div>
                 <form action="" id="SubmitForm" method="post">
                     {{ csrf_field() }}
                     <div class="row">
@@ -133,8 +133,8 @@
                                                                 <button id="ApplyDiscount" style="height:40px;" type="button" class="btn btn-outline-primary-2" type="submit"><i
                                                                         class="icon-long-arrow-right"></i></button>
                                                             </div>
-                                                            <div style="margin-bottom: 20px; color:red;" id="messagediv"></div>
                                                         </div>
+                                                        <div style="margin-bottom: 20px; color:red; text-align:left;" id="messagediv"></div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -282,7 +282,8 @@ $('body').delegate('#SubmitForm','submit',function(e){
                 	
                     if(data.status == false)
                     {
-                   		alert(data.message);
+                        $('#messagediv').html(data.html);
+                   		
                     }
                    
                 },

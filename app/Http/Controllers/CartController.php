@@ -88,7 +88,8 @@ class CartController extends Controller
             $json['status'] = false;
             $json['discount_amount'] = '0.00';
             $json['payable_total'] = $total;
-            $json['message'] = "Invalid discount code";
+            $html = 'Invalid discount code. Please check for errors or expiration.';
+            $json['html'] = $html;
         }
 
         echo json_encode($json);
@@ -109,7 +110,7 @@ class CartController extends Controller
                 $checkEmail = User::checkEmail($request->email);
                 if(!empty($checkEmail))
                 {
-                    $message = "This email already register please choose another";
+                    $message = "Email is already registered. Please use a different email or log in to your account.";
                     $validate = 1;
                 }
                 else
