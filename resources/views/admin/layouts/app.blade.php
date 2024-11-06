@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
-  <link rel="icon" type="image/x-icon" href="trslogo.png">
+  <link rel="icon" type="image/x-icon" href="{{url('trslogo.png')}}">
   <style>
     .hide {
       display: none;

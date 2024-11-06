@@ -14,4 +14,12 @@ class OrderController extends Controller
         $data['header_title'] = 'Orders';
         return view('admin.order_pages.order_list', $data)->with('no', 1);
     }
+
+    public function order_view($id){
+        $data['getRecords'] = Order::getSingle($id);
+        $data['header_title'] = 'Order Details';
+        return view('admin.order_pages.order_detail', $data)->with('no', 1);
+    }
+
+
 }

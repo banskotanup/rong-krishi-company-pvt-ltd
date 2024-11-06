@@ -38,6 +38,7 @@
                         <th>Total Amount(NPR)</th>
                         <th>Payment Method</th>
                         <th>Created Date</th>
+                        <th>Status</th>
                         <th style="text-align: center;">Action</th>
                     </tr>
                 </thead>
@@ -69,10 +70,9 @@
                             @endif
                         </td>
                         <td style="text-align: center;">
-                            <a href="{{url('/category_edit/'.$value->id)}}" class="btn btn-primary btn_edit"
-                                style="width: 50px;"><i class="fas fa-edit"></i></a>
-                            <a onclick="confirmation(event)" href="{{url('/category_delete/'.$value->id)}}" class="btn btn-danger btn_delete"
-                                style="width: 50px;"><i class="fas fa-trash"></i></a>
+                            <a href="{{url('/order_view/'.$value->id)}}" class="btn btn-primary">Details</a>
+                            {{-- <a onclick="confirmation(event)" href="{{url('/category_delete/'.$value->id)}}" class="btn btn-danger btn_delete"
+                                style="width: 50px;"><i class="fas fa-trash"></i></a> --}}
                         </td>
                     </tr>
                     @endforeach
