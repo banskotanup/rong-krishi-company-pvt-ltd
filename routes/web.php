@@ -146,3 +146,4 @@ route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
 
 route::get('/wishlist',[CartController::class, 'getWishlist']);
 route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
+route::post('add_to_wishlist', [CartController::class, 'add_to_wishlist']);

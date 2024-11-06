@@ -68,9 +68,17 @@
 
                             <div class="product-details-action">
                                 <button type="submit" class="btn-product btn-cart"><span>add to cart</span></button>
+
                                 <div class="details-action-wrapper">
-                                    <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to
-                                            Wishlist</span></a>
+                                    @if(!empty(Auth::check()))
+                                    
+                                    <a href="javascript:;" class="add_to_wishlist add_to_wishlist{{ $getProduct->id }}
+                                    {{ !empty($getProduct->checkWishlist($getProduct->id)) ? 'btn-wishlist-add' : '' }}
+                                     btn-product btn-wishlist" title="Wishlist" id="{{ $getProduct->id }}"><span>Add to Wishlist</span></a>
+                                    @else
+                                  <a href="#signin-modal" data-toggle="modal" class="btn-product btn-wishlist" 
+                                  title="Wishlist"><span>Add to Wishlist</span></a>
+                                    @endif
                                 </div>
                             </div>
 
@@ -261,8 +269,16 @@
                             @endif
                         </a>
                         <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
-                                    wishlist</span></a>
+                             @if(!empty(Auth::check()))
+                                    
+                                 <a href="javascript:;" data-toggle="modal" class="add_to_wishlist add_to_wishlist{{ $product->id }}
+                                 btn-product-icon btn-wishlist btn-expandable
+                                 {{ !empty($product->checkWishlist($product->id)) ? 'btn-wishlist-add' : '' }}" id="{{ $product->id }}"
+                                 title="Wishlist"><span>add to wishlist</span></a>
+                            @else
+                              <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" 
+                              title="Wishlist"><span>add to wishlist</span></a>
+                            @endif
                         </div>
 
                         <div class="product-action">

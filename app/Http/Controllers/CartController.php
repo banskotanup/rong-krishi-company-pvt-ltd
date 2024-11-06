@@ -8,6 +8,7 @@ use App\Models\DiscountCode;
 use App\Models\ShippingCharge;
 use App\Models\OrderModel;
 use App\Models\OrderItem;
+use App\Models\ProductWishlist;
 use App\Models\User;
 use Auth;
 use Cart;
@@ -295,5 +296,25 @@ class CartController extends Controller
         {
             return redirect('cart')->with('error', "An unexpected issue occurred. Please try again later.");
         }
+    }
+    public function add_to_wishlist(Request $request)
+    {
+        $check = ProductWishlist::checkAlready($request->product_id, Auth::user()->id);
+            if(empty($check))
+            {
+                $save = new ProductWishlist;
+                $save->product_id = $request->product_id;
+                $save->user_id = Auth::user()->id;
+                $save->save();
+
+                $json['is_Wishlist'] = 1;
+            }
+            else
+            {
+                ProductWishlist::DeleteRecord($request->product_id, Auth::user()->id);
+                $json['is_Wishlist'] = 0;
+            }
+        $json['status'] = true;
+        echo json_encode($json);
     }
 }

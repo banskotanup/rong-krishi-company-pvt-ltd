@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Request;
+use Auth;
 
 class Product extends Model
 {
@@ -14,6 +15,11 @@ class Product extends Model
 
     static public function checkSlug($slug){
         return self::where('slug','=',$slug)->count();
+    }
+
+    static public function checkWishlist($product_id)
+    {
+        return ProductWishlist::checkAlready($product_id, Auth::user()->id);
     }
 
     static public function getSingle($id){
