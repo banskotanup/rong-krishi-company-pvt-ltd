@@ -220,9 +220,9 @@ class CartController extends Controller
                     $getOrder->is_payment = 1;
                     $getOrder->save();
 
-                    Cart::clear();
+                    Cart::destroy();
 
-                    return redirect('cart')->with('success',"Order successfully placed");
+                    return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
                 }
                 else if($getOrder->payment_method == 'paypal')
                 {
@@ -238,7 +238,7 @@ class CartController extends Controller
                         'payment_method_types' => ['card'],
                         'line_items' => [[
                             'price_data' => [
-                                'currency' => 'usd',
+                                'currency' => 'NPR',
                                 'product_data' => [
                                     'name' => 'Rongkrishi',
                                 ],
@@ -251,7 +251,7 @@ class CartController extends Controller
                         'cancel_url' => url('checkout'),
                         ]);
 
-                        $getOrder->stripe_sesion_id = $session['id'];
+                        $getOrder->stripe_session_id = $session['id'];
                         $getOrder->save();
 
                         $data['session_id'] = $session['id'];
@@ -287,11 +287,13 @@ class CartController extends Controller
             $getOrder->payment_data = json_encode($getdata);
             $getOrder->save();
 
-            Cart::clear();
+            Cart::destroy();
+            return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
+
         }
         else
         {
-            return redirect('cart')->with('error', "Due to some error please try again");
+            return redirect('cart')->with('error', "An unexpected issue occurred. Please try again later.");
         }
     }
 }

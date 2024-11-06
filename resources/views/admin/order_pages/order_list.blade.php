@@ -24,13 +24,20 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Slug</th>
-                        <th>Meta Title</th>
-                        <th>Meta Description</th>
-                        <th>Meta Keywords</th>
-                        <th>Created By</th>
+                        <th>Company Name</th>
+                        <th>Country</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Postcode</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Discount Code</th>
+                        <th>Discount Amount(NPR)</th>
+                        <th>Shipping Amount(NPR)</th>
+                        <th>Total Amount(NPR)</th>
+                        <th>Payment Method</th>
                         <th>Created Date</th>
-                        <th>Status</th>
                         <th style="text-align: center;">Action</th>
                     </tr>
                 </thead>
@@ -38,12 +45,20 @@
                     @foreach ($getRecords as $value)
                     <tr>
                         <td>{{$no++}}</td>
-                        <td>{{$value->name}}</td>
-                        <td>{{$value->slug}}</td>
-                        <td>{{$value->meta_title}}</td>
-                        <td>{{$value->meta_description}}</td>
-                        <td>{{$value->meta_keywords}}</td>
-                        <td>{{$value->created_by_name}}</td>
+                        <td>{{$value->first_name}} {{$value->last_name}}</td>
+                        <td>{{$value->company_name}}</td>
+                        <td>{{$value->country}}</td>
+                        <td>{{$value->address_one}} <br/> {{$value->address_two}}</td>
+                        <td>{{$value->city}}</td>
+                        <td>{{$value->state}}</td>
+                        <td>{{$value->postcode}}</td>
+                        <td>{{$value->phone}}</td>
+                        <td>{{$value->email}}</td>
+                        <td>{{$value->discount_code}}</td>
+                        <td>{{number_format($value->discount_amount, 2)}}</td>
+                        <td>{{number_format($value->shipping_amount, 2)}}</td>
+                        <td>{{number_format($value->total_amount, 2)}}</td>
+                        <td style="text-transform: capitalize;">{{$value->payment_method}}</td>
                         <td>{{date('d-m-y', strtotime($value->created_at))}}</td>
                         <td>
                             @if ($value->status == 0)

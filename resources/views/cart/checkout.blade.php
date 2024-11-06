@@ -151,7 +151,7 @@
                                         <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">
-                                                <input type="radio" id="free-shipping{{ $shipping->id }}" name="shipping"
+                                                <input type="radio" value="{{ $shipping->id }}" id="free-shipping{{ $shipping->id }}" name="shipping" required
                                                 data-price="{{ !empty($shipping->price) ? $shipping->price : 0 }}"
                                                 class="custom-control-input getShippingCharge">
                                                 <label class="custom-control-label" for="free-shipping{{ $shipping->id }}">{{ $shipping->name }}</label>
@@ -287,7 +287,6 @@ $('body').delegate('#SubmitForm','submit',function(e){
                     if(data.status == false)
                     {
                         $('#messagediv').html(data.html);
-                   		
                     }
                    
                 },

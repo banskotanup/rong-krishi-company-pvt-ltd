@@ -22,7 +22,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        
+                        <div style="margin-left: 10px;">
+                            @include('admin.auth.message')
+                        </div>
                         <form action="{{url('/cart/update')}}" method="POST">
                         @csrf
                         @if(!empty(Cart::count()))
@@ -94,11 +96,13 @@
                                         class="icon-refresh"></i></button>
                             </div>
                             @else
-                            <div>
+                            <div style="margin-left: 10px;">
                                 <p>Nothing to show here</p>
                             </div>
                             <aside class="col-lg-4">
-                                <a href="{{url('/')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>GO TO SHOP</span><i class="icon-arrow-right"></i></a>
+                                <div style="margin-top: 10px; margin-left:0;">
+                                    <a href="{{url('/')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>GO TO SHOP</span><i class="icon-arrow-right"></i></a>
+                                </div>
                             </aside>
                             @endif
                         </form>
