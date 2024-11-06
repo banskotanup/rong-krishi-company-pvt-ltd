@@ -18,8 +18,8 @@ class Order extends Model
 
     static public function getRecord(){
         $return = Order::select('orders.*');
-        if(!empty(Request::get('id'))){
-            $return = $return->where('id', '=', Request::get('id'));
+        if(!empty(Request::get('order_number'))){
+            $return = $return->where('order_number', '=', Request::get('order_number'));
         }
         if(!empty(Request::get('first_name'))){
             $return = $return->where('first_name', '=', Request::get('first_name'));
@@ -53,7 +53,7 @@ class Order extends Model
         }
         $return = $return->where('is_payment', '=', 1)
         ->where('is_delete', '=', 0)
-        ->orderBy('id', 'asc')
+        ->orderBy('id', 'desc')
         ->paginate(20);
 
         return $return;

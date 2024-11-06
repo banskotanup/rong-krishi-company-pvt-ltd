@@ -185,7 +185,7 @@
                     <div class="custom-control custom-radio" style="margin-top: 0px;">
                     <input type="radio" value="paypal" id="PayPal" name="payment_method" required
                      class="custom-control-input">
-                    <label class="custom-control-label" for="PayPal">PayPal</label>
+                    <label class="custom-control-label" for="PayPal">e-Sewa</label>
                     </div>
 
                     <div class="custom-control custom-radio" style="margin-top: 0px;">

@@ -8,6 +8,7 @@ use App\Models\DiscountCode;
 use App\Models\ShippingCharge;
 use App\Models\OrderModel;
 use App\Models\OrderItem;
+use App\Models\Order;
 use App\Models\ProductWishlist;
 use App\Models\User;
 use Auth;
@@ -15,6 +16,8 @@ use Cart;
 use Hash;
 use Stripe\Stripe;
 use Session;
+use App\Mail\OrderInvoiceMail;
+use Mail;
 
 class CartController extends Controller
 {
@@ -166,6 +169,7 @@ class CartController extends Controller
             {
                 $order->user_id = trim($user_id);  
             }
+            $order->order_number = mt_rand(100000000,999999999);
             $order->first_name = trim($request->first_name);
             $order->last_name = trim($request->last_name);
             $order->company_name = trim($request->company_name);
@@ -223,6 +227,7 @@ class CartController extends Controller
                     $getOrder->is_payment = 1;
                     $getOrder->save();
 
+                    Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
                     Cart::destroy();
 
                     return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
@@ -290,6 +295,7 @@ class CartController extends Controller
             $getOrder->payment_data = json_encode($getdata);
             $getOrder->save();
 
+            Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
             Cart::destroy();
             return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
 

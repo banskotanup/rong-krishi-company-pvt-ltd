@@ -17,9 +17,14 @@
         <div class="card card-primary">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>ID: <span>{{$getRecords->id}}</span> </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Order Number: <span style="color: red;">{{$getRecords->order_number}}</span> </label>
                         </div>
                     </div>
                     <div class="col-md-6">

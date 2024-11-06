@@ -25,8 +25,8 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="">ID</label>
-                            <input type="text" placeholder="ID" name="id" class="form-control" value="">
+                            <label for="">Order Number</label>
+                            <input type="text" placeholder="Order Number" name="order_number" class="form-control" value="">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -111,7 +111,7 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Company Name</th>
+                        <th>Order Number</th>
                         <th>Country</th>
                         <th>Address</th>
                         <th>City</th>
@@ -134,7 +134,7 @@
                     <tr>
                         <td>{{$no++}}</td>
                         <td>{{$value->first_name}} {{$value->last_name}}</td>
-                        <td>{{$value->company_name}}</td>
+                        <td>{{$value->order_number}}</td>
                         <td>{{$value->country}}</td>
                         <td>{{$value->address_one}} <br /> {{$value->address_two}}</td>
                         <td>{{$value->city}}</td>
