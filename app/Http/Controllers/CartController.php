@@ -31,7 +31,7 @@ class CartController extends Controller
         Cart::add([
             'id' => $getProduct->id,
             'name' => $getProduct->title,
-            'price' => $total,
+            'price' => $getProduct->price,
             'qty' => $request->qty,
         ]);
         return redirect()->back();
@@ -135,6 +135,7 @@ class CartController extends Controller
         {
             $getShipping = ShippingCharge::getSingle($request->shipping);
             $payableTotal = (float)str_replace(',', '', Cart::subTotal());
+            $total_balance = (float)str_replace(',', '', Cart::subTotal());
             $discountAmount = 0;
             $discount_code = '';
             if(!empty($request->discount_code))
@@ -180,7 +181,8 @@ class CartController extends Controller
             $order->discount_code= trim($discount_code);
             $order->shipping_id= trim($request->shipping);
             $order->shipping_amount= trim($shipping_amount);
-            $order->total_amount= trim($total_amount);
+            $order->total_balance= trim($total_balance);    
+            $order->total_amount= trim($total_amount);    
             $order->payment_method= trim($request->payment_method);
             $order->save();
     

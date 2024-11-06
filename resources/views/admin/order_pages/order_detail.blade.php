@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Total Amount: NPR <span>{{number_format($getRecords->total_amount,
+                            <label>Payable Amount: NPR <span style="text-decoration-line: underline; text-decoration-style: double;">{{number_format($getRecords->total_amount,
                                     2)}}</span></label>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Payment Method: <span
-                                    style="text-transform: capitalize;">{{$getRecords->payment_method}}</span></label>
+                                    style="text-transform: capitalize; color:#c08f07">{{$getRecords->payment_method}}</span></label>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -188,7 +188,7 @@
                             <td>{{$item->getProduct->title}}</td>
                             <td>{{$item->qty}}</td>
                             <td>{{number_format($item->price, 2)}}</td>
-                            <td>{{number_format($item->total_price, 2)}}</td>
+                            <td>{{number_format($item->price * $item->qty, 2)}}</td>
                         </tr>
 
                         @endforeach
@@ -198,6 +198,25 @@
                 {{-- <div style="padding: 10px; float: right;">
                     {!! $getRecords->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div> --}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-bottom:1px;">
+        <div class="card card-primary" >
+            <div class="card-body" >
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group" style="text-align: end; margin-right:50px;">
+                            <label>Grand Total: NPR 
+                                <span style="text-decoration-line: underline; text-decoration-style: double;">
+                                    {{number_format($getRecords->total_balance,
+                                        2)}}
+                                </span>
+                            </label>
+                        </div>
+                        <p style="text-align: center; color:gray;">"This is the total amounts for the products only. The final price may vary after applying discounts and shipping charges."</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
