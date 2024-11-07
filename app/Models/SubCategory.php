@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Request;
 
 class SubCategory extends Model
 {
@@ -12,12 +13,25 @@ class SubCategory extends Model
     protected $table = 'sub_category';
 
     static public function getSubCategory(){
-        return self::select('sub_category.*', 'users.name as created_by_name', 'category.name as category_name')
-        ->join('category', 'category.id', '=', 'sub_category.category_id')
+        $return = SubCategory::select('sub_category.*', 'users.name as created_by_name', 'category.name as category_name');
+        if(!empty(Request::get('category_name'))){
+            $return = $return->where('category.name', '=', Request::get('category_name'));
+        }
+        if(!empty(Request::get('sub_category_name'))){
+            $return = $return->where('sub_category.name', '=', Request::get('sub_category_name'));
+        }
+        if(!empty(Request::get('from_date'))){
+            $return = $return->whereDate('sub_category.created_at', '>=', Request::get('from_date'));
+        }
+        if(!empty(Request::get('to_date'))){
+            $return = $return->where('sub_category.created_at', '<=', Request::get('to_date'));
+        }
+        $return = $return->join('category', 'category.id', '=', 'sub_category.category_id')
         ->join('users', 'users.id', '=', 'sub_category.created_by')
         ->where('sub_category.is_delete','=', 0)
         ->orderBy('sub_category.id', 'asc')
         ->paginate(20);
+        return $return;
     }
 
     static public function getSingle($id){

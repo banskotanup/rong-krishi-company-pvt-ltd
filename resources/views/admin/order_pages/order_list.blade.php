@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Order Lists (Total: {{$getRecords->total()}})</h1>
+                    <h1 class="m-0">Order Lists</h1>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
     <form action="" method="GET">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Order Search</h3>
+                <h3 class="card-title">Order Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
             </div>
             <div class="card-body">
 

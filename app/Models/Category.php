@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Request;
 
 class Category extends Model
 {
@@ -12,11 +13,21 @@ class Category extends Model
     protected $table = 'category';
 
     static public function getCategory(){
-        return self::select('category.*', 'users.name as created_by_name')
-        ->join('users', 'users.id', '=', 'category.created_by')
+        $return = Category::select('category.*', 'users.name as created_by_name');
+        if(!empty(Request::get('name'))){
+            $return = $return->where('category.name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('from_date'))){
+            $return = $return->whereDate('category.created_at', '>=', Request::get('from_date'));
+        }
+        if(!empty(Request::get('to_date'))){
+            $return = $return->where('category.created_at', '<=', Request::get('to_date'));
+        }
+        $return = $return->join('users', 'users.id', '=', 'category.created_by')
         ->where('category.is_delete','=', 0)
         ->orderBy('category.id', 'asc')
         ->paginate(20);
+        return $return;
     }
 
     static public function getCategoryActive(){

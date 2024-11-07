@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Request;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -46,11 +47,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     static public function getAdmin(){
-        return User::select('users.*')
-        ->where('is_admin','=', 1)
+        $return = User::select('users.*');
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        $return = $return->where('is_admin','=', 1)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'asc')
         ->paginate(20);
+        return $return;
     }
 
     static public function getSingle($id){
@@ -58,11 +66,19 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     static public function getMember(){
-        return User::select('users.*')
-        ->where('is_admin','=', 0)
+        $return = User::select('users.*');
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        $return = $return->where('is_admin','=', 0)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'asc')
         ->paginate(20);
+
+        return $return;
     }
 
     static public function checkEmail($email){

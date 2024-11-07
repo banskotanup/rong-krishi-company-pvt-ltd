@@ -17,6 +17,43 @@
     </div>
 
     @include('admin.auth.message')
+    <form action="" method="GET">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Category Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
+            </div>
+            <div class="card-body">
+    
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" placeholder="Name" name="name" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">From Date</label>
+                            <input type="date" style="padding: 6px;" name="from_date" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">To Date</label>
+                            <input type="date" style="padding: 6px;" name="to_date" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 30px;">
+                        <button  class="btn btn-primary btn_edit"
+                            style="width: 50px;"><i class="fas fa-search"></i></button>
+                        <a href="{{url('/category_list')}}" class="btn btn-danger btn_delete"
+                            style="width: 50px;"><i class="fas fa-undo"></i></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Category List</h3>
