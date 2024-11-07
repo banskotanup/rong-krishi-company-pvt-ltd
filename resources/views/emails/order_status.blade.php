@@ -7,35 +7,35 @@
 <div style="padding: 10px; border-radius: 4px; font-weight: bold; background-color: [STATUS_COLOR];">
     <p style="font-size: 18px; margin: 0;">
         @if ($order->status == 0)
-    <p style="font-size: 16px;">Your order is currently pending. We'll notify you as soon as it progresses. Thank you
+    <p style="font-size: 16px; text-align: justify;">Your order is currently pending. We'll notify you as soon as it progresses. Thank you
         for your patience!</p>
     <b>Order Number:</b> {{ $order->order_number }}<br>
     <b>Date of Purchase:</b> {{ $order->created_at }}<br>
     <b>Status:</b> <span style="color: gray">Pending</span>
     @endif
     @if ($order->status == 1)
-    <p style="font-size: 16px;">Your order is currently being processed and is in progress. We’ll update you once it’s
+    <p style="font-size: 16px; text-align: justify;">Your order is currently being processed and is in progress. We’ll update you once it’s
         ready for delivery. Thanks for your patience!</p>
     <b>Order Number:</b> {{ $order->order_number }}<br>
     <b>Date of Purchase:</b> {{ $order->created_at }}<br>
     <b>Status:</b> <span style="color: blue">Inprogress</span>
     @endif
     @if ($order->status == 2)
-    <p style="font-size: 16px;">We're happy to inform you that your order has been successfully delivered! If you have
+    <p style="font-size: 16px; text-align: justify;">We're happy to inform you that your order has been successfully delivered! If you have
         any questions or need further assistance, feel free to reach out. Enjoy your purchase!</p>
     <b>Order Number:</b> {{ $order->order_number }}<br>
     <b>Date of Purchase:</b> {{ $order->created_at }}<br>
     <b>Status:</b> <span style="color: teal">Delievred</span>
     @endif
     @if ($order->status == 3)
-    <p style="font-size: 16px;">Your order has been successfully completed. Thank you for choosing us! If you need any
+    <p style="font-size: 16px; text-align: justify;">Your order has been successfully completed. Thank you for choosing us! If you need any
         assistance, don’t hesitate to contact us.</p>
     <b>Order Number:</b> {{ $order->order_number }}<br>
     <b>Date of Purchase:</b> {{ $order->created_at }}<br>
     <b>Status:</b> <span style="color: rgb(8, 165, 8)">Completed</span>
     @endif
     @if ($order->status == 4)
-    <p style="font-size: 16px;">We're sorry to inform you that your order has been cancelled. If you have any questions
+    <p style="font-size: 16px; text-align: justify;">We're sorry to inform you that your order has been cancelled. If you have any questions
         or need assistance, please contact us. We hope to serve you again soon.</p>
     <b>Order Number:</b> {{ $order->order_number }}<br>
     <b>Date of Purchase:</b> {{ $order->created_at }}<br>

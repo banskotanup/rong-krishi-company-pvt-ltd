@@ -1,7 +1,7 @@
 @component('mail::message')
 <p style="font-size: 20px; ">Hello <b>{{ $order->first_name}}</b>,</p>
 
-<h2 style="font-size: 24px; margin-bottom: 10px; text-align: center; ">Your Order Invoice</h2>
+<h2 style="font-size: 20px; margin-bottom: 10px;"><u>Order Invoice</u></h2>
 <b>Order Number:</b> {{ $order->order_number }}<br>
 <b>Date of Purchase:</b> {{ $order->created_at }}<br>
 <b>Status:</b> <span style="color: gray">Pending</span><br>
