@@ -66,4 +66,32 @@ class Order extends Model
     public function getItem(){
         return $this->hasMany(OrderItem::class, 'order_id');
     }
+
+    static public function getTotalOrder(){
+        return self::select('id')
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->count();
+    }
+    static public function getTodayOrder(){
+        return self::select('id')
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
+
+    static public function getTotalAmount(){
+        return self::select('id')
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->sum('total_amount');
+    }
+    static public function getTodayAmount(){
+        return self::select('id')
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->sum('total_amount');
+    }
 }

@@ -86,4 +86,18 @@ class User extends Authenticatable implements MustVerifyEmail
         ->where('email','=', $email)
         ->first();
     }
+
+    static public function getTotalCustomer(){
+        return self::select('id')
+        ->where('is_admin', '=', 0)
+        ->where('is_delete', '=', 0)
+        ->count();
+    }
+    static public function getTodayCustomer(){
+        return self::select('id')
+        ->where('is_admin', '=', 0)
+        ->where('is_delete', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
 }

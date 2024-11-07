@@ -23,53 +23,63 @@
 
         <div class="row">
 
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-list-alt"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Orders</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{{$total_orders}}</span>
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-list-alt"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Today Orders</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{{$today_orders}}</span>
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-bill-wave-alt"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Payments</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">Total Amount</span>
+                <span class="info-box-number">NPR {{number_format($total_amount, 2)}}</span>
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-bill-wave-alt"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Today Payments</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-text">Today Amount</span>
+                <span class="info-box-number">NPR {{number_format($today_amount, 2)}}</span>
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Total Customers</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{{$total_customer}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Today Customers</span>
+                <span class="info-box-number">{{$today_customer}}</span>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Hash;
 use App\Models\User;
+use App\Models\Order;
 use Mail;
 use App\Mail\RegisterMail;
 
@@ -14,6 +15,12 @@ class AdminController extends Controller
 {
     public function index(){
         $data['header_title'] = "Dashboard";
+        $data['total_orders'] = Order::getTotalOrder();
+        $data['today_orders'] = Order::getTodayOrder();
+        $data['total_amount'] = Order::getTotalAmount();
+        $data['today_amount'] = Order::getTodayAmount();
+        $data['total_customer'] = User::getTotalCustomer();
+        $data['today_customer'] = User::getTodayCustomer();
         return view('admin.layouts.dashboard', $data);
     }
 

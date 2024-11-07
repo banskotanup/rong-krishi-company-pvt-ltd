@@ -9,7 +9,7 @@
                 <figure class="product-media">
                     <a href="{{$value->slug}}">
                         @if(!empty($getProductImage) && !empty($getProductImage->getImage()))
-                        <img style="height: 280px; width: 280px; object-fit: cover;"
+                        <img style="height: 280px; width: 100%; object-fit: cover;"
                             src="{{$getProductImage->getImage()}}" alt="{{$value->title}}" class="product-image">
                         @endif
                     </a>
