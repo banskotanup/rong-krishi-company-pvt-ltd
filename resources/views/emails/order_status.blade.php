@@ -1,11 +1,11 @@
 @component('mail::message')
-<p style="font-size: 20px; ">Hello <b>{{ $order->first_name}}</b>,</p>
-<h2 style="font-size: 24px; margin-bottom: 10px; text-align: center; ">Your Order Status Update</h2>
+<p style="font-size: 20px;">Hello <b>{{ $order->first_name}}</b>,</p>
+<h2 style="font-size: 20px; margin-bottom: 10px; "><u>Your Order Status Update</u></h2>
 
 
 
-<div style="padding: 10px; border-radius: 4px; font-weight: bold; background-color: [STATUS_COLOR];">
-    <p style="font-size: 18px; margin: 0;">
+<div style=" border-radius: 4px; background-color: [STATUS_COLOR];">
+    <p style="margin: 0;">
         @if ($order->status == 0)
     <p style="font-size: 16px; text-align: justify;">Your order is currently pending. We'll notify you as soon as it progresses. Thank you
         for your patience!</p>
