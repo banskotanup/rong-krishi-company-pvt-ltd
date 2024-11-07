@@ -7,9 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use Auth;
 
 class ProductController extends Controller
 {
+    public function my_wishlist()
+    {
+        $data['meta_title'] = 'My Wishlist';
+        $data['meta_description'] = '';
+        $data['meta_keywords'] = '';
+
+        $data['getProduct'] = Product::getMyWishlist(Auth::user()->id);
+
+        return view('product.my_wishlist', $data);
+    }
+
 
     public function getCategory($slug, $subSlug = ''){
         $getProductSingle = Product::getSingleSlug($slug);

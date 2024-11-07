@@ -127,7 +127,8 @@ route::post('/checkout/apply_discount_code',[CartController::class, 'apply_disco
 route::post('/checkout/place_order',[CartController::class, 'place_order']);
 route::get('/checkout/payment',[CartController::class, 'checkout_payment']);
 route::get('/stripe/payment-success',[CartController::class, 'stripe_success_payment']);
-
+route::post('add_to_wishlist', [CartController::class, 'add_to_wishlist']);
+route::get('my-wishlist', [ProductFront::class, 'my_wishlist']);
 
 
 
@@ -142,6 +143,7 @@ route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
 
 
 
-route::get('/wishlist',[CartController::class, 'getWishlist']);
-route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
-route::post('add_to_wishlist', [CartController::class, 'add_to_wishlist']);
+// route::get('/wishlist',[CartController::class, 'getWishlist']);
+// route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
+
+
