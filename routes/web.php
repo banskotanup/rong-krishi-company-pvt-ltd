@@ -99,6 +99,7 @@ route::post('/shipping_charge_edit/{id}',[ShippingChargeController::class, 'upda
 route::get('/shipping_charge_delete/{id}',[ShippingChargeController::class, 'delete_shipping_charge'])->middleware('is_admin');
 
 route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is_admin');
+route::get('/order_status',[OrderController::class, 'order_status'])->middleware('is_admin');
 route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middleware('is_admin');
 
 

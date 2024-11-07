@@ -150,10 +150,19 @@
                         <div class="form-group">
                             <label>Status:
                                 @if ($getRecords->status == 0)
-                                <span style="color: rgb(8, 165, 8)">Active</span>
+                                <span style="color: gray">Pending</span>
                                 @endif
                                 @if ($getRecords->status == 1)
-                                <span style="color: #D0342C">Inactive</span>
+                                <span style="color: blue">Inprogress</span>
+                                @endif
+                                @if ($getRecords->status == 2)
+                                <span style="color: teal">Delievred</span>
+                                @endif
+                                @if ($getRecords->status == 3)
+                                <span style="color: rgb(8, 165, 8)">Completed</span>
+                                @endif
+                                @if ($getRecords->status == 4)
+                                <span style="color: #D0342C">Cancelled</span>
                                 @endif
                             </label>
                         </div>
@@ -212,14 +221,14 @@
                 <div class="row" >
                     <div class="col-md-12">
                         <div class="form-group" style="text-align: end; margin-right:50px;">
-                            <label>Grand Total: NPR 
+                            <label>Total Balance: NPR 
                                 <span style="text-decoration-line: underline; text-decoration-style: double;">
                                     {{number_format($getRecords->total_balance,
                                         2)}}
                                 </span>
                             </label>
                         </div>
-                        <p style="text-align: center; color:gray;">"This is the total amounts for the products only. The final price may vary after applying discounts and shipping charges."</p>
+                        <p style="text-align: center; color:gray;">"This is the total balance for products only. The final price may vary after applying discounts and shipping charges."</p>
                     </div>
                 </div>
             </div>

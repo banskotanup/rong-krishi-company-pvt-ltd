@@ -149,12 +149,13 @@
                         <td style="text-transform: capitalize;">{{$value->payment_method}}</td>
                         <td>{{date('d-m-y', strtotime($value->created_at))}}</td>
                         <td>
-                            @if ($value->status == 0)
-                            <span style="color: rgb(8, 165, 8)">Active</span>
-                            @endif
-                            @if ($value->status == 1)
-                            <span style="color: #D0342C">Inactive</span>
-                            @endif
+                            <select class="form-control ChangeStatus" id="{{$value->id}}" style="width: 120px;">
+                                <option {{($value->status == 0) ? 'Selected' : ''}} value="0">Pending</option>
+                                <option {{($value->status == 1) ? 'Selected' : ''}} value="1">Inprogress</option>
+                                <option {{($value->status == 2) ? 'Selected' : ''}} value="2">Delivered</option>
+                                <option {{($value->status == 3) ? 'Selected' : ''}} value="3">Completed</option>
+                                <option {{($value->status == 4) ? 'Selected' : ''}} value="4">Cancelled</option>
+                            </select>
                         </td>
                         <td style="text-align: center;">
                             <a href="{{url('/order_view/'.$value->id)}}" class="btn btn-primary">Details</a>
@@ -175,4 +176,24 @@
 @endsection
 
 @section('script')
+<script type="text/javascript">
+    $('body').delegate('.ChangeStatus', 'change', function(){
+        var status = $(this).val();
+        var order_id = $(this).attr('id');
+        $.ajax({
+            type : "GET",
+            url : "{{ url('/order_status') }}",
+            data : {
+                status : status,
+                order_id : order_id,
+            },
+            dataType : "json",
+            success: function(data) {
+                
+            },
+            error: function (data) {
+            }
+        });
+    });
+</script>
 @endsection
