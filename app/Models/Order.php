@@ -105,4 +105,47 @@ class Order extends Model
 
         return $return;
     }
+
+    //user part
+    static public function getTotalAmountUser($user_id){
+        return self::select('id')
+        ->where('user_id','=',$user_id)
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->sum('total_amount');
+    }
+
+    static public function getTodayAmountUser($user_id){
+        return self::select('id')
+        ->where('user_id','=',$user_id)
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->sum('total_amount');
+    }
+
+    static public function getTotalOrderUser($user_id){
+        return self::select('id')
+        ->where('user_id','=',$user_id)
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->count();
+    }
+    static public function getTodayOrderUser($user_id){
+        return self::select('id')
+        ->where('user_id','=',$user_id)
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
+
+    static public function getTotalStatusUser($user_id, $status){
+        return self::select('id')
+        ->where('status','=',$status)
+        ->where('user_id','=',$user_id)
+        ->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->count();
+    }
 }
