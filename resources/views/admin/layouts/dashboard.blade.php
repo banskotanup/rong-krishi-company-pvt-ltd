@@ -67,7 +67,7 @@
               <a href="{{url('/product_list')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-lg-3 col-6" style="overflow: auto;">
+          <div class="col-lg-3 col-6" style="overflow: hidden;">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">

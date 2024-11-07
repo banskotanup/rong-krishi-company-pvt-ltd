@@ -45,7 +45,7 @@ class Product extends Model
         }
         $return = $return->join('category', 'category.id', '=', 'product.category_id')
         ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id')
-        ->orderBy('product.id', 'asc')
+        ->orderBy('product.id', 'desc')
         ->join('users', 'users.id', '=', 'product.created_by')
         ->where('product.is_deleted', '=', 0)
         ->paginate(20);

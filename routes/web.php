@@ -14,8 +14,10 @@ use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Home\ProductController as ProductFront;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 
 //welcome route..... 
 route::get('/',[LandingPageController::class, 'welcome']);
@@ -107,6 +109,12 @@ route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middlewar
 //ImageController Routes Goes Here.....
 route::get('/image_delete/{id}',[ProductController::class, 'image_delete'])->middleware('is_admin');
 route::post('/product_image_sortable',[ProductController::class, 'product_image_sortable'])->middleware('is_admin');
+
+
+route::get('/user_dashboard',[UserController::class, 'dashboard'])->middleware('is_user');
+route::get('/user_orders',[UserController::class, 'user_orders'])->middleware('is_user');
+route::get('/edit_profile',[UserController::class, 'edit_profile'])->middleware('is_user');
+route::get('/change_password',[UserController::class, 'change_password'])->middleware('is_user');
 
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
