@@ -178,4 +178,50 @@ class Product extends Model
         ->get();
         return $return;
     }
+
+    static public function getTotalProduct(){
+        return self::select('id')
+        ->where('product.isProduct','=',0)
+        ->where('product.is_deleted', '=', 0)
+        ->where('product.status', '=', 0)
+        ->count();
+    }
+
+
+    static public function getRecentProduct(){
+        $return = Product::select('product.*', 'users.name as created_by_name', 'category.name as category_name', 'sub_category.name as sub_category_name');
+        if(!empty(Request::get('product_name'))){
+            $return = $return->where('product.title', '=', Request::get('product_name'));
+        }
+        if(!empty(Request::get('category_name'))){
+            $return = $return->where('category.name', '=', Request::get('category_name'));
+        }
+        if(!empty(Request::get('sub_category_name'))){
+            $return = $return->where('sub_category.name', '=', Request::get('sub_category_name'));
+        }
+        if(!empty(Request::get('from_date'))){
+            $return = $return->whereDate('sub_category.created_at', '>=', Request::get('from_date'));
+        }
+        if(!empty(Request::get('to_date'))){
+            $return = $return->where('sub_category.created_at', '<=', Request::get('to_date'));
+        }
+        $return = $return->join('category', 'category.id', '=', 'product.category_id')
+        ->join('sub_category', 'sub_category.id', '=', 'product.sub_category_id')
+        ->orderBy('product.id', 'desc')
+        ->join('users', 'users.id', '=', 'product.created_by')
+        ->where('product.is_deleted', '=', 0)
+        ->limit(3)
+        ->get();
+        return $return;
+    }
+
+
+    static public function getTodayProduct(){
+        return self::select('id')
+        ->where('product.isProduct','=',0)
+        ->where('product.is_deleted', '=', 0)
+        ->where('product.status', '=', 0)
+        ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
 }

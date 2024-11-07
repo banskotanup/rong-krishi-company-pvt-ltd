@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
   <link rel="icon" type="image/x-icon" href="{{url('trslogo.png')}}">
@@ -74,6 +75,8 @@
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="/admin/plugins/chart.js/Chart.min.js"></script>
+  <script src="/admin/plugins/moment/moment.min.js"></script>
+  <script src="/admin/plugins/daterangepicker/daterangepicker.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script type="text/javascript">
     function confirmation(ev) { 

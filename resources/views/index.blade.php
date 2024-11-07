@@ -228,16 +228,18 @@
                                         </a>
 
 
-                                        <form action="{{url('/wishlist')}}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{$value->id}}">
-                                            <input type="hidden" name="qty" value="1">
-                                            <input type="hidden" name="product_name" value="{{$value->title}}">
-                                            <div class="product-action-vertical">
-                                                <button type="submit" class="btn-product-icon btn-wishlist btn-expandable"><span>add
-                                                        to wishlist</span></button>
+                                        <div class="product-action-vertical">
+                                            @if(!empty(Auth::check()))
+                                                            
+                                              <a href="javascript:;" data-toggle="modal" class="add_to_wishlist add_to_wishlist{{ $value->id }}
+                                             btn-product-icon btn-wishlist btn-expandable
+                                             {{ !empty($value->checkWishlist($value->id)) ? 'btn-wishlist-add' : '' }}" id="{{ $value->id }}"
+                                            title="Wishlist"><span>add to wishlist</span></a>
+                                            @else
+                                          <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" 
+                                          title="Wishlist"><span>add to wishlist</span></a>
+                                                       @endif
                                             </div>
-                                        </form>
                                         
 
 

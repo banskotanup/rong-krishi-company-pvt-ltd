@@ -81,6 +81,23 @@ class User extends Authenticatable implements MustVerifyEmail
         return $return;
     }
 
+    static public function getCustomer(){
+        $return = User::select('users.*');
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        $return = $return->where('is_admin','=', 0)
+        ->where('is_delete','=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $return;
+    }
+
     static public function checkEmail($email){
         return User::select('users.*')
         ->where('email','=', $email)
@@ -98,6 +115,30 @@ class User extends Authenticatable implements MustVerifyEmail
         ->where('is_admin', '=', 0)
         ->where('is_delete', '=', 0)
         ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
+
+    static public function getAdmins(){
+        $return = User::select('users.*');
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        $return = $return->where('is_admin','=', 1)
+        ->where('is_delete','=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $return;
+    }
+
+    static public function getTotalAdmin(){
+        return self::select('id')
+        ->where('is_admin', '=', 1)
+        ->where('is_delete', '=', 0)
         ->count();
     }
 }

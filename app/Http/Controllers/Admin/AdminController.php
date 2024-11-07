@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Hash;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use Mail;
 use App\Mail\RegisterMail;
 
@@ -19,9 +20,16 @@ class AdminController extends Controller
         $data['today_orders'] = Order::getTodayOrder();
         $data['total_amount'] = Order::getTotalAmount();
         $data['today_amount'] = Order::getTodayAmount();
+        $data['get_admin'] = User::getAdmins();
+        $data['total_admin'] = User::getTotalAdmin();
+        $data['get_customer'] = User::getCustomer();
         $data['total_customer'] = User::getTotalCustomer();
         $data['today_customer'] = User::getTodayCustomer();
-        return view('admin.layouts.dashboard', $data);
+        $data['total_product'] = Product::getTotalProduct();
+        $data['today_product'] = Product::getTodayProduct();
+        $data['recent_product'] = Product::getRecentProduct();
+        $data['latest_order'] = Order::getLatestOrder();
+        return view('admin.layouts.dashboard', $data)->with('no', 1);
     }
 
     public function admin_list(){

@@ -94,4 +94,15 @@ class Order extends Model
         ->whereDate('created_at', '=', date('Y-m-d'))
         ->sum('total_amount');
     }
+
+    static public function getLatestOrder(){
+        $return = Order::select('orders.*');
+        $return = $return->where('is_payment', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $return;
+    }
 }
