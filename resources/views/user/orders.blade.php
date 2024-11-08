@@ -32,7 +32,7 @@
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">My Account</h1>
+            <h1 class="page-title">My Orders</h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -57,6 +57,7 @@
                             <h4 class="card-title" style="margin-bottom: 10px;">Hello, {{$value->first_name}}</h4>
                             Here you’ll find a detailed summary of all your orders, including the items, quantities, and total amounts. You can track your order status and view your purchase history anytime.
                             @endforeach
+                            @if(!empty($getRecordCount))   
                             <h3 class="card-title" style="margin-bottom: 10px; margin-top: 5px;">Your Order Summary</h3>
                             <div class="card-body p-0 table-responsive">
                             <table class="table table-striped">
@@ -111,10 +112,15 @@
                                   @endforeach
                                 </tbody>
                               </table>
+                              
+
                               <div style="padding: 10px; float: right;">
                                 {!! $getRecords->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                               </div>
                             </div>
+                            @else
+                              <h3 class="card-title" style="margin-bottom: 10px; margin-top: 5px;">Opps!!! Sorry, No record found...</h3>
+                              @endif
                         </div>
                     </div><!-- End .col-lg-9 -->
                 </div><!-- End .row -->

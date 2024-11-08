@@ -116,6 +116,7 @@ route::get('/user_orders',[UserController::class, 'user_orders'])->middleware('i
 route::get('/user_order_status',[UserController::class, 'user_order_status'])->middleware('is_user');
 route::get('/user_order_view/{id}',[UserController::class, 'user_order_view'])->middleware('is_user');
 route::get('/edit_profile',[UserController::class, 'edit_profile'])->middleware('is_user');
+route::post('/edit_profile',[UserController::class, 'update_profile'])->middleware('is_user');
 route::get('/change_password',[UserController::class, 'change_password'])->middleware('is_user');
 
 //HomeController Routes Goes Here.....

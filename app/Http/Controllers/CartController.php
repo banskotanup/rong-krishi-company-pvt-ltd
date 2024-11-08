@@ -31,8 +31,7 @@ class CartController extends Controller
 
     public function add_to_Cart(Request $request){
         $getProduct = Product::getSingle($request->product_id);
-        $user = Auth::user();
-        $user_id = $user->id;
+
 
         $total = $getProduct->price * $request->qty;
         

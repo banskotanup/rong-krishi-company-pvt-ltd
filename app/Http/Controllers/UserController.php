@@ -32,6 +32,7 @@ class UserController extends Controller
 
     public function user_orders(){
         $data['getRecords'] = Order::getRecordUser(Auth::user()->id);
+        $data['getRecordCount'] = Order::getRecordCount(Auth::user()->id);
         $data['meta_title'] = 'Orders';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
@@ -52,8 +53,27 @@ class UserController extends Controller
         $data['meta_title'] = 'Edit Profile';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        $data['getRecords'] = User::getSingle(Auth::user()->id);
 
         return view('user.edit_profile', $data);
+    }
+
+    public function update_profile(Request $request){
+        $user = User::getSingle(Auth::user()->id);
+        $user->name = trim($request->name);
+        $user->last_name = trim($request->last_name);
+        $user->email = trim($request->email);
+        $user->company_name = trim($request->company_name);
+        $user->country = trim($request->country);
+        $user->address = trim($request->address);
+        $user->address_two = trim($request->address_two);
+        $user->city = trim($request->city);
+        $user->state = trim($request->state);
+        $user->postcode = trim($request->postcode);
+        $user->phone = trim($request->phone);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
 
     public function change_password(){

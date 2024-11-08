@@ -249,10 +249,12 @@
                                             <input type="hidden" name="qty" value="1">
                                             <input type="hidden" name="product_name" value="{{$value->title}}">
                                             <div class="product-action">
-                                                <button type="submit"
-                                                    class="btn-product btn-cart"><span>add to cart</span>
+                                                <button type="submit" style="width: 100px; " class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
+                                                    <span class="btn-text">add to cart</span>
+                                                    <span class="btn-hover-text">add to your shopping cart</span>
                                                 </button>
                                             </div>
+                                            
 
                                         </form>
                                     </figure>

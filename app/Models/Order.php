@@ -149,6 +149,16 @@ class Order extends Model
         ->count();
     }
 
+    static public function getRecordCount($user_id){
+        $return = Order::select('orders.*');
+        $return = $return->where('is_payment', '=', 1)
+        ->where('user_id','=',$user_id)
+        ->where('is_delete', '=', 0)
+        ->count();
+
+        return $return;
+    }
+
     static public function getRecordUser($user_id){
         $return = Order::select('orders.*');
         $return = $return->where('is_payment', '=', 1)

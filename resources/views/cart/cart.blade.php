@@ -96,9 +96,7 @@
                                         class="icon-refresh"></i></button>
                             </div>
                             @else
-                            <div style="margin-left: 10px;">
-                                <p>Nothing to show here</p>
-                            </div>
+                            <h3 class="card-title" style="margin-bottom: 20px; margin-top: 5px; margin-left:15px;">Opps!!! Sorry, No record found...</h3>
                             <aside class="col-lg-4">
                                 <div style="margin-top: 10px; margin-left:0;">
                                     <a href="{{url('/')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>GO TO SHOP</span><i class="icon-arrow-right"></i></a>
