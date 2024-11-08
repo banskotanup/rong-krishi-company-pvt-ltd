@@ -31,6 +31,10 @@
                                     {{csrf_field()}}
                                     
                                     <div class="form-group">
+                                        <label for="register-email-2">Old Password <span style="color: red;">*</span></label>
+                                        <input type="password" class="form-control" name="old_password" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="register-email-2">New Password <span style="color: red;">*</span></label>
                                         <input type="password" class="form-control" name="password" required>
                                     </div>

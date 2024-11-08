@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Mail;
 use App\Mail\RegisterMail;
+use Str;
 
 class AdminController extends Controller
 {
@@ -56,6 +57,7 @@ class AdminController extends Controller
         $user->password = Hash::make($request->password);
         $user->status = $request->status;
         $user->is_admin = 1;
+        $user->remember_token = Str::random(30);
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
@@ -84,6 +86,7 @@ class AdminController extends Controller
         }
         $user->status = $request->status;
         $user->is_admin = 1;
+        $user->remember_token = Str::random(30);
         $user->save();
         return redirect('/admin_list')->with('success',"Admin updated  successfully!!!");
     }

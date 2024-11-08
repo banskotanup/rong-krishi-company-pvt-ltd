@@ -94,19 +94,19 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label style="font-weight: 500;">Country: <span
-                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->country}}</span></label>
+                                                            style="text-transform: capitalize; font-weight: 500; color: #605e5e;">{{$getRecords->country}}</span></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label style="font-weight: 500;">Address: <span
-                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->address}}, {{$getRecords->address_two}}</span></label>
+                                                            style="text-transform: capitalize; font-weight: 500; color: #605e5e;">{{$getRecords->address}}, {{$getRecords->address_two}}</span></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label style="font-weight: 500;">City: <span
-                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->city}}</span></label>
+                                                            style="text-transform: capitalize; font-weight: 500; color: #605e5e;">{{$getRecords->city}}</span></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

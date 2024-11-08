@@ -73,6 +73,7 @@ class UserController extends Controller
         $user->state = trim($request->state);
         $user->postcode = trim($request->postcode);
         $user->phone = trim($request->phone);
+        $user->remember_token = Str::random(30);
         $user->save();
 
         return redirect()->back()->with('success', 'Profile Updated Successfully');
@@ -98,7 +99,7 @@ class UserController extends Controller
             return view('user.change_password', $data);
         }
         else{
-            abort(404);
+            
         }
     }
 

@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\Mail\RegisterMail;
+use Str;
 
 class MemberController extends Controller
 {
@@ -37,6 +38,7 @@ class MemberController extends Controller
         $user->password = Hash::make($request->password);
         $user->status = $request->status;
         $user->is_admin = 0;
+        $user->remember_token = Str::random(30);
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
@@ -65,6 +67,7 @@ class MemberController extends Controller
         }
         $user->status = $request->status;
         $user->is_admin = 0;
+        $user->remember_token = Str::random(30);
         $user->save();
         return redirect('/member_list')->with('success',"Member updated  successfully!!!");
     }
