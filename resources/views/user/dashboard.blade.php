@@ -95,56 +95,56 @@
                                         <div class="row" style="margin-top: 20px;">
                                             <div class="col-md-3">
                                                 <div class="box-btn" style="margin-bottom: 20px;">
-                                                    <div class="card-title">{{$total_orders}}
+                                                    <div class="card-title" style="font-size: 16px;">{{$total_orders}}
                                                     </div>
                                                     <div style="font-size: 16px; font-weight: 500;">Total Order</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">{{$today_orders}}
+                                                    <div class="card-title" style="font-size: 16px;">{{$today_orders}}
                                                     </div>
                                                     <div style="font-size: 16px; font-weight: 500;">Today's Order</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">NPR
+                                                    <div class="card-title" style="font-size: 16px;">NPR
                                                         {{number_format($today_amount, 2)}}</div>
                                                     <div style="font-size: 16px; font-weight: 500;">Today's Amount'</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">NPR
+                                                    <div class="card-title" style="font-size: 16px;">NPR
                                                         {{number_format($total_amount, 2)}}</div>
                                                     <div style="font-size: 16px; font-weight: 500;">Total Amount</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">{{$total_pending}}
+                                                    <div class="card-title" style="font-size: 16px;">{{$total_pending}}
                                                     </div>
                                                     <div style="font-size: 16px; font-weight: 500;">Pending Order</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">
+                                                    <div class="card-title" style="font-size: 16px;">
                                                         {{$total_inprogress}}</div>
                                                     <div style="font-size: 16px; font-weight: 500;">In Progress Order</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">
+                                                    <div class="card-title" style="font-size: 16px;">
                                                         {{$total_completed}}</div>
                                                     <div style="font-size: 16px; font-weight: 500;">Completed Order</div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" style="margin-bottom: 20px;">
                                                 <div class="box-btn">
-                                                    <div class="card-title">
+                                                    <div class="card-title" style="font-size: 16px;">
                                                         {{$total_cancelled}}</div>
                                                     <div style="font-size: 16px; font-weight: 500;">Cancelled Order</div>
                                                 </div>
