@@ -62,6 +62,9 @@ class UserController extends Controller
 
     public function update_profile(Request $request){
         $user = User::getSingle(Auth::user()->id);
+        if(empty(Auth::user()->user_number)){
+            $user->user_number = mt_rand(100000000,999999999);
+        }
         $user->name = trim($request->name);
         $user->last_name = trim($request->last_name);
         $user->email = trim($request->email);
@@ -104,19 +107,22 @@ class UserController extends Controller
     }
 
     public function authChangePw($token, Request $request){
-        if($request->password == $request->cpassword){
-            $user = User::where('remember_token', '=', $token)->first();
-            $user->password = Hash::make($request->password);
-            $user->remember_token = Str::random(30);
-            $user->email_verified_at = date('Y-m-d H:i:s');
-            $user->save();
-
-
-
-            return redirect(url('/'))->with('success', "Password changed successfully!!!");
+        if(Hash::check($request->old_password, Auth::user()->password)){
+            if($request->password == $request->cpassword){
+                $user = User::where('remember_token', '=', $token)->first();
+                $user->password = Hash::make($request->password);
+                $user->remember_token = Str::random(30);
+                $user->email_verified_at = date('Y-m-d H:i:s');
+                $user->save();
+                return redirect(url('/'))->with('success', "Password changed successfully!!!");
+            }
+            else{
+                return redirect()->back()->with('err', "Password and confirm password does not match.");
+            }
         }
         else{
-            return redirect()->back()->with('err', "Password and confirm password does not match");
+            return redirect()->back()->with('err', "Old password is not correct.");
         }
+        
     }
 }
