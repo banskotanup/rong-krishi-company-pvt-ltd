@@ -54,6 +54,12 @@ class User extends Authenticatable implements MustVerifyEmail
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
         }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
         $return = $return->where('is_admin','=', 1)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'asc')
@@ -73,6 +79,12 @@ class User extends Authenticatable implements MustVerifyEmail
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
         }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
         $return = $return->where('is_admin','=', 0)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'asc')
@@ -88,6 +100,12 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
+        }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
         }
         $return = $return->where('is_admin','=', 0)
         ->where('is_delete','=', 0)
@@ -126,6 +144,12 @@ class User extends Authenticatable implements MustVerifyEmail
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
         }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
         $return = $return->where('is_admin','=', 1)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'desc')
@@ -133,6 +157,11 @@ class User extends Authenticatable implements MustVerifyEmail
         ->get();
 
         return $return;
+    }
+
+
+    static public function getSingleUser($id){
+        return User::find($id);
     }
 
     static public function getTotalAdmin(){

@@ -27,6 +27,14 @@
                         <div style="color: red;">{{$errors->first('email')}}</div>
                     </div>
                     <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" value="{{old('phone', $getRecords->phone)}}" name="phone" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="address" class="form-control" value="{{old('address', $getRecords->address)}}" name="address" placeholder="Enter address">
+                    </div>
+                    <div class="form-group">
                         <label>Password</label>
                         <input type="text" class="form-control"  name="password" placeholder="Enter password">
                         <p>Do you want to change password? If so, please add!!!</p>

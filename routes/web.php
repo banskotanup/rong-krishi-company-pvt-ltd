@@ -111,8 +111,10 @@ route::get('/image_delete/{id}',[ProductController::class, 'image_delete'])->mid
 route::post('/product_image_sortable',[ProductController::class, 'product_image_sortable'])->middleware('is_admin');
 
 
-route::get('/user_dashboard',[UserController::class, 'dashboard'])->middleware('is_user');
+route::get('/user_dashboard/{id}',[UserController::class, 'dashboard'])->middleware('is_user');
 route::get('/user_orders',[UserController::class, 'user_orders'])->middleware('is_user');
+route::get('/user_order_status',[UserController::class, 'user_order_status'])->middleware('is_user');
+route::get('/user_order_view/{id}',[UserController::class, 'user_order_view'])->middleware('is_user');
 route::get('/edit_profile',[UserController::class, 'edit_profile'])->middleware('is_user');
 route::get('/change_password',[UserController::class, 'change_password'])->middleware('is_user');
 

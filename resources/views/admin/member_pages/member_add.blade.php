@@ -31,6 +31,14 @@
                         <div style="color: red;">{{$errors->first('email')}}</div>
                     </div>
                     <div class="form-group">
+                        <label>Phone<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" value="{{old('phone')}}" name="phone" required placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Address<span style="color: red;">*</span></label>
+                        <input type="address" class="form-control" value="{{old('address')}}" name="address" required placeholder="Enter address">
+                    </div>
+                    <div class="form-group">
                         <label>Password<span style="color: red;">*</span></label>
                         <input type="password" class="form-control" name="password" required
                             placeholder="Enter password">

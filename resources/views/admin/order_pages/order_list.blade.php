@@ -149,6 +149,11 @@
                         <td style="text-transform: capitalize;">{{$value->payment_method}}</td>
                         <td>{{date('d-m-y', strtotime($value->created_at))}}</td>
                         <td>
+                            @if ($value->status == 4)
+                                <span class="badge badge-danger float-left" style="margin-left: 20px; margin-top:20px;">Cancelled</span>
+                            @elseif($value->status == 3)
+                            <span class="badge badge-success float-left" style="margin-left: 18px; margin-top:20px;">Completed</span>
+                            @else
                             <select class="form-control ChangeStatus" id="{{$value->id}}" style="width: 120px;">
                                 <option {{($value->status == 0) ? 'Selected' : ''}} value="0">Pending</option>
                                 <option {{($value->status == 1) ? 'Selected' : ''}} value="1">Inprogress</option>
@@ -156,6 +161,7 @@
                                 <option {{($value->status == 3) ? 'Selected' : ''}} value="3">Completed</option>
                                 <option {{($value->status == 4) ? 'Selected' : ''}} value="4">Cancelled</option>
                             </select>
+                            @endif
                         </td>
                         <td style="text-align: center;">
                             <a href="{{url('/order_view/'.$value->id)}}" class="btn btn-primary">Details</a>
@@ -189,6 +195,7 @@
             },
             dataType : "json",
             success: function(data) {
+                location.reload();
                 
             },
             error: function (data) {

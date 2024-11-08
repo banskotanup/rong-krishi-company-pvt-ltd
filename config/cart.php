@@ -26,9 +26,11 @@ return [
 
     'database' => [
 
-        'connection' => null,
+        'connection' => 'rongkrishicompany',
 
         'table' => 'shoppingcart',
+
+        
 
     ],
 
@@ -42,7 +44,7 @@ return [
     |
     */
 
-    'destroy_on_logout' => false,
+    'destroy_on_logout' => true,
 
     /*
     |--------------------------------------------------------------------------

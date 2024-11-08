@@ -1,7 +1,7 @@
 <aside class="col-md-4 col-lg-3">
     <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
         <li class="nav-item">
-            <a href="{{url('/user_dashboard')}}" class="nav-link {{ Request::is('user_dashboard') ? 'active' : ''}}">Dashboard</a>
+            <a href="{{url('/user_dashboard/'.Auth::user()->id)}}" class="nav-link {{ Request::is('user_dashboard/'.Auth::user()->id) ? 'active' : ''}}">Dashboard</a>
         </li>
         <li class="nav-item">
             <a href="{{url('/user_orders')}}" class="nav-link {{ Request::is('user_orders') ? 'active' : ''}}">Orders</a>

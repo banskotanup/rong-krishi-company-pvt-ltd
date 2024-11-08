@@ -50,6 +50,8 @@ class AdminController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
         $user->password = Hash::make($request->password);
         $user->status = $request->status;
         $user->is_admin = 1;
@@ -74,6 +76,8 @@ class AdminController extends Controller
         $user = User::getSingle($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
         if(!empty($request->password)){
             $user->password = Hash::make($request->password);
         }

@@ -33,7 +33,7 @@
                             <li><a href="{{url('/about_us')}}">About Us</a></li>
                             <li><a href="{{url('/contact_us')}}">Contact Us</a></li>
                             @if(!empty(Auth::check()))
-                                <li><a href="{{url('/user_dashboard')}}"><i class="icon-user"></i>{{Auth::user()->name}}</a></li>
+                                <li><a href="{{url('/user_dashboard/'.Auth::user()->id)}}"><i class="icon-user"></i>{{Auth::user()->name}}</a></li>
                             @else
                                 <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
                             @endif
