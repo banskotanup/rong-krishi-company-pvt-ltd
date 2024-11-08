@@ -96,12 +96,16 @@
                                         class="icon-refresh"></i></button>
                             </div>
                             @else
-                            <h3 class="card-title" style="margin-bottom: 20px; margin-top: 5px; margin-left:15px; color: gray;">Opps!!! Sorry, No record found...</h3>
-                            <aside class="col-lg-4">
-                                <div style="margin-top: 10px; margin-left:0;">
-                                    <a href="{{url('/')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>GO TO SHOP</span><i class="icon-arrow-right"></i></a>
-                                </div>
-                            </aside>
+                            <div class="error-content text-center" style="background-image: url(assets/images/backgrounds/error-bg.jpg)">
+                                <div class="container">
+                                    <h1 class="error-title">Oops, No Record Found!!!</h1><!-- End .error-title -->
+                                    <p>You've not placed any items on cart.</p>
+                                    <a href="{{url('/')}}#products" class="btn btn-outline-primary-2 btn-minwidth-lg">
+                                        <span>GO TO SHOP</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div><!-- End .container -->
+                            </div><!-- End .error-content text-center -->
                             @endif
                         </form>
                     </div>
@@ -117,10 +121,6 @@
                                             <td>Subtotal:</td>
                                             <td>NPR {{Cart::subTotal()}}</td>
                                         </tr><!-- End .summary-subtotal -->
-                                        
-
-                        
-
                                         <tr class="summary-total">
                                             <td>Total:</td>
                                             <td>NPR {{Cart::subTotal()}}</td>

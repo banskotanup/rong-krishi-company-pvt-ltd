@@ -119,7 +119,19 @@
                               </div>
                             </div>
                             @else
-                              <h3 class="card-title" style="margin-bottom: 10px; margin-top: 5px; color: gray;">Opps!!! Sorry, No record found...</h3>
+                            <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                                @include('admin.auth.message')
+                                <div class="error-content text-center" style="background-image: url(assets/images/backgrounds/error-bg.jpg)">
+                                    <div class="container">
+                                        <h1 class="error-title">Oops, No Record Found!!!</h1><!-- End .error-title -->
+                                        <p>You've not placed any order yet.</p>
+                                        <a href="{{url('/')}}#products" class="btn btn-outline-primary-2 btn-minwidth-lg">
+                                            <span>Shop Now</span>
+                                            <i class="icon-long-arrow-right"></i>
+                                        </a>
+                                    </div><!-- End .container -->
+                                </div><!-- End .error-content text-center -->
+                            </div>
                               @endif
                         </div>
                     </div><!-- End .col-lg-9 -->

@@ -92,6 +92,13 @@ class UserController extends Controller
     }
     
 
+    public function changePw404(){
+            $data['meta_title'] = 'Change Password';
+            $data['meta_description'] = '';
+            $data['meta_keywords'] = '';
+            return view('user.change_password_error', $data);
+    }
+
     public function changePw($token){
         $user = User::where('remember_token', '=', $token)->first();
         if(!empty($user)){
