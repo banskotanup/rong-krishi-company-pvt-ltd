@@ -119,7 +119,7 @@
                               </div>
                             </div>
                             @else
-                              <h3 class="card-title" style="margin-bottom: 10px; margin-top: 5px;">Opps!!! Sorry, No record found...</h3>
+                              <h3 class="card-title" style="margin-bottom: 10px; margin-top: 5px; color: gray;">Opps!!! Sorry, No record found...</h3>
                               @endif
                         </div>
                     </div><!-- End .col-lg-9 -->

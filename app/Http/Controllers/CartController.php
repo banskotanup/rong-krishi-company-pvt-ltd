@@ -127,6 +127,7 @@ class CartController extends Controller
                 else
                 {
                     $save = new User;
+                    $save->user_number = mt_rand(100000000,999999999);
                     $save->name = trim($request->first_name);
                     $save->email = trim($request->email);
                     $save->password = Hash::make($request->password);

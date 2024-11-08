@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Edit Member</h1>
+                    <h1 class="m-0">Edit Member (User ID: <span style="color: #D0342C;">{{$getRecords->user_number}}</span>)</h1>
                 </div>
             </div>
         </div>
@@ -16,6 +16,7 @@
     <div class="col-md-12">
 
         <div class="card card-primary">
+            
 
             <form action="" method="post">
                 @csrf

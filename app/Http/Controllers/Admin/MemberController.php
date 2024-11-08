@@ -29,6 +29,7 @@ class MemberController extends Controller
             'email' => 'required|email|unique:users'
         ]);
         $user = new User;
+        $user->user_number = mt_rand(100000000,999999999);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;

@@ -51,22 +51,23 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label style="font-weight: 500;">User From: <span
-                                                            style="color: red;">{{$getRecords->created_at}}</span>
+                                                    <label style="font-weight: 500;">User ID: <span
+                                                            style="color: red;">{{$getRecords->user_number}}</span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label style="font-weight: 500;">Name: <span
-                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->name}}
+                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->name}} {{$getRecords->last_name}}
                                                         </span></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label style="font-weight: 500;">Address: <span
-                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->address}}</span></label>
+                                                    <label style="font-weight: 500;">User From: <span
+                                                            >{{$getRecords->created_at}}</span>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -75,7 +76,7 @@
                                                             style="font-weight: 500; color: #605e5e;">{{$getRecords->phone}}</span></label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label style="font-weight: 500;">Email: <span
                                                             style="font-weight: 500; color: #605e5e;">{{$getRecords->email}}</span></label>
@@ -85,10 +86,69 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <div class="row" style="margin-top: 20px;">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">Country: <span
+                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->country}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">Address: <span
+                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->address}}, {{$getRecords->address_two}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">City: <span
+                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->city}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">Postcode: <span
+                                                            style="font-weight: 500; color: #605e5e;">{{$getRecords->postcode}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">User Type: 
+                                                            @if ($getRecords->is_admin == 0)
+                                                            <span style="color: rgb(94, 94, 18); font-weight:500;">Member</span>
+                                                            @endif
+                                                            @if ($getRecords->is_admin == 1)
+                                                            <span style="color: blue; font-weight:500;">Admin</span>
+                                                            @endif
+                                                        </label>
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label style="font-weight: 500;">Status: 
+                                                        @if ($getRecords->status == 0)
+                                                        <span style="color: green; font-weight:500;">Active</span>
+                                                        @endif
+                                                        @if ($getRecords->status == 1)
+                                                        <span style="color: #D0342C; font-weight:500;">Inactive</span>
+                                                        @endif
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-content">
                             <h3 class="card-title" style="margin-top: 20px; margin-bottom: 20px; margin-left: 20px;">
-                                Your Order History</h3>
+                                Order History</h3>
                             <div class="col-md-12">
                                 <div class="card card-primary">
                                     <div class="card-body">

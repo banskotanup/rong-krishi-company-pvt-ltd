@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1 class="m-0">Edit Admin</h1>
+                        <h1 class="m-0">Edit Admin (User ID: <span style="color: #D0342C;">{{$getRecords->user_number}}</span>)</h1>
                     </div>
                 </div>
             </div>

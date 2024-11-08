@@ -48,6 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getAdmin(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }
@@ -73,6 +76,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getMember(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }
@@ -95,6 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getCustomer(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }
@@ -138,6 +147,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getAdmins(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }

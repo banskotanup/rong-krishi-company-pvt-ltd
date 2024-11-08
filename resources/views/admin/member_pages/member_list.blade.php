@@ -26,6 +26,12 @@
         <div class="card-body">
 
             <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label for="">User ID</label>
+                    <input type="text" placeholder="User ID" name="user_id" class="form-control" value="">
+                </div>
+            </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="">Name</label>
@@ -71,6 +77,7 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>User ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
@@ -83,6 +90,7 @@
           @foreach($getRecords as $value)
           <tr>
             <td>{{$no++}}</td>
+            <td>{{$value->user_number}}</td>
             <td>{{$value->name}}</td>
             <td>{{$value->email}}</td>
             <td>{{$value->phone}}</td>
