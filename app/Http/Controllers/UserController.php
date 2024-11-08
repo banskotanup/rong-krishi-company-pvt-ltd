@@ -8,6 +8,8 @@ use App\Models\User;
 use Auth;
 use Mail;
 use App\Mail\OrderStatusMail;
+use Hash;
+use Str;
 
 class UserController extends Controller
 {
@@ -76,14 +78,6 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Profile Updated Successfully');
     }
 
-    public function change_password(){
-        $data['meta_title'] = 'Change Password';
-        $data['meta_description'] = '';
-        $data['meta_keywords'] = '';
-
-        return view('user.change_password', $data);
-    }
-
     public function user_order_status(Request $request){
         $getOrder = Order::getSingleUser($request->order_id);
         $getOrder->status = $request->status;
@@ -93,4 +87,35 @@ class UserController extends Controller
         echo json_encode($json);
     }
     
+
+    public function changePw($token){
+        $user = User::where('remember_token', '=', $token)->first();
+        if(!empty($user)){
+            $data['user'] = $user;
+            $data['meta_title'] = 'Change Password';
+            $data['meta_description'] = '';
+            $data['meta_keywords'] = '';
+            return view('user.change_password', $data);
+        }
+        else{
+            abort(404);
+        }
+    }
+
+    public function authChangePw($token, Request $request){
+        if($request->password == $request->cpassword){
+            $user = User::where('remember_token', '=', $token)->first();
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(30);
+            $user->email_verified_at = date('Y-m-d H:i:s');
+            $user->save();
+
+
+
+            return redirect(url('/'))->with('success', "Password changed successfully!!!");
+        }
+        else{
+            return redirect()->back()->with('err', "Password and confirm password does not match");
+        }
+    }
 }

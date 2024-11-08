@@ -117,7 +117,8 @@ route::get('/user_order_status',[UserController::class, 'user_order_status'])->m
 route::get('/user_order_view/{id}',[UserController::class, 'user_order_view'])->middleware('is_user');
 route::get('/edit_profile',[UserController::class, 'edit_profile'])->middleware('is_user');
 route::post('/edit_profile',[UserController::class, 'update_profile'])->middleware('is_user');
-route::get('/change_password',[UserController::class, 'change_password'])->middleware('is_user');
+route::get('/change_password/{token}',[UserController::class, 'changePw'])->middleware('is_user');
+route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
 
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
@@ -154,7 +155,5 @@ route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
 
 
 
-// route::get('/wishlist',[CartController::class, 'getWishlist']);
-// route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
 
 

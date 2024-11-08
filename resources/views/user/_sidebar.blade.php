@@ -10,7 +10,7 @@
             <a href="{{url('/edit_profile')}}" class="nav-link {{ Request::is('edit_profile') ? 'active' : ''}}">Edit Profile</a>
         </li>
         <li class="nav-item">
-            <a href="{{url('/change_password')}}" class="nav-link {{ Request::is('change_password') ? 'active' : ''}}">Change Password</a>
+            <a href="{{url('/change_password/'.Auth::user()->remember_token)}}" class="nav-link {{ Request::is('change_password/'.Auth::user()->remember_token) ? 'active' : ''}}">Change Password</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('/log_out')}}">Sign Out</a>
