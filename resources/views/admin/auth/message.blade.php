@@ -4,6 +4,7 @@
     </div>
 @endif
 
+
 @if(!empty(session('err')))
     <div style="color: red;" role="alert">
         {{session('err')}}

@@ -43,7 +43,7 @@
                                         <input type="password" class="form-control" name="cpassword" required>
                                     </div>
                                     <div class="form-footer">
-                                        <button type="submit" style="width: 200px; " class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <button id="CheckPassword" type="submit" style="width: 200px; " class="btn btn-outline-primary-2 btn-order btn-block">
                                             <span class="btn-text">Change Password</span>
                                             <span class="btn-hover-text">Change Your Password</span>
                                         </button>
@@ -60,3 +60,4 @@
 </main><!-- End .main -->
 
 @endsection
+

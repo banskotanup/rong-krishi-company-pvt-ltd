@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{url('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/nouislider/nouislider.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
     @include('home.cssJs.custom_style')
     @yield('style')

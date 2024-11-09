@@ -79,7 +79,7 @@ class UserController extends Controller
         $user->remember_token = Str::random(30);
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile Updated Successfully');
+        return redirect()->back();
     }
 
     public function user_order_status(Request $request){
