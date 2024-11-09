@@ -126,6 +126,7 @@ route::get('/change_password',[UserController::class, 'changePw404'])->middlewar
 route::get('/change_password/{token}',[UserController::class, 'changePw'])->middleware('is_user');
 route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
 
+
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
 
@@ -156,7 +157,7 @@ route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
 route::get('/cart',[CartController::class, 'getCart']);
 route::post('/cart',[CartController::class, 'add_to_Cart']);
 route::post('/cart/update',[CartController::class, 'update_cart']);
-route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
+route::get('{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
 
 
 

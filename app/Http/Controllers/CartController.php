@@ -43,7 +43,7 @@ class CartController extends Controller
             'qty' => $request->qty,
             
         ]);
-        Alert::success('SUCCESS!','Item added to cart successfully.');
+        toast('Item added to cart successfully.','success')->autoClose(3000);
         return redirect()->back();
     }
 

@@ -8,7 +8,7 @@
         <div class="col-6 col-md-4 col-lg-4">
             <div class="product product-7 text-center">
                 <figure class="product-media">
-                    <a href="{{$value->slug}}">
+                    <a href="{{url($value->slug)}}">
                         @if(!empty($getProductImage) && !empty($getProductImage->getImage()))
                         <img style="height: 280px; width: 100%; object-fit: cover;"
                             src="{{$getProductImage->getImage()}}" alt="{{$value->title}}" class="product-image">
@@ -48,7 +48,7 @@
                         <a
                             href="{{url($value->category_slug.'/'.$value->sub_category_slug)}}">{{$value->sub_category_name}}</a>
                     </div>
-                    <h3 class="product-title"><a href="{{$value->slug}}">{{$value->title}}</a></h3>
+                    <h3 class="product-title"><a href="{{url($value->slug)}}">{{$value->title}}</a></h3>
                     <div class="product-price">
                         NPR {{number_format($value->price, 2)}}
                     </div>

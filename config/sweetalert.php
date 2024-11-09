@@ -92,6 +92,7 @@ return [
 
     'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', true),
 
+
     /*
     |--------------------------------------------------------------------------
     | Padding
@@ -199,6 +200,7 @@ return [
     */
 
     'timer_progress_bar' => env('SWEET_ALERT_TIMER_PROGRESS_BAR', false),
+    'allow_outside_click' => env('SWEET_ALERT_ALLOW_OUTSIDE_CLICK', false),
 
     /*
     |--------------------------------------------------------------------------
