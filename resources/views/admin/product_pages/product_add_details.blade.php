@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Edit Product</h1>
+                    <h1 class="m-0">Add Product</h1>
                 </div>
             </div>
         </div>
@@ -61,20 +61,45 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Price (NPR) <span style="color: red;">*</span></label>
+                                <label>Purchase Quantity <span style="color: red;">*</span></label>
+                                <input id="getPurchaseQuantity" type="text" class="form-control" value="{{old('purchase_quantity', $product->purchase_quantity)}}"
+                                    name="purchase_quantity" required placeholder="Enter Purchase Quantity">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Purchase Price (NPR) <span style="color: red;">*</span></label>
+                                <input id="getPurchasePrice" type="text" class="form-control"
+                                    value="{{old('purchase_price', $product->purchase_price)}}" required name="purchase_price"
+                                    placeholder="Enter Purchase Price">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <button id="CalculateTotal" type="button" type="submit" class="btn btn-light" style="margin-top: 33px;"><i
+                                    class="far fa-arrow-alt-circle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total Purchase Amount</label>
+                                <br>
+                                <label style="border: 1px solid #ced4da; width:100%; height: 37px; border-radius: 2%; color: gray; padding: 7px;">NPR <span id="getTotalAmount">0.00</span></label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Price (NPR) <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">Selling Price</span></label>
                                 <input type="text" class="form-control" value="{{old('price', $product->price)}}"
                                     name="price" required placeholder="Enter Price">
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Old Price (NPR)</label>
-                                <input type="text" class="form-control"
-                                    value="{{old('old_price', $product->old_price)}}" name="old_price"
-                                    placeholder="Enter Old Price">
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <hr />
@@ -191,6 +216,29 @@
                 theme: 'monokai'
             }
         });
+
+        $('body').delegate('#CalculateTotal', 'click', function() {
+            var purchase_quantity = $('#getPurchaseQuantity').val();
+            var purchase_price = $('#getPurchasePrice').val();
+
+            $.ajax({
+                type : "POST",
+                url : "{{ url('/product_add/{id}/calculate_total') }}",
+                data : {
+                	purchase_quantity : purchase_quantity,
+                	purchase_price : purchase_price,
+                	"_token": "{{csrf_token()}}",
+                },
+                dataType : "json",
+                success: function(data) {
+                	$('#getTotalAmount').html(data.total);
+                   
+                },
+                error: function (data) {
+                  
+                }
+            });  
+       });
 
 </script>
 @endsection

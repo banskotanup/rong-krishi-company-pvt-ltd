@@ -81,6 +81,7 @@ route::get('/product_add',[ProductController::class, 'product_add'])->middleware
 route::post('/product_add',[ProductController::class, 'insert_product'])->middleware('is_admin');
 route::get('/product_add/{id}',[ProductController::class, 'add_product'])->middleware('is_admin');
 route::post('/product_add/{id}',[ProductController::class, 'update_add_product'])->middleware('is_admin');
+route::post('/product_add/{id}/calculate_total',[ProductController::class, 'calculate_total'])->middleware('is_admin');
 route::get('/product_edit/{id}',[ProductController::class, 'edit_product'])->middleware('is_admin');
 route::post('/product_edit/{id}',[ProductController::class, 'update_edit_product'])->middleware('is_admin');
 route::get('/product_delete/{id}',[ProductController::class, 'delete_product'])->middleware('is_admin');

@@ -78,7 +78,9 @@
                         <th>Title</th>
                         <th>Category Name</th>
                         <th>Sub Category Name</th>
-                        <th>Price</th>
+                        <th>Purchase Quantity</th>
+                        <th>Purchase Price</th>
+                        <th>Selling Price</th>
                         <th>Created By</th>
                         <th>Created Date</th>
                         <th>Status</th>
@@ -92,7 +94,9 @@
                         <td>{{$value->title}}</td>
                         <td>{{$value->category_name}}</td>
                         <td>{{$value->sub_category_name}}</td>
-                        <td>{{$value->price}}</td>
+                        <td>{{$value->purchase_quantity}}</td>
+                        <td>{{number_format($value->purchase_price, 2)}}</td>
+                        <td>{{number_format($value->price, 2)}}</td>
                         <td>{{$value->created_by_name}}</td>
                         <td>{{date('d-m-y', strtotime($value->created_at))}}</td>
                         <td>

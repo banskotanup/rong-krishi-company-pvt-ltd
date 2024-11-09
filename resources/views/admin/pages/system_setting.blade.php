@@ -24,7 +24,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Website</label>
-                                    <input type="text" class="form-control" name="website_name"
+                                    <input type="text" placeholder="Website Name" class="form-control" name="website_name"
                                         value="{{$getRecords->website_name}}">
                                 </div>
                             </div>
@@ -77,35 +77,35 @@
                                 <div class="form-group">
                                     <label>Office Address <span style="color: gray; font-style: italic;">(Only 255
                                             Characters)</span></label>
-                                    <input type="text" class="form-control" name="office_address"
+                                    <input type="text" class="form-control" placeholder="Mun-wno, Dist, Provience, Country" name="office_address"
                                         value="{{$getRecords->office_address}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Office Email 1</label>
-                                    <input type="text" class="form-control" name="email_one"
+                                    <input type="text" class="form-control" placeholder="email@email.com" name="email_one"
                                         value="{{$getRecords->email_one}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Office Email 2</label>
-                                    <input type="text" class="form-control" name="email_two"
+                                    <input type="text" class="form-control" placeholder="email@email.com" name="email_two"
                                         value="{{$getRecords->email_two}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Office Phone 1</label>
-                                    <input type="text" class="form-control" name="phone_one"
+                                    <input type="text" class="form-control" placeholder="Phone No." name="phone_one"
                                         value="{{$getRecords->phone_one}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Office Phone 2</label>
-                                    <input type="text" class="form-control" name="phone_two"
+                                    <input type="text" class="form-control" name="phone_two" placeholder="Phone No."
                                         value="{{$getRecords->phone_two}}">
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group">
                                     <label>Footer Description <span style="color: gray; font-style: italic;">(Only 255
                                             Characters)</span></label>
-                                    <input type="text" class="form-control" name="footer_description"
+                                    <input type="text" class="form-control" name="footer_description" placeholder="Short Description For Footer"
                                         value="{{$getRecords->footer_description}}">
 
                                 </div>
@@ -144,35 +144,35 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Facebook Link</label>
-                                    <input type="text" class="form-control" name="facebook_link"
+                                    <input type="text" class="form-control" name="facebook_link" placeholder="http//:www.facebook.com/"
                                         value="{{$getRecords->facebook_link}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Twitter Link</label>
-                                    <input type="text" class="form-control" name="twitter_link"
+                                    <input type="text" class="form-control" name="twitter_link" placeholder="http//:www.twitter.com/"
                                         value="{{$getRecords->twitter_link}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Instagram Link</label>
-                                    <input type="text" class="form-control" name="instagram_link"
+                                    <input type="text" class="form-control" name="instagram_link" placeholder="http//:www.instagram.com/"
                                         value="{{$getRecords->instagram_link}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Youtube Link</label>
-                                    <input type="text" class="form-control" name="youtube_link"
+                                    <input type="text" class="form-control" name="youtube_link" placeholder="http//:www.youtube.com/"
                                         value="{{$getRecords->youtube_link}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Pinterest Link</label>
-                                    <input type="text" class="form-control" name="pinterest_link"
+                                    <input type="text" class="form-control" name="pinterest_link" placeholder="http//:www.pinterest.com/"
                                         value="{{$getRecords->pinterest_link}}">
                                 </div>
                             </div>

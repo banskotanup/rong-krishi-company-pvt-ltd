@@ -81,6 +81,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Country</th>
             <th>Address</th>
             <th>Status</th>
             <th style="text-align: center;">Action</th>
@@ -91,10 +92,11 @@
           <tr>
             <td>{{$no++}}</td>
             <td>{{$value->user_number}}</td>
-            <td>{{$value->name}}</td>
+            <td>{{$value->name}} {{$value->last_name}}</td>
             <td>{{$value->email}}</td>
             <td>{{$value->phone}}</td>
-            <td>{{$value->address}}</td>
+            <td style="text-transform: capitalize;">{{$value->country}}</td>
+            <td style="text-transform: capitalize;">{{$value->address}} {{$value->address_two}}</td>
             <td>
               @if ($value->status == 0)
               <span style="color: rgb(8, 165, 8)">Active</span>
