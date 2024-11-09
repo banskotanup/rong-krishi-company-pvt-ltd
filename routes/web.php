@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Home\ProductController as ProductFront;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
@@ -103,6 +104,9 @@ route::get('/shipping_charge_delete/{id}',[ShippingChargeController::class, 'del
 route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is_admin');
 route::get('/order_status',[OrderController::class, 'order_status'])->middleware('is_admin');
 route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middleware('is_admin');
+
+route::get('/system_setting',[PageController::class, 'index'])->middleware('is_admin');
+route::post('/system_setting',[PageController::class, 'update_system_settings'])->middleware('is_admin');
 
 
 

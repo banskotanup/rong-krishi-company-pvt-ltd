@@ -234,6 +234,14 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('system_setting')}}" class="nav-link {{ Request::is('system_setting') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-cogs"></i>
+                  <p>
+                    System Settings
+                  </p>
+                </a>
+              </li>
     
             </ul>
           </nav>
