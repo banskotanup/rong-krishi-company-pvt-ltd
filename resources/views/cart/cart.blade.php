@@ -22,9 +22,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <div style="margin-left: 10px;">
-                            @include('admin.auth.message')
-                        </div>
+                        @include('sweetalert::alert')
                         <form action="{{url('/cart/update')}}" method="POST">
                         @csrf
                         @if(!empty(Cart::count()))

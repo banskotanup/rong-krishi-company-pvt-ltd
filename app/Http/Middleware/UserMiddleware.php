@@ -21,7 +21,8 @@ class UserMiddleware
         }
         else{
             Auth::logout();
-            return redirect('/')->with('warning',"⚠︎WARNING!!!⚠︎ You need to login to proceed further. Please login with your username & password or ask for admin credential to access the content.");
+            Alert::warning('WARNING!','You need to login to proceed further. Please login with your username & password or ask for admin credential to access the content.');
+            return redirect('/');
         }
     }
 }

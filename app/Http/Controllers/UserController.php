@@ -10,6 +10,7 @@ use Mail;
 use App\Mail\OrderStatusMail;
 use Hash;
 use Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -78,8 +79,8 @@ class UserController extends Controller
         $user->phone = trim($request->phone);
         $user->remember_token = Str::random(30);
         $user->save();
-
-        return redirect()->back();
+        Alert::success('Success!','User profile updated.');
+        return redirect(url('/user_dashboard/{id}'));
     }
 
     public function user_order_status(Request $request){
@@ -121,7 +122,8 @@ class UserController extends Controller
                 $user->remember_token = Str::random(30);
                 $user->email_verified_at = date('Y-m-d H:i:s');
                 $user->save();
-                return redirect(url('/'))->with('success', "Password changed successfully!!!");
+                Alert::success('Success!','Password changed successfully!!!');
+                return redirect(url('/user_dashboard/{id}'));
             }
             else{
                 return redirect()->back()->with('err', "Password and confirm password does not match.");

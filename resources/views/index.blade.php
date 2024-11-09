@@ -5,6 +5,7 @@
     <div style="text-align: center;">
         @include('admin.auth.message')
     </div>
+    @include('sweetalert::alert')
     <div class="intro-section bg-lighter pt-5 pb-6">
         <h3 style="font-family: 'Barcelony Signature'; margin-top:10px;" class="cursor typewriter-animation">Welcome To
             <span style="color: rgb(5, 136, 5); font-family:'Barcelony Signature';">Rong</span> <span

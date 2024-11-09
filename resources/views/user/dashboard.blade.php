@@ -37,7 +37,7 @@
                     <div class="col-md-8 col-lg-9">
                         <div class="tab-content">
                             <h3 class="card-title" style="margin-bottom: 10px; margin-left: 20px;">Personal Details</h3>
-
+                            @include('sweetalert::alert')
                             <div class="col-md-12">
                                 <div class="card card-primary">
                                     <div class="card-body">

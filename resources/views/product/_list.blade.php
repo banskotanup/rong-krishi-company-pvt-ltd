@@ -1,4 +1,5 @@
 <div class="products mb-3">
+    @include('sweetalert::alert')
     <div class="row justify-content-center">
         @foreach($getProduct as $value)
         @php

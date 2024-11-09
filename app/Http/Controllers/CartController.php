@@ -18,6 +18,7 @@ use Stripe\Stripe;
 use Session;
 use App\Mail\OrderInvoiceMail;
 use Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -42,7 +43,7 @@ class CartController extends Controller
             'qty' => $request->qty,
             
         ]);
-        
+        Alert::success('SUCCESS!','Item added to cart successfully.');
         return redirect()->back();
     }
 
@@ -60,7 +61,6 @@ class CartController extends Controller
                 'qty' => $cart['qty'],
             ));
         }
-        // Cart::store(Auth::user()->id);
         return redirect()->back();
     }
 
@@ -235,8 +235,8 @@ class CartController extends Controller
 
                     Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
                     Cart::destroy();
-
-                    return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
+                    Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
+                    return redirect('cart');
                 }
                 else if($getOrder->payment_method == 'paypal')
                 {
@@ -303,12 +303,14 @@ class CartController extends Controller
 
             Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
             Cart::destroy();
-            return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
+            Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
+            return redirect('cart');
 
         }
         else
         {
-            return redirect('cart')->with('error', "An unexpected issue occurred. Please try again later.");
+            Alert::error('ERROR!','An unexpected issue occurred. Please try again later.');
+            return redirect('cart');
         }
     }
     public function add_to_wishlist(Request $request)

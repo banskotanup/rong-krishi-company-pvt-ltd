@@ -21,6 +21,7 @@
             <div class="product-details-top mb-2">
                 <div class="row">
                     <div class="col-md-6">
+                        @include('sweetalert::alert')
                         <div class="product-gallery">
                             <figure class="product-main-image">
                                 @php
