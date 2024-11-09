@@ -127,6 +127,7 @@ route::get('/change_password/{token}',[UserController::class, 'changePw'])->midd
 route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
 
 
+
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
 

@@ -43,14 +43,14 @@ class CartController extends Controller
             'qty' => $request->qty,
             
         ]);
-        toast('Item added to cart successfully.','success')->autoClose(3000);
+        toast('Item added to cart.','success')->autoClose(3000);
         return redirect()->back();
     }
 
     public function cart_delete($rowId){
 
         Cart::remove($rowId);
-        
+        toast('Item removed from cart.','error')->autoClose(3000);
         return redirect()->back();
     }
 
@@ -61,6 +61,7 @@ class CartController extends Controller
                 'qty' => $cart['qty'],
             ));
         }
+        toast('Cart updated successfully.','success')->autoClose(3000);
         return redirect()->back();
     }
 
@@ -324,11 +325,13 @@ class CartController extends Controller
                 $save->save();
 
                 $json['is_Wishlist'] = 1;
+                toast('Item added to wishlist.','success')->autoClose(3000);
             }
             else
             {
                 ProductWishlist::DeleteRecord($request->product_id, Auth::user()->id);
                 $json['is_Wishlist'] = 0;
+                toast('Item removed from wishlist.','error')->autoClose(3000);
             }
         $json['status'] = true;
         echo json_encode($json);

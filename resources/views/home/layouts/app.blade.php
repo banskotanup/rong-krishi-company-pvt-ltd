@@ -185,10 +185,12 @@
                     if(data.is_Wishlist == 0)
                       {
                         $('.add_to_wishlist'+product_id).removeClass('btn-wishlist-add');
+                        location.reload();
                       }
                     else
                     {
                         $('.add_to_wishlist'+product_id).addClass('btn-wishlist-add');
+                        location.reload();
                     }
                 }
             });

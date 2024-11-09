@@ -29,6 +29,23 @@ class OrderController extends Controller
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
         $json['message'] = "Status successfully updated";
+        if($request->status == 0){
+            toast('Order status: Pending','question')->autoClose(5000)->width('20rem');
+        }
+        if($request->status == 1){
+            toast('Order status: Inprogress','info')->autoClose(5000)->width('20rem');
+        }
+        if($request->status == 2){
+            toast('Order status: Delivered','warning')->autoClose(5000)->width('20rem');
+        }
+        if($request->status == 3){
+            toast('Order status: Completed','success')->autoClose(5000)->width('20rem');
+        }
+        if($request->status == 4){
+            toast('Order status: Cancelled','error')->autoClose(5000)->width('20rem');
+        }
+
+
         echo json_encode($json);
     }
 

@@ -14,6 +14,7 @@
     </div>
 
     @include('admin.auth.message')
+    @include('sweetalert::alert')
 
     <form action="" method="GET">
         <div class="card">
