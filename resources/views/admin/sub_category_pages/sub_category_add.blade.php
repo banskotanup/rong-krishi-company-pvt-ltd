@@ -77,4 +77,23 @@
 
 @section('script')
 <script src="/admin/dist/js/pages/dashboard3.js"></script>
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Sub category created successfully!!!'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection

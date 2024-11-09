@@ -31,6 +31,10 @@
                         <input type="text" class="form-control" value="{{old('phone', $getRecords->phone)}}" name="phone" placeholder="Enter phone number">
                     </div>
                     <div class="form-group">
+                        <label>Country<span style="color: red;"></span></label>
+                        <input type="country" class="form-control" value="{{old('country', $getRecords->country)}}" name="country" required placeholder="Enter country name">
+                    </div>
+                    <div class="form-group">
                         <label>Address</label>
                         <input type="address" class="form-control" value="{{old('address', $getRecords->address)}}" name="address" placeholder="Enter address">
                     </div>
@@ -49,7 +53,7 @@
                 </div>
     
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update</button>
+                  <button onclick="showPopup(event)" type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>
@@ -58,4 +62,23 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Admin has been updated!'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection

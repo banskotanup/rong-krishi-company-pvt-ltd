@@ -68,6 +68,6 @@ class PageController extends Controller
         }
 
         $save->save();
-        return redirect('/system_setting')->with('success', 'System Settings Successfully Updated!!!');
+        return redirect('/system_setting');
     }
 }

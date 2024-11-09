@@ -111,7 +111,7 @@ class ProductController extends Controller
                 }
             }
 
-            return redirect('/product_list')->with('success',"Product added successfully!!!");
+            return redirect('/product_list');
         }
         else{
             abort(404);
@@ -136,8 +136,10 @@ class ProductController extends Controller
             $product->sku= trim($request->sku);
             $product->category_id = trim($request->category_id);
             $product->sub_category_id = trim($request->sub_category_id);
+            $product->purchase_quantity = trim($request->purchase_quantity);
+            $product->purchase_price = trim($request->purchase_price);
+            $product->total_purchase_amount = trim($request->purchase_quantity * $request->purchase_price);
             $product->price = trim($request->price);
-            $product->old_price = trim($request->old_price);
             $product->short_description = trim($request->short_description);
             $product->description = trim($request->description);
             $product->additional_information = trim($request->additional_information);
@@ -161,7 +163,7 @@ class ProductController extends Controller
                     }
                 }
             }
-            return redirect('/product_list')->with('success',"Product updated successfully!!!");
+            return redirect('/product_list');
         }
         else{
             abort(404);
@@ -174,7 +176,7 @@ class ProductController extends Controller
             unlink('upload/product/' .$image->image_name);
         }
         $image->delete();
-        return redirect()->back()->with('success',"Product image deleted successfully!!!");
+        return redirect()->back();
     }
 
     public function product_image_sortable(Request $request){
@@ -195,6 +197,6 @@ class ProductController extends Controller
         $product = Product::getSingle($id);
         $product->is_deleted = 1;
         $product->save();
-        return redirect('/product_list')->with('success',"Product deleted  successfully!!!");
+        return redirect('/product_list');
     }
 }

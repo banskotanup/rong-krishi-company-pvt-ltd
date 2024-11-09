@@ -34,6 +34,7 @@ class MemberController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->country = $request->country;
         $user->address = $request->address;
         $user->password = Hash::make($request->password);
         $user->status = $request->status;
@@ -42,9 +43,7 @@ class MemberController extends Controller
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
-        return redirect('/member_list')->with('success',"Member Created Successfully!
-        Please check your email for the verification message to complete the process.
-        If you don’t receive the email, check your spam or junk folder. ");
+        return redirect('/member_list');
     }
 
     public function edit_member($id){
@@ -61,6 +60,7 @@ class MemberController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->country = $request->country;
         $user->address = $request->address;
         if(!empty($request->password)){
             $user->password = Hash::make($request->password);
@@ -69,14 +69,14 @@ class MemberController extends Controller
         $user->is_admin = 0;
         $user->remember_token = Str::random(30);
         $user->save();
-        return redirect('/member_list')->with('success',"Member updated  successfully!!!");
+        return redirect('/member_list');
     }
 
     public function delete_member($id){
         $user = User::getSingle($id);
         $user->is_delete = 1;
         $user->save();
-        return redirect('/member_list')->with('success',"Member deleted  successfully!!!");
+        return redirect('/member_list');
     }
 
     public function activate_email($id){

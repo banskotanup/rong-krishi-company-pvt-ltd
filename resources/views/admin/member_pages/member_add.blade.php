@@ -35,6 +35,10 @@
                         <input type="text" class="form-control" value="{{old('phone')}}" name="phone" required placeholder="Enter phone number">
                     </div>
                     <div class="form-group">
+                        <label>Country<span style="color: red;">*</span></label>
+                        <input type="country" class="form-control" value="{{old('country')}}" name="country" required placeholder="Enter country name">
+                    </div>
+                    <div class="form-group">
                         <label>Address<span style="color: red;">*</span></label>
                         <input type="address" class="form-control" value="{{old('address')}}" name="address" required placeholder="Enter address">
                     </div>
@@ -62,4 +66,23 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Member Created Successfully!',
+                text: 'Please check your email for the verification message to complete the process.If you don’t receive the email, check your spam or junk folder. '
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection

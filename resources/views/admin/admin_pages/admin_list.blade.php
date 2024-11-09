@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  @include('admin.auth.message')
+
   <form action="" method="GET">
     <div class="card">
         <div class="card-header">
@@ -123,4 +123,6 @@
 @endsection
 
 @section('script')
+
+
 @endsection
