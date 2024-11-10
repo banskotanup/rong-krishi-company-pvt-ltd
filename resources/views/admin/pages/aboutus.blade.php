@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('style')
-<link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
+<link rel="stylesheet" href="{{url('/admin/plugins/summernote/summernote-bs4.min.css')}}">
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -77,8 +77,24 @@
 @endsection
 
 @section('script')
-<script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
-<script>
+<script src="{{url('/admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.editor').summernote()
+        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+            });
+        });
+
+        $('.editor').summernote({
+            height: 200,   
+            codemirror: { 
+                theme: 'monokai'
+            }
+        });
+
+
     $(document).ready(function () {
     var shownPopup = false;
     $("form").submit(function (event) {
@@ -97,19 +113,5 @@
     });
 });
 
-$(function () {
-            $('.editor').summernote()
-            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-            mode: "htmlmixed",
-            theme: "monokai"
-            });
-        });
-
-        $('.editor').summernote({
-            height: 150,   //set editable area's height
-            codemirror: { // codemirror options
-                theme: 'monokai'
-            }
-        });
 </script>
 @endsection
