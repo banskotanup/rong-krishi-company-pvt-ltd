@@ -33,6 +33,11 @@ class PageController extends Controller
         $save->instagram_link = trim($request->instagram_link);
         $save->youtube_link = trim($request->youtube_link);
         $save->pinterest_link = trim($request->pinterest_link);
+        $save->slogan1 = trim($request->slogan1);
+        $save->slogan2 = trim($request->slogan2);
+        $save->slogan3 = trim($request->slogan3);
+        $save->slogan4 = trim($request->slogan4);
+        $save->slogan5 = trim($request->slogan5);
         
 
         if(!empty($request->file('logo'))){
@@ -71,6 +76,78 @@ class PageController extends Controller
 
             $save->store_image = trim($filename);
         }
+        if(!empty($request->file('banner1'))){
+            $file = $request->file('banner1');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner1 = trim($filename);
+        }
+        if(!empty($request->file('banner2'))){
+            $file = $request->file('banner2');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner2 = trim($filename);
+        }
+        if(!empty($request->file('banner3'))){
+            $file = $request->file('banner3');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner3 = trim($filename);
+        }
+        if(!empty($request->file('banner4'))){
+            $file = $request->file('banner4');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner4 = trim($filename);
+        }
+        if(!empty($request->file('banner5'))){
+            $file = $request->file('banner5');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner5 = trim($filename);
+        }
+        if(!empty($request->file('banner1_1'))){
+            $file = $request->file('banner1_1');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner1_1 = trim($filename);
+        }
+        if(!empty($request->file('banner2_1'))){
+            $file = $request->file('banner2_1');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner2_1 = trim($filename);
+        }
+        if(!empty($request->file('banner3_1'))){
+            $file = $request->file('banner3_1');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/setting/', $filename);
+
+            $save->banner3_1 = trim($filename);
+        }
 
         $save->save();
         return redirect('/system_setting');
@@ -84,6 +161,7 @@ class PageController extends Controller
 
     public function update_about_us(Request $request){
         $save = AboutUs::getSingle();
+        $save->intro = trim($request->intro);
         $save->our_vision = trim($request->our_vision);
         $save->our_mission = trim($request->our_mission);
         $save->who_we_are = trim($request->who_we_are);

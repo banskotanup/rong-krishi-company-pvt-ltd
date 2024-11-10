@@ -44,6 +44,13 @@
                             @endif
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label>Introduction <span style="color: red;">*</span></label>
+                                    <textarea name="intro" class="form-control editor" required
+                                    placeholder="Introduce Yourself?">{{$getRecords->intro}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label>Who We Are? <span style="color: red;">*</span></label>
                                     <textarea name="who_we_are" class="form-control editor" required
                                     placeholder="Who We Are?">{{$getRecords->who_we_are}}</textarea>

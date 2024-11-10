@@ -211,6 +211,235 @@
                                 </div>
                             </div>
                             @endif
+
+                            @if(empty($getRecords->Banner1()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 1 <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="banner1" value="{{$getRecords->banner1}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner1()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 1 </label>
+                                    <input type="file" class="form-control" name="banner1" value="{{$getRecords->banner1}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            @if(empty($getRecords->Banner1_1()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 1.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner1_1" value="{{$getRecords->banner1_1}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner1_1()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 1.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner1_1" value="{{$getRecords->banner1_1}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Slogan 1</label>
+                                    <input type="text" class="form-control" placeholder="Slogan 1" name="slogan1"
+                                        value="{{$getRecords->slogan1}}">
+                                </div>
+                            </div>
+
+                            @if(empty($getRecords->Banner2()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 2<span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="banner2" value="{{$getRecords->banner2}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner2()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 2 </label>
+                                    <input type="file" class="form-control" name="banner2" value="{{$getRecords->banner2}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            @if(empty($getRecords->Banner2_1()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 2.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner2_1" value="{{$getRecords->banner2_1}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner2_1()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 2.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner2_1" value="{{$getRecords->banner2_1}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Slogan 2</label>
+                                    <input type="text" class="form-control" placeholder="Slogan 2" name="slogan2"
+                                        value="{{$getRecords->slogan2}}">
+                                </div>
+                            </div>
+                            <hr />
+
+                            @if(empty($getRecords->Banner3()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 3 <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="banner3" value="{{$getRecords->banner3}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner3()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 3 </label>
+                                    <input type="file" class="form-control" name="banner3" value="{{$getRecords->banner3}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            @if(empty($getRecords->Banner3_1()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 3.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner3_1" value="{{$getRecords->banner3_1}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner3_1()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 3.1 <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(For devices- max-width:480px)</span></label>
+                                    <input type="file" class="form-control" name="banner3_1" value="{{$getRecords->banner3_1}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Slogan 3</label>
+                                    <input type="text" class="form-control" placeholder="Slogan 3" name="slogan3"
+                                        value="{{$getRecords->slogan3}}">
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            @if(empty($getRecords->Banner4()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 4 <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="banner4" value="{{$getRecords->banner4}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner4()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 4 </label>
+                                    <input type="file" class="form-control" name="banner4" value="{{$getRecords->banner4}}">
+                                </div>
+                            </div>
+                            @endif
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Slogan 4</label>
+                                    <input type="text" class="form-control" placeholder="Slogan 4" name="slogan4"
+                                        value="{{$getRecords->slogan4}}">
+                                </div>
+                            </div>
+                            <hr />
+
+                            @if(empty($getRecords->Banner5()))
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Banner 5 <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="banner5" value="{{$getRecords->banner5}}" required>
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    
+                                    <img src="{{$getRecords->Banner5()}}" style="width: 100px; height: 100px; border-radius: 80%;">
+
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label>Banner 5 </label>
+                                    <input type="file" class="form-control" name="banner5" value="{{$getRecords->banner5}}">
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Slogan 5</label>
+                                    <input type="text" class="form-control" placeholder="Slogan 5" name="slogan5"
+                                        value="{{$getRecords->slogan5}}">
+                                </div>
+                            </div>
                             
                         </div>
                     </div>

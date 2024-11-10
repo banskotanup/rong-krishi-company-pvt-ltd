@@ -5,6 +5,12 @@
     <div style="text-align: center;">
         @include('admin.auth.message')
     </div>
+    @php
+    $getAboutUs = App\Models\AboutUs::getSingle();
+    @endphp
+    @php
+        $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    @endphp
     @include('sweetalert::alert')
     <div class="intro-section bg-lighter pt-5 pb-6">
         <h3 style="font-family: 'Barcelony Signature'; margin-top:10px;" class="cursor typewriter-animation">Welcome To
@@ -27,14 +33,14 @@
                                 <figure class="slide-image">
                                     <picture>
                                         <source media="(max-width: 480px)"
-                                            srcset="{{url('assets/images/slider/slider-1-w.jpg')}}">
-                                        <img src="{{url('assets/images/slider/slider-1.jpg')}}" alt="Image Desc">
+                                            srcset="{{$getSystemSettingApp->Banner1_1()}}">
+                                        <img src="{{$getSystemSettingApp->Banner1()}}" alt="Image Desc">
                                     </picture>
                                 </figure>
 
                                 <div class="intro-content">
                                     <h3 class="intro-subtitle">Our Collection</h3>
-                                    <h1 class="intro-title">Fresh Fruits<br> & Vegetables</h1>
+                                    <h1 class="intro-title">{{$getSystemSettingApp->slogan1}}</h1>
 
                                     <a href="#products" class="btn btn-outline-white">
                                         <span>SHOP NOW</span>
@@ -47,13 +53,13 @@
                                 <figure class="slide-image">
                                     <picture>
                                         <source media="(max-width: 480px)"
-                                            srcset="{{url('assets/images/slider/slider-2-w.jpg')}}">
-                                        <img src="{{url('assets/images/slider/slider-2.jpg')}}" alt="Image Desc">
+                                            srcset="{{$getSystemSettingApp->Banner2_1()}}">
+                                        <img src="{{$getSystemSettingApp->Banner2()}}" alt="Image Desc">
                                     </picture>
                                 </figure>
 
                                 <div class="intro-content">
-                                    <h3 class="intro-subtitle">News and Inspiration</h3>
+                                    <h3 class="intro-subtitle">{{$getSystemSettingApp->slogan2}}</h3>
                                     < <h1 class="intro-title">New Arrivals</h1>
 
                                         <a href="#products" class="btn btn-outline-white">
@@ -67,15 +73,15 @@
                                 <figure class="slide-image">
                                     <picture>
                                         <source media="(max-width: 480px)"
-                                            srcset="{{url('assets/images/slider/slider-3-w.jpg')}}">
-                                        <img src="{{url('assets/images/slider/slider-3.jpg')}}" alt="Image Desc">
+                                            srcset="{{$getSystemSettingApp->Banner3_1()}}">
+                                        <img src="{{$getSystemSettingApp->Banner3()}}" alt="Image Desc">
                                     </picture>
                                 </figure>
 
                                 <div class="intro-content">
-                                    <h3 class="intro-subtitle">PACKAGING & MANUFACTURING</h3>
+                                    <h3 class="intro-subtitle">{{$getSystemSettingApp->slogan3}}</h3>
                                     <!-- End .h3 intro-subtitle -->
-                                    <h1 class="intro-title">National & International <br>Delivery</h1>
+                                    <h1 class="intro-title">National & International Delivery</h1>
                                     <!-- End .intro-title -->
 
                                     <a href="#products" class="btn btn-outline-white">
@@ -95,7 +101,7 @@
                             <div class="col-md-6 col-lg-12">
                                 <div class="banner banner-display">
                                     <a href="#">
-                                        <img style="height: 215px;" src="assets/images/banners/home/intro/banner-1.jpg"
+                                        <img style="height: 215px;" src="{{$getSystemSettingApp->Banner4()}}"
                                             alt="Banner">
                                     </a>
 
@@ -103,8 +109,7 @@
                                         <h4 class="banner-subtitle text-darkwhite"><a href="#"><span
                                                     style="background: rgb(11, 32, 41);">Shop with us today!</span></a>
                                         </h4><!-- End .banner-subtitle -->
-                                        <h3 class="banner-title text-white"><a href="#">Healthy, <br> fresh, and pure
-                                                <br> – all in one place.</a></h3><!-- End .banner-title -->
+                                        <h3 class="banner-title text-white"><a href="#">{{$getSystemSettingApp->slogan4}}</a></h3><!-- End .banner-title -->
                                         <a href="#products" class="btn btn-outline-white banner-link">Shop Now<i
                                                 class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .banner-content -->
@@ -115,15 +120,14 @@
                                 <div class="banner banner-display mb-0">
                                     <a href="#">
                                         <img style="height: 215px; margin-top: 0;"
-                                            src="{{url('assets/images/banners/home/intro/banner-2.jpg')}}" alt="Banner">
+                                            src="{{$getSystemSettingApp->Banner5()}}" alt="Banner">
                                     </a>
 
                                     <div class="banner-content">
                                         <h4 class="banner-subtitle text-darkwhite"><a href="#"><span
                                                     style="background: rgb(11, 32, 41);">New in</span></a></h4>
                                         <!-- End .banner-subtitle -->
-                                        <h3 class="banner-title text-white"><a href="#">Transforming traditional <br>
-                                                farming into a thriving business <br> for a sustainable future</a></h3>
+                                        <h3 class="banner-title text-white"><a href="#">{{$getSystemSettingApp->slogan5}}</a></h3>
                                         <!-- End .banner-title -->
                                         <a href="{{url('/blog')}}" class="btn btn-outline-white banner-link">Discover
                                             Now<i class="icon-long-arrow-right"></i></a>
@@ -153,15 +157,7 @@
             <div>
                 <h1 style="text-align: center; font-family: 'Courier New', monospace;">Let’s Introduce us</h1>
                 <hr>
-                <p style="text-align: center; font-size:18px; center; font-family: 'Times New Roman';">At
-                    RongKrishi, we are dedicated to driving innovation in the agricultural sector through cutting-edge
-                    manufacturing solutions. Our commitment to excellence ensures that farmers have access to
-                    high-quality, reliable equipment that enhances productivity and sustainability.
-                    Our state-of-the-art manufacturing facilities are equipped with advanced technology to produce
-                    durable and high-performance agricultural tools. We are dedicated to providing exceptional customer
-                    support, ensuring that our clients receive timely assistance and solutions tailored to their
-                    specific needs. By partnering with us, farmers can rely on a trusted leader in agricultural
-                    manufacturing to enhance their operations and drive success.</p>
+                <p style="text-align: center; font-size:22px; center; font-family: 'Times New Roman';">{!! $getAboutUs->intro !!}</p>
                 <div style="display: flex; justify-content:center; align-items:center; margin-top:20px;">
                     <a href="{{url('/about_us')}}"><button class="btn btn-primary"
                             style="padding: 10px 20px; margin-button:1px;">Learn More</button></a>
@@ -177,15 +173,9 @@
                                     <span
                                         style="color: green; font-family:'Barcelony Signature'; font-size:20px;">Enriching
                                         Lives</span></p><!-- End .lead text-primary -->
-                                <p class="mb-2">We are a dedicated team of agricultural enthusiasts committed to
-                                    revolutionizing the farming landscape. With a focus on sustainability, innovation,
-                                    and community empowerment, we strive to provide farmers with the tools and knowledge
-                                    they need to thrive. Our passion for fresh, healthy produce drives us to connect
-                                    local farmers with consumers, ensuring that quality food is accessible to all.
-                                    Through our efforts, we aim to create a positive impact on the agricultural sector
-                                    and foster a healthier environment for future generations.</p>
+                                <p class="mb-2">{!! $getAboutUs->who_we_are !!}</p>
 
-                                <a href="{{url('/blog')}}" class="btn btn-sm btn-minwidth btn-outline-primary-2">
+                                <a href="{{url('/blog')}}" class="btn btn-sm btn-minwidth btn-outline-primary-2" style="margin-top: 10px;">
                                     <span>VIEW OUR BLOGS</span>
                                     <i class="icon-long-arrow-right"></i>
                                 </a>
@@ -193,7 +183,7 @@
 
                             <div class="col-lg-6 offset-lg-1">
                                 <div class="about-images">
-                                    <img src="assets/images/about/img-1.jpg" alt="" class="about-img-front">
+                                    <img src="{{$getAboutUs->getImage()}}" alt="" class="about-img-front">
                                 </div><!-- End .about-images -->
                             </div><!-- End .col-lg-6 -->
                         </div><!-- End .row -->

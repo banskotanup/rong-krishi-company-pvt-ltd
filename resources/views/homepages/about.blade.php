@@ -93,7 +93,7 @@
 
                         <figure class="member-media">
                             @if(!empty($getImage) && !empty($getImage->getImage()))
-                            <img style="height: 500px;" src="{{$getImage->getImage()}}" alt="member photo">
+                            <img style="height: 400px; width: 100%;" src="{{$getImage->getImage()}}" alt="member photo">
                             @endif
                             <figcaption class="member-overlay">
                                 <div class="member-overlay-content">
