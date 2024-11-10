@@ -19,21 +19,21 @@ class OurTeam extends Model
 
     static public function getTeam(){
         $return = OurTeam::select('our_team.*');
-        // if(!empty(Request::get('user_id'))){
-        //     $return = $return->where('user_number', '=', Request::get('user_id'));
-        // }
-        // if(!empty(Request::get('name'))){
-        //     $return = $return->where('name', '=', Request::get('name'));
-        // }
-        // if(!empty(Request::get('email'))){
-        //     $return = $return->where('email', '=', Request::get('email'));
-        // }
-        // if(!empty(Request::get('phone'))){
-        //     $return = $return->where('phone', '=', Request::get('phone'));
-        // }
-        // if(!empty(Request::get('address'))){
-        //     $return = $return->where('address', '=', Request::get('address'));
-        // }
+        if(!empty(Request::get('first_name'))){
+            $return = $return->where('first_name', '=', Request::get('first_name'));
+        }
+        if(!empty(Request::get('last_name'))){
+            $return = $return->where('last_name', '=', Request::get('last_name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        if(!empty(Request::get('whatsapp_number'))){
+            $return = $return->where('whatsapp_number', '=', Request::get('whatsapp_number'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
         $return = $return
         ->where('is_deleted','=', 0)
         ->orderBy('id', 'asc')
@@ -45,6 +45,9 @@ class OurTeam extends Model
         return TeamImageModel::where('user_id','=', $id)->orderBy('order_by', 'asc')->first();
     }
 
-    
+    public function getImage(){
+        return $this->hasMany(TeamImageModel::class, "user_id")->orderBy('order_by', 'asc');
+    }
+
 
 }

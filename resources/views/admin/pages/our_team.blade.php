@@ -13,6 +13,55 @@
             </div>
         </div>
     </div>
+    <form action="" method="GET">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Team Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
+            </div>
+            <div class="card-body">
+    
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">First Name</label>
+                            <input type="text" placeholder="First Name" name="first_name" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Last Name</label>
+                            <input type="text" placeholder="Last Name" name="last_name" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="text" placeholder="Email" name="email" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Whatsapp Number</label>
+                            <input type="text" placeholder="Whatsapp Number" name="whatsapp_number" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <input type="text" placeholder="Address" name="address" class="form-control" value="">
+                        </div>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 30px;">
+                        <button  class="btn btn-primary btn_edit"
+                            style="width: 50px;"><i class="fas fa-search"></i></button>
+                        <a href="{{url('/our_team')}}" class="btn btn-danger btn_delete"
+                            style="width: 50px;"><i class="fas fa-undo"></i></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
 
     <div class="card">
         <div class="card-header">
@@ -65,9 +114,9 @@
                         </td>
                         <td>{{date('d-m-y', strtotime($value->created_at))}}</td>
                         <td style="text-align: center;">
-                            <a href="{{url('/shipping_charge_edit/'.$value->id)}}" class="btn btn-primary btn_edit"
+                            <a href="{{url('/our_team_edit/'.$value->id)}}" class="btn btn-primary btn_edit"
                                 style="width: 50px;"><i class="fas fa-edit"></i></a>
-                            <a onclick="confirmation(event)" href="{{url('/shipping_charge_delete/'.$value->id)}}" class="btn btn-danger btn_delete"
+                            <a onclick="confirmation(event)" href="{{url('/our_team_delete/'.$value->id)}}" class="btn btn-danger btn_delete"
                                 style="width: 50px;"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
@@ -84,24 +133,4 @@
 
 @section('script')
 
-<script type="text/javascript">
-    $(document).ready(function () {
-    var shownPopup = false;
-    $("form").submit(function (event) {
-        if (shownPopup === false) {
-            event.preventDefault();
-            shownPopup = true;
-            var form = $(this);
-            Swal.fire({
-                icon: 'success',
-                title: 'Updated!',
-                text: 'System setting has been updated.'
-            }).then(function() {
-                form.trigger('submit');
-            });
-        }
-    });
-});
-
-</script>
 @endsection

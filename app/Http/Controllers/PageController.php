@@ -144,4 +144,57 @@ class PageController extends Controller
 
         return redirect('/our_team');
     }
+
+    
+    public function edit_team_member($id){
+        $team = OurTeam::getSingle($id);
+        if(!empty($team)){
+            $data['getRecords'] = $team;
+            $data['header_title'] = 'Team-Edit';
+            return view('admin.pages.team_edit', $data);
+        }
+    }
+
+
+    public function update_edit_team_member($id, Request $request){
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+        $user = OurTeam::getSingle($id);
+        $user->email = $request->email;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->whatsapp_number = $request->whatsapp_number;
+        $user->facebook_link = $request->facebook_link;
+        $user->country = $request->country;
+        $user->address = $request->address;
+        $user->postcode = $request->postcode;
+        $user->status = $request->status;
+        $user->save();
+        
+        if(!empty($request->file('profile_picture'))){
+            $file = $request->file('profile_picture');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/our_team/', $filename);
+
+            $user->profile_picture = trim($filename);
+
+            $imageupload  = TeamImageModel::getSingle($id);
+            $imageupload->image_name = $filename; 
+            $imageupload->user_id = $user->id;
+            $imageupload->save(); 
+        }
+        
+        return redirect('/our_team');
+    }
+
+    public function our_team_delete($id){
+        $user = OurTeam::getSingle($id);
+        $user->is_deleted = 1;
+        $user->save();
+        return redirect('/our_team');
+    }
+    
 }

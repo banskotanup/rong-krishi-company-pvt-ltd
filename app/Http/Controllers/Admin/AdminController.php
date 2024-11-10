@@ -90,6 +90,7 @@ class AdminController extends Controller
         $user->save();
         return redirect('/admin_list');
     }
+    
     public function delete_admin($id){
         $user = User::getSingle($id);
         $user->is_delete = 1;
