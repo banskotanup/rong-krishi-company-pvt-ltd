@@ -82,7 +82,7 @@
                                     <div class="social-icons social-icons-simple">
                                         <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
                                         <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-envelope"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .member-overlay-content -->
                             </figcaption><!-- End .member-overlay -->
@@ -104,7 +104,7 @@
                                     <div class="social-icons social-icons-simple">
                                         <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
                                         <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-envelope"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .member-overlay-content -->
                             </figcaption><!-- End .member-overlay -->

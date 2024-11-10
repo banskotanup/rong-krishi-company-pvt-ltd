@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SystemSetting;
+use App\Models\AboutUs;
 use Str;
 
 class PageController extends Controller
@@ -71,5 +72,29 @@ class PageController extends Controller
 
         $save->save();
         return redirect('/system_setting');
+    }
+
+    public function aboutus(){
+        $data['getRecords'] = AboutUs::getSingle();
+        $data['header_title'] = "About Us";
+        return view('admin.pages.aboutus', $data);
+    }
+
+    public function update_about_us(Request $request){
+        $save = AboutUs::getSingle();
+        $save->our_vision = trim($request->our_vision);
+        $save->our_mission = trim($request->our_mission);
+        $save->who_we_are = trim($request->who_we_are);
+        if(!empty($request->file('about_us_image'))){
+            $file = $request->file('about_us_image');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/about_us/', $filename);
+
+            $save->about_us_image = trim($filename);
+        }
+        $save->save();
+        return redirect('/aboutus');
     }
 }

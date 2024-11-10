@@ -23,16 +23,16 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Website</label>
-                                    <input type="text" placeholder="Website Name" class="form-control" name="website_name"
+                                    <label>Website <span style="color: red;">*</span></label>
+                                    <input type="text" placeholder="Website Name" class="form-control" name="website_name" required
                                         value="{{$getRecords->website_name}}">
                                 </div>
                             </div>
                             @if(empty($getRecords->getLogo()))
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Logo</label>
-                                    <input type="file" class="form-control" name="logo" value="{{$getRecords->logo}}">
+                                    <label>Logo <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="logo" value="{{$getRecords->logo}}" required>
                                 </div>
                             </div>
                             @else
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label>Logo</label>
+                                    <label>Logo </label>
                                     <input type="file" class="form-control" name="logo" value="{{$getRecords->logo}}">
                                 </div>
                             </div>
@@ -53,8 +53,8 @@
                             @if(empty($getRecords->getFevicon()))
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Fevicon</label>
-                                    <input type="file" class="form-control" name="fevicon" value="{{$getRecords->fevicon}}">
+                                    <label>Fevicon <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="fevicon" value="{{$getRecords->fevicon}}" required>
                                 </div>
                             </div>
                             @else
@@ -75,30 +75,30 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Store Address Name<span style="color: gray; font-style: italic;">(Exact name of place where store is located)</span></label>
-                                    <input type="text" class="form-control" placeholder="eg: XXX Complex" name="store_address_name"
+                                    <label>Store Address Name <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(Exact name of place where store is located)</span></label>
+                                    <input type="text" class="form-control" placeholder="eg: XXX Complex" name="store_address_name" required
                                         value="{{$getRecords->store_address_name}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Location Map Url<span style="color: gray; font-style: italic;">(From Google Maps)</span></label>
-                                    <input type="text" class="form-control" placeholder="https://www.google.com/maps/embe" name="location_url"
+                                    <label>Location Map Url <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(From Google Maps)</span></label>
+                                    <input type="text" class="form-control" placeholder="https://www.google.com/maps/embe" name="location_url" required
                                         value="{{$getRecords->location_url}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Office Address <span style="color: gray; font-style: italic;">(Only 255
+                                    <label>Office Address <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(Only 255
                                             Characters)</span></label>
-                                    <input type="text" class="form-control" placeholder="Mun-wno, Dist, Provience, Country" name="office_address"
+                                    <input type="text" class="form-control" placeholder="Mun-wno, Dist, Provience, Country" name="office_address" required
                                         value="{{$getRecords->office_address}}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Office Email 1</label>
-                                    <input type="text" class="form-control" placeholder="email@email.com" name="email_one"
+                                    <label>Office Email 1 <span style="color: red;">*</span> </label>
+                                    <input type="text" class="form-control" placeholder="email@email.com" name="email_one" required
                                         value="{{$getRecords->email_one}}">
                                 </div>
                             </div>
@@ -111,8 +111,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Office Phone 1</label>
-                                    <input type="text" class="form-control" placeholder="Phone No." name="phone_one"
+                                    <label>Office Phone 1 <span style="color: red;">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Phone No." name="phone_one" required
                                         value="{{$getRecords->phone_one}}">
                                 </div>
                             </div>
@@ -126,9 +126,9 @@
                             <hr />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Footer Description <span style="color: gray; font-style: italic;">(Only 255
+                                    <label>Footer Description <span style="color: red;">*</span> <span style="color: gray; font-style: italic;">(Only 255
                                             Characters)</span></label>
-                                    <input type="text" class="form-control" name="footer_description" placeholder="Short Description For Footer"
+                                    <input type="text" class="form-control" name="footer_description" placeholder="Short Description For Footer" required
                                         value="{{$getRecords->footer_description}}">
 
                                 </div>
@@ -137,8 +137,8 @@
                             @if(empty($getRecords->getFooterPaymentIcon()))
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Footer Payment Icon</label>
-                                    <input type="file" class="form-control" name="footer_payment_icon" value="{{$getRecords->footer_payment_icon}}">
+                                    <label>Footer Payment Icon <span style="color: red;">*</span></label>
+                                    <input type="file" class="form-control" name="footer_payment_icon" value="{{$getRecords->footer_payment_icon}}" required>
                                 </div>
                             </div>
                             @else

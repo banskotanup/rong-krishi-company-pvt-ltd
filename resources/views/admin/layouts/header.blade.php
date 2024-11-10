@@ -235,6 +235,14 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('aboutus')}}" class="nav-link {{ Request::is('aboutus') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-info"></i>
+                  <p>
+                    About Us
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('system_setting')}}" class="nav-link {{ Request::is('system_setting') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-cogs"></i>
                   <p>
