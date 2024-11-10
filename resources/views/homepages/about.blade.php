@@ -77,161 +77,44 @@
 
             <hr class="mt-4 mb-6">
 
+            @php
+            $getTeam = App\Models\OurTeam::getTeam();
+            @endphp
+
             <h2 class="title text-center mb-4">Meet Our Team</h2><!-- End .title text-center mb-2 -->
 
             <div class="row">
+                @foreach($getTeam as $value)
+                @php
+                    $getImage = $value->getImageSingle($value->id);
+                @endphp
                 <div class="col-md-4">
                     <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-1.jpg" alt="member photo">
 
+                        <figure class="member-media">
+                            @if(!empty($getImage) && !empty($getImage->getImage()))
+                            <img style="height: 500px;" src="{{$getImage->getImage()}}" alt="member photo">
+                            @endif
                             <figcaption class="member-overlay">
                                 <div class="member-overlay-content">
-                                    <h3 class="member-title">Narayan Luitel</h3><!-- End .member-title -->
+                                    <h3 class="member-title">{{$value->first_name}} {{$value->last_name}}</h3><!-- End .member-title -->
                                     <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
+                                        <a href="{{$value->facebook_link}}" class="social-icon" title="Facebook" target="_blank"><i
                                                 class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
+                                        <a href="{{$value->whatsapp_number}}" class="social-icon" title="Whatsapp" target="_blank"><i
                                                 class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
+                                        <a href="{{$value->email}}" class="social-icon" title="Email" target="_blank"><i
                                                 class="icon-envelope"></i></a>
                                     </div><!-- End .soial-icons -->
                                 </div><!-- End .member-overlay-content -->
                             </figcaption><!-- End .member-overlay -->
                         </figure><!-- End .member-media -->
                         <div class="member-content">
-                            <h3 class="member-title">Narayan Luitel</h3><!-- End .member-title -->
+                            <h3 class="member-title">{{$value->first_name}} {{$value->last_name}}</h3><!-- End .member-title -->
                         </div><!-- End .member-content -->
                     </div><!-- End .member -->
                 </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-2.jpg" alt="member photo">
-
-                            <figcaption class="member-overlay">
-                                <div class="member-overlay-content">
-                                    <h3 class="member-title">Anjana Sapkota</h3><!-- End .member-title -->
-                                    <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
-                                                class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-envelope"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .member-overlay-content -->
-                            </figcaption><!-- End .member-overlay -->
-                        </figure><!-- End .member-media -->
-                        <div class="member-content">
-                            <h3 class="member-title">Anjana Sapkota</h3><!-- End .member-title -->
-                        </div><!-- End .member-content -->
-                    </div><!-- End .member -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-3.jpg" alt="member photo">
-
-                            <figcaption class="member-overlay">
-                                <div class="member-overlay-content">
-                                    <h3 class="member-title">Chandra Prasad Luitel</h3><!-- End .member-title -->
-                                    <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
-                                                class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .member-overlay-content -->
-                            </figcaption><!-- End .member-overlay -->
-                        </figure><!-- End .member-media -->
-                        <div class="member-content">
-                            <h3 class="member-title">Chandra Prasad Luitel</h3><!-- End .member-title -->
-                        </div><!-- End .member-content -->
-                    </div><!-- End .member -->
-                </div><!-- End .col-md-4 -->
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-4.jpg" alt="member photo">
-
-                            <figcaption class="member-overlay">
-                                <div class="member-overlay-content">
-                                    <h3 class="member-title">Dhruba Banskota</h3><!-- End .member-title -->
-                                    <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
-                                                class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .member-overlay-content -->
-                            </figcaption><!-- End .member-overlay -->
-                        </figure><!-- End .member-media -->
-                        <div class="member-content">
-                            <h3 class="member-title">Dhruba Banskota</h3><!-- End .member-title -->
-                        </div><!-- End .member-content -->
-                    </div><!-- End .member -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-2.jpg" alt="member photo">
-
-                            <figcaption class="member-overlay">
-                                <div class="member-overlay-content">
-                                    <h3 class="member-title">Alisha Aryal</h3><!-- End .member-title -->
-                                    <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
-                                                class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .member-overlay-content -->
-                            </figcaption><!-- End .member-overlay -->
-                        </figure><!-- End .member-media -->
-                        <div class="member-content">
-                            <h3 class="member-title">Alisha Aryal</h3><!-- End .member-title -->
-                        </div><!-- End .member-content -->
-                    </div><!-- End .member -->
-                </div><!-- End .col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="member member-anim text-center">
-                        <figure class="member-media">
-                            <img style="height: 500px;" src="assets/images/team/member-3.jpg" alt="member photo">
-
-                            <figcaption class="member-overlay">
-                                <div class="member-overlay-content">
-                                    <h3 class="member-title">Pawan Basnet</h3><!-- End .member-title -->
-                                    <div class="social-icons social-icons-simple">
-                                        <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                class="icon-facebook-f"></i></a>
-                                        <a href="#" class="social-icon" title="Whatsapp" target="_blank"><i
-                                                class="icon-whatsapp"></i></a>
-                                        <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                class="icon-twitter"></i></a>
-                                    </div><!-- End .soial-icons -->
-                                </div><!-- End .member-overlay-content -->
-                            </figcaption><!-- End .member-overlay -->
-                        </figure><!-- End .member-media -->
-                        <div class="member-content">
-                            <h3 class="member-title">Pawan Basnet</h3><!-- End .member-title -->
-                        </div><!-- End .member-content -->
-                    </div><!-- End .member -->
-                </div><!-- End .col-md-4 -->
-            </div>
+                @endforeach
         </div>
 
         <div class="mb-2"></div><!-- End .mb-2 -->
