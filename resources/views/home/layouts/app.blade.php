@@ -13,7 +13,11 @@
     @if((!empty($meta_keywords)))
     <meta name="keywords" content="{{$meta_keywords}}">
     @endif
-    <link rel="icon" type="image/x-icon" href="{{url('/trslogo.png')}}">
+
+    @php
+        $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{$getSystemSettingApp->getFevicon()}}">
 
     <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
@@ -196,6 +200,7 @@
             });
         });
     </script>
+    
     @yield('script')
 </body>
 </html>

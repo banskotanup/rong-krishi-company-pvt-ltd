@@ -33,10 +33,10 @@ class OrderController extends Controller
             toast('Order status: Pending','question')->autoClose(5000)->width('20rem');
         }
         if($request->status == 1){
-            toast('Order status: Inprogress','info')->autoClose(5000)->width('20rem');
+            toast('Order status: Inprogress','')->autoClose(5000)->width('20rem');
         }
         if($request->status == 2){
-            toast('Order status: Delivered','warning')->autoClose(5000)->width('20rem');
+            toast('Order status: Delivered','')->autoClose(5000)->width('20rem');
         }
         if($request->status == 3){
             toast('Order status: Completed','success')->autoClose(5000)->width('20rem');

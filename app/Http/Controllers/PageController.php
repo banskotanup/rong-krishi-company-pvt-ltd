@@ -17,6 +17,8 @@ class PageController extends Controller
     public function update_system_settings(Request $request){
         $save = SystemSetting::getSingle();
         $save->website_name = trim($request->website_name);
+        $save->store_address_name = trim($request->store_address_name);
+        $save->location_url = trim($request->location_url);
         $save->office_address = trim($request->office_address);
         $save->email_one = trim($request->email_one);
         $save->email_two = trim($request->email_two);

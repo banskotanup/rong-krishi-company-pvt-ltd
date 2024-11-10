@@ -4,15 +4,15 @@
             <div class="row">
                 <div class="col-sm-6 col-lg-3">
                     <div class="widget widget-about">
-                        <img src="{{url('trslogo.png')}}" class="footer-logo" alt="Footer Logo" width="105" height="25">
-                        <h3 style="color: #777;">रोङ कृषि कम्पनी प्रा. लि. <br> नेपालको कृषि रूपान्तरण</h3>
+                        <img src="{{$getSystemSettingApp->getLogo()}}" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        <h3 style="color: #777; font-size: 16px;">{{$getSystemSettingApp->footer_description}}</h3>
 
                         <div class="social-icons" style="margin-top: 20px;">
-                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                            <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                            <a href="{{$getSystemSettingApp->facebook_link}}" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                            <a href="{{$getSystemSettingApp->twitter_link}}" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                            <a href="{{$getSystemSettingApp->instagram_link}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                            <a href="{{$getSystemSettingApp->youtube_link}}" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+                            <a href="{{$getSystemSettingApp->pinterest_link}}" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
@@ -65,9 +65,9 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="footer-copyright">Copyright © 2024 NextGenIT. All Rights Reserved.</p>
+            <p class="footer-copyright">Copyright &copy; <script>document.write(new Date().getFullYear())</script> NextGenIT. All Rights Reserved.</p>
             <figure class="footer-payments">
-                <img src="{{url('assets/images/payments.png')}}" alt="Payment methods" width="272" height="20">
+                <img src="{{$getSystemSettingApp->getFooterPaymentIcon()}}" alt="Payment methods" width="272" height="20">
             </figure>
         </div>
     </div>

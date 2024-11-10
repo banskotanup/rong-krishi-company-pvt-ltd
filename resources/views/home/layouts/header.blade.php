@@ -22,7 +22,7 @@
                     <li>
                         <a href="#">Links</a>
                         <ul>
-                            <li><a href="tel:#"><i class="icon-phone"></i>Call: +977 9876543210</a></li>
+                            <li><a href="tel:#"><i class="icon-phone"></i>Call: {{$getSystemSettingApp->phone_one}}</a></li>
                             @if(!empty(Auth::check()))
                                 <li><a href="{{url('my-wishlist')}}"><i class="icon-heart-o"></i>My Wishlist
                                     </a></li>
@@ -53,7 +53,7 @@
                 </button>
 
                 <a href="{{url('/')}}" class="logo">
-                    <img src="{{url('trslogo.png')}}" width="40" height="10">
+                    <img src="{{$getSystemSettingApp->getLogo()}}" width="40" height="10">
                 </a>
 
                 <nav class="main-nav">

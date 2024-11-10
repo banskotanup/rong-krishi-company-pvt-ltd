@@ -12,17 +12,25 @@
         </div><!-- End .container -->
     </nav><!-- End .breadcrumb-nav -->
     <div class="container">
-        <div class="page-header page-header-big text-center" style="background-image: url('assets/images/contact-header-bg.jpg')">
+        <div class="page-header page-header-big text-center"
+            style="background-image: url('assets/images/contact-header-bg.jpg')">
             <h1 class="page-title text-white">Contact us<span class="text-white">keep in touch with us</span></h1>
         </div><!-- End .page-header -->
     </div><!-- End .container -->
+
+
+    @php
+    $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    @endphp
 
     <div class="page-content pb-0">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mb-2 mb-lg-0">
                     <h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
-                    <p class="mb-3">Get in touch with us for any inquiries, support, or partnership opportunities. Our team at Rong Krishi is here to assist you with all your agricultural needs. Reach out to us through the following contact details, and we’ll be happy to help!</p>
+                    <p class="mb-3">Get in touch with us for any inquiries, support, or partnership opportunities. Our
+                        team at Rong Krishi is here to assist you with all your agricultural needs. Reach out to us
+                        through the following contact details, and we’ll be happy to help!</p>
                     <div class="row">
                         <div class="col-sm-7">
                             <div class="contact-info">
@@ -31,15 +39,15 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-map-marker"></i>
-                                        Birtamode-05, Jhapa, Koshi Provience, Nepal
+                                        {{$getSystemSettingApp->office_address}}
                                     </li>
                                     <li>
                                         <i class="icon-phone"></i>
-                                        <a href="tel:#">+977 9876543210</a>
+                                        <a href="tel:#">+977 {{$getSystemSettingApp->phone_one}}, {{$getSystemSettingApp->phone_two}}</a>
                                     </li>
                                     <li>
                                         <i class="icon-envelope"></i>
-                                        <a href="mailto:#">example@gmail.com</a>
+                                        <a href="mailto:#">{{$getSystemSettingApp->email_one}}</a>
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
@@ -52,11 +60,11 @@
                                 <ul class="contact-list">
                                     <li>
                                         <i class="icon-clock-o"></i>
-                                        <span class="text-dark">Sunday-Thursday</span> <br>10am-5pm 
+                                        <span class="text-dark">Sunday-Thursday</span> <br>10am-5pm
                                     </li>
                                     <li>
                                         <i class="icon-calendar"></i>
-                                        <span class="text-dark">Friday</span> <br>10am-3pm 
+                                        <span class="text-dark">Friday</span> <br>10am-3pm
                                     </li>
                                 </ul><!-- End .contact-list -->
                             </div><!-- End .contact-info -->
@@ -93,7 +101,8 @@
                         </div><!-- End .row -->
 
                         <label for="cmessage" class="sr-only">Message</label>
-                        <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
+                        <textarea class="form-control" cols="30" rows="4" id="cmessage" required
+                            placeholder="Message *"></textarea>
 
                         <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                             <span>SUBMIT</span>
@@ -114,14 +123,14 @@
                             <div class="row">
                                 <div class="col-sm-5 col-xl-6">
                                     <figure class="store-media mb-2 mb-lg-0">
-                                        <img src="assets/images/stores/img-1.jpg" alt="image">
+                                        <img src="{{$getSystemSettingApp->getStoreImage()}}" alt="image">
                                     </figure><!-- End .store-media -->
                                 </div><!-- End .col-xl-6 -->
                                 <div class="col-sm-7 col-xl-6">
                                     <div class="store-content">
-                                        <h3 class="store-title">Mega Complex</h3><!-- End .store-title -->
-                                        <address>Birtamode-05, Jhapa, Koshi Provience, Nepal</address>
-                                        <div><a href="tel:#">+977 9876543210</a></div>
+                                        <h3 class="store-title">{{$getSystemSettingApp->store_address_name}}</h3><!-- End .store-title -->
+                                        <address>{{$getSystemSettingApp->office_address}}</address>
+                                        <div><a href="tel:#">+977 {{$getSystemSettingApp->phone_one}}</a></div>
                                     </div><!-- End .store-content -->
                                 </div><!-- End .col-xl-6 -->
                             </div><!-- End .row -->
@@ -133,7 +142,9 @@
             </div><!-- End .stores -->
         </div><!-- End .container -->
         <div id="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d349.06385236024505!2d87.99201718011307!3d26.646177894550817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e5bb1f176aadf1%3A0x29a0f84b2505b583!2sBirtamode%205!5e0!3m2!1sen!2snp!4v1724956608106!5m2!1sen!2snp" width="600" height="430" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+            <iframe
+                src="{{$getSystemSettingApp->location_url}}"
+                width="600" height="430" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
         </div><!-- End #map -->
     </div><!-- End .page-content -->
 </main><!-- End .main -->

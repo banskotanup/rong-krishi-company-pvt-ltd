@@ -75,6 +75,20 @@
                             
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label>Store Address Name<span style="color: gray; font-style: italic;">(Exact name of place where store is located)</span></label>
+                                    <input type="text" class="form-control" placeholder="eg: XXX Complex" name="store_address_name"
+                                        value="{{$getRecords->store_address_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Location Map Url<span style="color: gray; font-style: italic;">(From Google Maps)</span></label>
+                                    <input type="text" class="form-control" placeholder="https://www.google.com/maps/embe" name="location_url"
+                                        value="{{$getRecords->location_url}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label>Office Address <span style="color: gray; font-style: italic;">(Only 255
                                             Characters)</span></label>
                                     <input type="text" class="form-control" placeholder="Mun-wno, Dist, Provience, Country" name="office_address"
