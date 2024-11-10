@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SystemSetting;
 use App\Models\AboutUs;
+use App\Models\OurTeam;
 use Str;
+use App\Models\TeamImageModel;
 
 class PageController extends Controller
 {
@@ -96,5 +98,50 @@ class PageController extends Controller
         }
         $save->save();
         return redirect('/aboutus');
+    }
+
+
+    public function our_team(){
+        $data['getRecords'] = OurTeam::getTeam();
+        $data['header_title'] = "Our Team";
+        return view('admin.pages.our_team', $data)->with('no', 1);
+    }
+
+    public function add_team_member(){
+        $data['header_title'] = 'Add-Team-Member';
+        return view('admin.pages.add_team', $data);
+    }
+
+    public function insert_team_member(Request $request){
+        request()->validate([
+            'email' => 'required|email|unique:users'
+        ]);
+        $user = new OurTeam;
+        $user->email = $request->email;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->whatsapp_number = $request->whatsapp_number;
+        $user->facebook_link = $request->facebook_link;
+        $user->country = $request->country;
+        $user->address = $request->address;
+        $user->postcode = $request->postcode;
+        $user->status = $request->status;
+        $user->save();
+        if(!empty($request->file('profile_picture'))){
+            $file = $request->file('profile_picture');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/our_team/', $filename);
+
+            $user->profile_picture = trim($filename);
+
+            $imageupload  = new TeamImageModel;
+            $imageupload->image_name = $filename; 
+            $imageupload->user_id = $user->id;
+            $imageupload->save(); 
+        }
+
+        return redirect('/our_team');
     }
 }

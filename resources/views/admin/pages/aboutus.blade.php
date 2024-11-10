@@ -105,7 +105,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Updated!',
-                text: 'System setting has been updated.'
+                text: 'About us has been updated.'
             }).then(function() {
                 form.trigger('submit');
             });

@@ -111,7 +111,9 @@ route::post('/aboutus',[PageController::class, 'update_about_us'])->middleware('
 route::get('/system_setting',[PageController::class, 'index'])->middleware('is_admin');
 route::post('/system_setting',[PageController::class, 'update_system_settings'])->middleware('is_admin');
 
-
+route::get('/our_team',[PageController::class, 'our_team'])->middleware('is_admin');
+route::get('/add_team_member',[PageController::class, 'add_team_member'])->middleware('is_admin');
+route::post('/add_team_member',[PageController::class, 'insert_team_member'])->middleware('is_admin');
 
 //ImageController Routes Goes Here.....
 route::get('/image_delete/{id}',[ProductController::class, 'image_delete'])->middleware('is_admin');

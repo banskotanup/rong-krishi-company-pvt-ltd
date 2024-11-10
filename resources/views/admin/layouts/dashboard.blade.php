@@ -216,7 +216,7 @@
                   @foreach ($recent_product as $item)
                   @php
                         $getProductImage = $item->getImageSingle($item->id);
-                        @endphp
+                    @endphp
                   <li class="item">
                     <div class="product-img">
                                 <img style="width: 100px; height:100px;" src="{{$getProductImage->getImage()}}" alt="">      
