@@ -234,6 +234,22 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('blog_category_list')}}" class="nav-link {{ Request::is('blog_category_list') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-list-alt"></i>
+                  <p>
+                    Blog Category
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin_blog')}}" class="nav-link {{ Request::is('admin_blog') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-list-alt"></i>
+                  <p>
+                    Blog
+                  </p>
+                </a>
+              </li>
     
             </ul>
           </nav>

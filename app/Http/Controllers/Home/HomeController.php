@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\ContactUs;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -30,6 +32,23 @@ class HomeController extends Controller
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
         return view('homepages.contact', $data);
+    }
+
+    public function submit_contact(Request $request)
+    {
+        $save = new ContactUs;
+        if(!empty(Auth::check()))
+        {
+            $save->user_id = Auth::user()->id;
+        }
+        $save->name = trim($request->name);
+        $save->email = trim($request->email);
+        $save->phone = trim($request->phone);
+        $save->subject = trim($request->subject);
+        $save->message = trim($request->message);
+        $save->save();
+
+        return redirect()->back()->with('success', "your information successfully send.");
     }
 
     public function faq(){
