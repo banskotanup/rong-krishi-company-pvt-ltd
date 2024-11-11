@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\LandingPageController;
@@ -102,6 +104,20 @@ route::get('/shipping_charge_edit/{id}',[ShippingChargeController::class, 'edit_
 route::post('/shipping_charge_edit/{id}',[ShippingChargeController::class, 'update_edit_shipping_charge'])->middleware('is_admin');
 route::get('/shipping_charge_delete/{id}',[ShippingChargeController::class, 'delete_shipping_charge'])->middleware('is_admin');
 
+route::get('/blog_category_list',[BlogCategoryController::class, 'blog_category_list'])->middleware('is_admin');
+route::get('/blog_category_add',[BlogCategoryController::class, 'blog_category_add'])->middleware('is_admin');
+route::post('/blog_category_add',[BlogCategoryController::class, 'insert_blog_category'])->middleware('is_admin');
+route::get('/blog_category_edit/{id}',[BlogCategoryController::class, 'edit_blog_category'])->middleware('is_admin');
+route::post('/blog_category_edit/{id}',[BlogCategoryController::class, 'update_edit_blog_category'])->middleware('is_admin');
+route::get('/blog_category_delete/{id}',[BlogCategoryController::class, 'delete_blog_category'])->middleware('is_admin');
+
+route::get('/admin_blog',[BlogController::class, 'admin_blog'])->middleware('is_admin');
+route::get('/blog_add',[BlogController::class, 'blog_add'])->middleware('is_admin');
+route::post('/blog_add',[BlogController::class, 'insert_blog'])->middleware('is_admin');
+route::get('/blog_edit/{id}',[BlogController::class, 'edit_blog'])->middleware('is_admin');
+route::post('/blog_edit/{id}',[BlogController::class, 'update_edit_blog'])->middleware('is_admin');
+route::get('/blog_delete/{id}',[BlogController::class, 'delete_blog'])->middleware('is_admin');
+
 route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is_admin');
 route::get('/order_status',[OrderController::class, 'order_status'])->middleware('is_admin');
 route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middleware('is_admin');
@@ -142,6 +158,7 @@ route::get('/home',[HomeController::class, 'index']);
 route::get('/shop',[HomeController::class, 'getShop']);
 route::get('/about_us',[HomeController::class, 'about_us']);
 route::get('/contact_us',[HomeController::class, 'contact_us']);
+route::post('/contact_us',[HomeController::class, 'submit_contact']);
 route::get('/faq',[HomeController::class, 'faq']);
 route::get('/error_404',[HomeController::class, 'error_404']);
 route::get('/blog',[HomeController::class, 'blog']);

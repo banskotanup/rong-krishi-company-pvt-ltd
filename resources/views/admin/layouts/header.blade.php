@@ -235,6 +235,10 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('blog_category_list')}}" class="nav-link {{ Request::is('blog_category_list') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-list-alt"></i>
+                  <p>
+                    Blog Category
                 <a href="{{url('aboutus')}}" class="nav-link {{ Request::is('aboutus') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-info"></i>
                   <p>
@@ -243,6 +247,10 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('admin_blog')}}" class="nav-link {{ Request::is('admin_blog') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-list-alt"></i>
+                  <p>
+                    Blog
                 <a href="{{url('our_team')}}" class="nav-link {{ Request::is('our_team') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-users"></i>
                   <p>
