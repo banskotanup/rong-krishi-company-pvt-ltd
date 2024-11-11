@@ -108,13 +108,12 @@
         </div>
     </div>
 
-    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
-                            <img src="{{url('')}}/assets/images/popup/newsletter/logo.png" class="logo" alt="logo" width="60" height="15">
                             <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
                             <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
                             <form action="#">
@@ -137,7 +136,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <script src="{{url('assets/js/jquery.min.js')}}"></script>
     <script src="{{url('assets/js/bootstrap.bundle.min.js')}}"></script>
@@ -199,6 +198,35 @@
                 }
             });
         });
+
+        if(document.getElementById('newsletter-popup-form')) {
+        setTimeout(function() {
+            var mpInstance = $.magnificPopup.instance;
+            if (mpInstance.isOpen) {
+                mpInstance.close();
+            }
+
+            setTimeout(function() {
+                $.magnificPopup.open({
+                    items: {
+                        src: '#newsletter-popup-form'
+                    },
+                    type: 'inline',
+                    removalDelay: 350,
+                    callbacks: {
+                        open: function() {
+                            $('body').css('overflow-x', 'visible');
+                            $('.sticky-header.fixed').css('padding-right', '1.7rem');
+                        },
+                        close: function() {
+                            $('body').css('overflow-x', 'hidden');
+                            $('.sticky-header.fixed').css('padding-right', '0');
+                        }
+                    }
+                });
+            }, 500)
+        }, 10000)
+    }
     </script>
     
     @yield('script')
