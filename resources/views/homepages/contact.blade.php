@@ -109,8 +109,6 @@
 
                         <label for="cmessage" class="sr-only">Message</label>
                         <textarea class="form-control" cols="30" rows="4" name="message" id="cmessage" required placeholder="Message *"></textarea>
-                        <textarea class="form-control" cols="30" rows="4" id="cmessage" required
-                            placeholder="Message *"></textarea>
 
                         <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                             <span>SUBMIT</span>
