@@ -52,7 +52,7 @@ class BlogController extends Controller
 
         $blog->save();
 
-        return redirect('/admin_blog')->with('success',"Blog created  successfully!!!");
+        return redirect('/admin_blog');
     }
 
     public function edit_blog($id){
@@ -74,13 +74,13 @@ class BlogController extends Controller
         $blog->meta_keywords = trim($request->meta_keywords);
 
         $blog->save();
-        return redirect('/admin_blog')->with('success',"Blog updated  successfully!!!");
+        return redirect('/admin_blog');
     }
 
     public function delete_blog($id){
         $blog = BlogModel::getSingle($id);
         $blog->is_delete = 1;
         $blog->save();
-        return redirect('/admin_blog')->with('success',"Blog deleted  successfully!!!");
+        return redirect('/admin_blog');
     }
 }

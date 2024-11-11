@@ -260,7 +260,7 @@
               </li>
 
               
-
+              <li class="nav-item">
                 <a href="{{url('our_team')}}" class="nav-link {{ Request::is('our_team') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-users"></i>
                   <p>

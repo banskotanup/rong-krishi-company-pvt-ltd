@@ -12,7 +12,6 @@
             </div>
         </div>
     </div>
-    @include('admin.auth.message')
 
     <div class="col-md-12">
         <div class="card card-primary">
@@ -69,4 +68,23 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Blog category created.'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection

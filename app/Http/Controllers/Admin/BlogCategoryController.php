@@ -36,7 +36,7 @@ class BlogCategoryController extends Controller
         $blog_category->meta_description = trim($request->meta_description);
         $blog_category->meta_keywords = trim($request->meta_keywords);
         $blog_category->save();
-        return redirect('/blog_category_list')->with('success',"Blog Category created  successfully!!!");
+        return redirect('/blog_category_list');
     }
 
     public function edit_blog_category($id){
@@ -57,13 +57,13 @@ class BlogCategoryController extends Controller
         $blog_category->meta_description = trim($request->meta_description);
         $blog_category->meta_keywords = trim($request->meta_keywords);
         $blog_category->save();
-        return redirect('/blog_category_list')->with('success',"Blog Category updated  successfully!!!");
+        return redirect('/blog_category_list');
     }
 
     public function delete_blog_category($id){
         $blog_category = BlogCategory::getSingle($id);
         $blog_category->is_delete = 1;
         $blog_category->save();
-        return redirect('/blog_category_list')->with('success',"Blog Category deleted  successfully!!!");
+        return redirect('/blog_category_list');
     }
 }

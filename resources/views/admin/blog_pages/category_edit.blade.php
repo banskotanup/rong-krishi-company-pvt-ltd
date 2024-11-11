@@ -79,4 +79,23 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Blog has been updated.'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection
