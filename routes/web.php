@@ -16,8 +16,11 @@ use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Home\ProductController as ProductFront;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UserMiddleware;
 
 //welcome route..... 
 route::get('/',[LandingPageController::class, 'welcome']);
@@ -80,6 +83,7 @@ route::get('/product_add',[ProductController::class, 'product_add'])->middleware
 route::post('/product_add',[ProductController::class, 'insert_product'])->middleware('is_admin');
 route::get('/product_add/{id}',[ProductController::class, 'add_product'])->middleware('is_admin');
 route::post('/product_add/{id}',[ProductController::class, 'update_add_product'])->middleware('is_admin');
+route::post('/product_add/{id}/calculate_total',[ProductController::class, 'calculate_total'])->middleware('is_admin');
 route::get('/product_edit/{id}',[ProductController::class, 'edit_product'])->middleware('is_admin');
 route::post('/product_edit/{id}',[ProductController::class, 'update_edit_product'])->middleware('is_admin');
 route::get('/product_delete/{id}',[ProductController::class, 'delete_product'])->middleware('is_admin');
@@ -118,11 +122,34 @@ route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is
 route::get('/order_status',[OrderController::class, 'order_status'])->middleware('is_admin');
 route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middleware('is_admin');
 
+route::get('/aboutus',[PageController::class, 'aboutus'])->middleware('is_admin');
+route::post('/aboutus',[PageController::class, 'update_about_us'])->middleware('is_admin');
+route::get('/system_setting',[PageController::class, 'index'])->middleware('is_admin');
+route::post('/system_setting',[PageController::class, 'update_system_settings'])->middleware('is_admin');
 
+route::get('/our_team',[PageController::class, 'our_team'])->middleware('is_admin');
+route::get('/add_team_member',[PageController::class, 'add_team_member'])->middleware('is_admin');
+route::post('/add_team_member',[PageController::class, 'insert_team_member'])->middleware('is_admin');
+route::get('/our_team_edit/{id}',[PageController::class, 'edit_team_member'])->middleware('is_admin');
+route::post('/our_team_edit/{id}',[PageController::class, 'update_edit_team_member'])->middleware('is_admin');
+route::get('/our_team_delete/{id}',[PageController::class, 'our_team_delete'])->middleware('is_admin');
 
 //ImageController Routes Goes Here.....
 route::get('/image_delete/{id}',[ProductController::class, 'image_delete'])->middleware('is_admin');
 route::post('/product_image_sortable',[ProductController::class, 'product_image_sortable'])->middleware('is_admin');
+
+
+route::get('/user_dashboard/{id}',[UserController::class, 'dashboard'])->middleware('is_user');
+route::get('/user_orders',[UserController::class, 'user_orders'])->middleware('is_user');
+route::get('/user_order_status',[UserController::class, 'user_order_status'])->middleware('is_user');
+route::get('/user_order_view/{id}',[UserController::class, 'user_order_view'])->middleware('is_user');
+route::get('/edit_profile',[UserController::class, 'edit_profile'])->middleware('is_user');
+route::post('/edit_profile',[UserController::class, 'update_profile'])->middleware('is_user');
+route::get('/change_password',[UserController::class, 'changePw404'])->middleware('is_user');
+route::get('/change_password/{token}',[UserController::class, 'changePw'])->middleware('is_user');
+route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
+
+
 
 //HomeController Routes Goes Here.....
 route::get('/home',[HomeController::class, 'index']);
@@ -155,12 +182,10 @@ route::get('/cart/delete/{rowId}',[CartController::class, 'cart_delete']);
 route::get('/cart',[CartController::class, 'getCart']);
 route::post('/cart',[CartController::class, 'add_to_Cart']);
 route::post('/cart/update',[CartController::class, 'update_cart']);
-route::get('/{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
+route::get('{category?}/{subcategory?}',[ProductFront::class, 'getCategory']);
 
 
 
 
-// route::get('/wishlist',[CartController::class, 'getWishlist']);
-// route::post('/wishlist',[CartController::class, 'add_to_Wishlist']);
 
 

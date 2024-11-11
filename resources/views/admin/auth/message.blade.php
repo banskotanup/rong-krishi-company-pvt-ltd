@@ -4,6 +4,7 @@
     </div>
 @endif
 
+
 @if(!empty(session('err')))
     <div style="color: red;" role="alert">
         {{session('err')}}
@@ -16,11 +17,7 @@
     </div>
 @endif
 
-@if(!empty(session('success')))
-    <div class="alert alert-success" role="alert">
-        {{session('success')}}
-    </div>
-@endif
+
 
 @if(!empty(session('succes')))
     <div style="color: green;" role="alert">
@@ -56,4 +53,10 @@
     <div class="alert alert-light" role="alert">
         {{session('light')}}
     </div>
+@endif
+
+@if(!empty(session('success')))
+<div class="alert alert-success" role="alert">
+    {{session('success')}}
+</div>
 @endif

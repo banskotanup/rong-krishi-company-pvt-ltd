@@ -12,6 +12,7 @@
         "laravel/helpers": "^1.7",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^1.1",
+        "realrashid/sweet-alert": "^7.2",
         "stripe/stripe-php": "^16.2",
         "surfsidemedia/shoppingcart": "^1.0"
     },

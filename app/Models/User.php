@@ -48,11 +48,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getAdmin(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
+        }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
         }
         $return = $return->where('is_admin','=', 1)
         ->where('is_delete','=', 0)
@@ -67,16 +76,51 @@ class User extends Authenticatable implements MustVerifyEmail
 
     static public function getMember(){
         $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
         if(!empty(Request::get('name'))){
             $return = $return->where('name', '=', Request::get('name'));
         }
         if(!empty(Request::get('email'))){
             $return = $return->where('email', '=', Request::get('email'));
         }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
         $return = $return->where('is_admin','=', 0)
         ->where('is_delete','=', 0)
         ->orderBy('id', 'asc')
         ->paginate(20);
+
+        return $return;
+    }
+
+    static public function getCustomer(){
+        $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
+        $return = $return->where('is_admin','=', 0)
+        ->where('is_delete','=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
 
         return $return;
     }
@@ -98,6 +142,44 @@ class User extends Authenticatable implements MustVerifyEmail
         ->where('is_admin', '=', 0)
         ->where('is_delete', '=', 0)
         ->whereDate('created_at', '=', date('Y-m-d'))
+        ->count();
+    }
+
+    static public function getAdmins(){
+        $return = User::select('users.*');
+        if(!empty(Request::get('user_id'))){
+            $return = $return->where('user_number', '=', Request::get('user_id'));
+        }
+        if(!empty(Request::get('name'))){
+            $return = $return->where('name', '=', Request::get('name'));
+        }
+        if(!empty(Request::get('email'))){
+            $return = $return->where('email', '=', Request::get('email'));
+        }
+        if(!empty(Request::get('phone'))){
+            $return = $return->where('phone', '=', Request::get('phone'));
+        }
+        if(!empty(Request::get('address'))){
+            $return = $return->where('address', '=', Request::get('address'));
+        }
+        $return = $return->where('is_admin','=', 1)
+        ->where('is_delete','=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $return;
+    }
+
+
+    static public function getSingleUser($id){
+        return User::find($id);
+    }
+
+    static public function getTotalAdmin(){
+        return self::select('id')
+        ->where('is_admin', '=', 1)
+        ->where('is_delete', '=', 0)
         ->count();
     }
 }

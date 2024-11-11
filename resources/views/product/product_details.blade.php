@@ -21,6 +21,7 @@
             <div class="product-details-top mb-2">
                 <div class="row">
                     <div class="col-md-6">
+                        @include('sweetalert::alert')
                         <div class="product-gallery">
                             <figure class="product-main-image">
                                 @php
@@ -67,7 +68,10 @@
                             </div>
 
                             <div class="product-details-action">
-                                <button type="submit" class="btn-product btn-cart"><span>add to cart</span></button>
+                                <button type="submit" style="width: 100px; " class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
+                                    <span class="btn-text">add to cart</span>
+                                    <span class="btn-hover-text">add to your shopping cart</span>
+                                </button>
 
                                 <div class="details-action-wrapper">
                                     @if(!empty(Auth::check()))

@@ -29,7 +29,7 @@ class ShippingChargeController extends Controller
         $ShippingCharge->price = trim($request->price);
         $ShippingCharge->status = trim($request->status);
         $ShippingCharge->save();
-        return redirect('/shipping_charge_list')->with('success',"Shipping charge created  successfully!!!");
+        return redirect('/shipping_charge_list');
     }
 
     public function edit_shipping_charge($id){
@@ -44,13 +44,13 @@ class ShippingChargeController extends Controller
         $ShippingCharge->price = trim($request->price);
         $ShippingCharge->status = trim($request->status);
         $ShippingCharge->save();
-        return redirect('/shipping_charge_list')->with('success',"Shipping charge updated  successfully!!!");
+        return redirect('/shipping_charge_list');
     }
 
     public function delete_shipping_charge($id){
         $ShippingCharge = ShippingCharge::getSingle($id);
         $ShippingCharge->is_delete = 1;
         $ShippingCharge->save();
-        return redirect('/shipping_charge_list')->with('success',"Shipping charge deleted  successfully!!!");
+        return redirect('/shipping_charge_list');
     }
 }

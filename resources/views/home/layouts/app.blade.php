@@ -13,12 +13,18 @@
     @if((!empty($meta_keywords)))
     <meta name="keywords" content="{{$meta_keywords}}">
     @endif
-    <link rel="icon" type="image/x-icon" href="{{url('/trslogo.png')}}">
+
+    @php
+        $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    @endphp
+    <link rel="icon" type="image/x-icon" href="{{$getSystemSettingApp->getFevicon()}}">
 
     <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('assets/css/plugins/nouislider/nouislider.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
     @include('home.cssJs.custom_style')
     @yield('style')
@@ -102,13 +108,12 @@
         </div>
     </div>
 
-    {{-- <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
         <div class="row justify-content-center">
             <div class="col-10">
                 <div class="row no-gutters bg-white newsletter-popup-content">
                     <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                         <div class="banner-content text-center">
-                            <img src="{{url('')}}/assets/images/popup/newsletter/logo.png" class="logo" alt="logo" width="60" height="15">
                             <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
                             <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
                             <form action="#">
@@ -131,7 +136,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <script src="{{url('assets/js/jquery.min.js')}}"></script>
     <script src="{{url('assets/js/bootstrap.bundle.min.js')}}"></script>
@@ -183,15 +188,47 @@
                     if(data.is_Wishlist == 0)
                       {
                         $('.add_to_wishlist'+product_id).removeClass('btn-wishlist-add');
+                        location.reload();
                       }
                     else
                     {
                         $('.add_to_wishlist'+product_id).addClass('btn-wishlist-add');
+                        location.reload();
                     }
                 }
             });
         });
+
+        if(document.getElementById('newsletter-popup-form')) {
+        setTimeout(function() {
+            var mpInstance = $.magnificPopup.instance;
+            if (mpInstance.isOpen) {
+                mpInstance.close();
+            }
+
+            setTimeout(function() {
+                $.magnificPopup.open({
+                    items: {
+                        src: '#newsletter-popup-form'
+                    },
+                    type: 'inline',
+                    removalDelay: 350,
+                    callbacks: {
+                        open: function() {
+                            $('body').css('overflow-x', 'visible');
+                            $('.sticky-header.fixed').css('padding-right', '1.7rem');
+                        },
+                        close: function() {
+                            $('body').css('overflow-x', 'hidden');
+                            $('.sticky-header.fixed').css('padding-right', '0');
+                        }
+                    }
+                });
+            }, 500)
+        }, 10000)
+    }
     </script>
+    
     @yield('script')
 </body>
 </html>

@@ -12,6 +12,7 @@ use Auth;
 
 class HomeController extends Controller
 {
+
     public function index(){
         $data['meta_title'] = 'Rong Krishi Company';
         $data['meta_description'] = '';

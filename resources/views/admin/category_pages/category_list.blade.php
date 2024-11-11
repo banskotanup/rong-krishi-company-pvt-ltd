@@ -27,8 +27,8 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" placeholder="Name" name="name" class="form-control" value="">
+                            <label for="">Category Name</label>
+                            <input type="text" placeholder="Category Name" name="name" class="form-control" value="">
                         </div>
                     </div>
                     <div class="col-md-2">

@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $category->meta_keywords = trim($request->meta_keywords);
         $category->created_by = Auth::user()->id;
         $category->save();
-        return redirect('/category_list')->with('success',"Category created  successfully!!!");
+        return redirect('/category_list');
     }
 
     public function edit_category($id){
@@ -58,13 +58,13 @@ class CategoryController extends Controller
         $category->meta_description = trim($request->meta_description);
         $category->meta_keywords = trim($request->meta_keywords);
         $category->save();
-        return redirect('/category_list')->with('success',"Category updated  successfully!!!");
+        return redirect('/category_list')->with('success',"");
     }
 
     public function delete_category($id){
         $category = Category::getSingle($id);
         $category->is_delete = 1;
         $category->save();
-        return redirect('/category_list')->with('success',"Category deleted  successfully!!!");
+        return redirect('/category_list');
     }
 }

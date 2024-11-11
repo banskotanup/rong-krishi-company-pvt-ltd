@@ -16,7 +16,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
@@ -35,7 +35,7 @@
             </div>
           </form>
         </div>
-      </li>
+      </li> --}}
 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -172,7 +172,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{url('admin_list')}}" class="nav-link {{ Request::is('admin_list') ? 'active' : ''}}">
-                  <i class="nav-icon fas fa-user"></i>
+                  <i class="nav-icon fas fa-user-shield"></i>
                   <p>
                     Admin
                   </p>
@@ -180,15 +180,15 @@
               </li>
               <li class="nav-item">
                 <a href="{{url('member_list')}}" class="nav-link {{ Request::is('member_list') ? 'active' : ''}}">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fas fa-user-plus"></i>
                   <p>
-                    Members
+                    Member
                   </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url('order_list')}}" class="nav-link {{ Request::is('order_list') ? 'active' : ''}}">
-                  <i class="nav-icon fas fa-list"></i>
+                  <i class="nav-icon fas fa-shopping-bag"></i>
                   <p>
                     Orders
                   </p>
@@ -212,15 +212,15 @@
               </li>
               <li class="nav-item">
                 <a href="{{url('product_list')}}" class="nav-link {{ Request::is('product_list') ? 'active' : ''}}">
-                  <i class="nav-icon fab fa-product-hunt"></i>
+                  <i class="nav-icon fas fa-list-alt"></i>
                   <p>
-                    Product
+                    Product List
                   </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{url('discount_list')}}" class="nav-link {{ Request::is('discount_list') ? 'active' : ''}}">
-                  <i class="nav-icon fas fa-list-alt"></i>
+                  <i class="nav-icon fas fa-code"></i>
                   <p>
                     Discount Code
                   </p>
@@ -228,7 +228,7 @@
               </li>
               <li class="nav-item">
                 <a href="{{url('shipping_charge_list')}}" class="nav-link {{ Request::is('shipping_charge_list') ? 'active' : ''}}">
-                  <i class="nav-icon fas fa-list-alt"></i>
+                  <i class="nav-icon fab fa-gg"></i>
                   <p>
                     Shipping Charge
                   </p>
@@ -239,6 +239,10 @@
                   <i class="nav-icon fas fa-list-alt"></i>
                   <p>
                     Blog Category
+                <a href="{{url('aboutus')}}" class="nav-link {{ Request::is('aboutus') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-info"></i>
+                  <p>
+                    About Us
                   </p>
                 </a>
               </li>
@@ -247,6 +251,18 @@
                   <i class="nav-icon fas fa-list-alt"></i>
                   <p>
                     Blog
+                <a href="{{url('our_team')}}" class="nav-link {{ Request::is('our_team') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-users"></i>
+                  <p>
+                    Our Team
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('system_setting')}}" class="nav-link {{ Request::is('system_setting') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-cog"></i>
+                  <p>
+                    System Settings
                   </p>
                 </a>
               </li>

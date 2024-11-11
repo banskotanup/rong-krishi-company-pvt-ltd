@@ -67,18 +67,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Price (NPR)</label>
-                                <input type="text" class="form-control" value="{{old('price', $product->price)}}"
-                                    name="price" placeholder="Enter Price">
+                                <label>Purchase Quantity <span style="color: red;"></span></label>
+                                <input id="getPurchaseQuantity" type="text" class="form-control" value="{{old('purchase_quantity', $product->purchase_quantity)}}"
+                                    name="purchase_quantity" readonly>
                             </div>
                         </div>
-
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Old Price (NPR)</label>
-                                <input type="text" class="form-control"
-                                    value="{{old('old_price', $product->old_price)}}" name="old_price"
-                                    placeholder="Enter Old Price">
+                                <label>Purchase Price (NPR) <span style="color: red;"></span></label>
+                                <input id="getPurchasePrice" type="text" class="form-control"
+                                    value="{{old('purchase_price', number_format($product->purchase_price, 2))}}" name="purchase_price"
+                                   readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Total Purchase Amount (NPR)</label>
+                                <input id="getPurchasePrice" type="text" class="form-control"
+                                    value="{{old('total_purchase_amount', number_format($product->total_purchase_amount, 2))}}" name="total_purchase_amount"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Price (NPR) <span style="color: gray; font-style: italic;">Selling Price</span></label>
+                                <input type="text" class="form-control" value="{{old('price', number_format($product->price, 2))}}"
+                                    name="price" placeholder="Enter Price">
                             </div>
                         </div>
                     </div>
@@ -238,5 +252,24 @@
                 }
             });
         });
+
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Product has been updated.'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+
 </script>
 @endsection

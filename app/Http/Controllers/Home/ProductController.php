@@ -23,10 +23,10 @@ class ProductController extends Controller
     }
 
 
-    public function getCategory($slug, $subSlug = ''){
+    public function getCategory($slug, $subslug = ''){
         $getProductSingle = Product::getSingleSlug($slug);
         $getCategory = Category::getSingleSlug($slug);
-        $getSubCategory = SubCategory::getSingleSlug($subSlug);
+        $getSubCategory = SubCategory::getSingleSlug($subslug);
 
         if(!empty($getProductSingle)){
             $data['meta_title'] = $getProductSingle->title;
@@ -35,7 +35,8 @@ class ProductController extends Controller
             $data['getRelatedProduct'] = Product::getRelatedProduct($getProductSingle->id, $getProductSingle->sub_category_id);
             return view('product.product_details', $data);
         }
-        else  if(!empty($getCategory) && !empty($getSubCategory)){
+
+        else if(!empty($getCategory) && !empty($getSubCategory)){
             $data['meta_title'] = $getSubCategory->meta_title;
             $data['meta_description'] = $getSubCategory->meta_description;
             $data['meta_keywords'] = $getSubCategory->meta_keywords;

@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{!empty($header_title) ? $header_title : ''}} - Rongkrishi</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
   <link rel="icon" type="image/x-icon" href="{{url('trslogo.png')}}">
@@ -74,25 +75,39 @@
 
   <!-- OPTIONAL SCRIPTS -->
   <script src="/admin/plugins/chart.js/Chart.min.js"></script>
+  <script src="/admin/plugins/moment/moment.min.js"></script>
+  <script src="/admin/plugins/daterangepicker/daterangepicker.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script type="text/javascript">
     function confirmation(ev) { 
               ev.preventDefault(); 
               var urlToRedirect = ev.currentTarget.getAttribute('href'); 
               console.log(urlToRedirect); 
-            swal({ 
-            title: "Are you sure to Delete this", 
-            text: "You will not be able to revert this!", 
-            icon: "warning",
-            buttons: true, 
-            dangerMode: true, 
-            })
-          .then((willCancel) => { 
-            if (willCancel) { 
-              window.location.href= urlToRedirect; 
-            }
-          });
-        }
+              Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Deleted!",
+                      text: "Your data has been deleted.",
+                      icon: "success"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.href= urlToRedirect; 
+                      }
+
+                    });
+                    
+                  }
+                });
+              }
+        
   </script>
 
   @yield('script')

@@ -3,7 +3,7 @@
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">Checkout<span>Shop</span></h1>
+            <h1 class="page-title">Checkout</h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -34,52 +34,52 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>First Name <span style="color: red;">*</span></label>
-                                    <input type="text" name="first_name" class="form-control" required>
+                                    <input type="text" name="first_name" class="form-control" required value="{{!empty(Auth::user()->name) ? Auth::user()->name : ''}}">
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-6">
                                     <label>Last Name <span style="color: red;">*</span></label>
-                                    <input type="text" name="last_name" class="form-control" required>
+                                    <input type="text" name="last_name" class="form-control" required value="{{!empty(Auth::user()->last_name) ? Auth::user()->last_name : ''}}">
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
                             <label>Company Name (Optional)</label>
-                            <input type="text" name="company_name" class="form-control">
+                            <input type="text" name="company_name" class="form-control" value="{{!empty(Auth::user()->company_name) ? Auth::user()->company_name : ''}}">
 
                             <label>Country <span style="color: red;">*</span></label>
-                            <input type="text" name="country" class="form-control" required>
+                            <input type="text" name="country" class="form-control" required value="{{!empty(Auth::user()->country) ? Auth::user()->country : ''}}">
 
                             <label>Street address <span style="color: red;">*</span></label>
-                            <input type="text" name="address_one" class="form-control" placeholder="House number and Street name" required>
+                            <input type="text" name="address_one" class="form-control" placeholder="House number and Street name" required value="{{!empty(Auth::user()->address) ? Auth::user()->address : ''}}">
                             <input type="text" name="address_two" class="form-control" placeholder="Appartments, suite, unit etc ..."
-                                required>
+                                required value="{{!empty(Auth::user()->address_two) ? Auth::user()->address_two : ''}}">
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Town / City <span style="color: red;">*</span></label>
-                                    <input type="text" name="city" class="form-control" required>
+                                    <input type="text" name="city" class="form-control" required value="{{!empty(Auth::user()->city) ? Auth::user()->city : ''}}">
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-6">
                                     <label>State <span style="color: red;">*</span></label>
-                                    <input type="text" name="state" class="form-control" required>
+                                    <input type="text" name="state" class="form-control" required value="{{!empty(Auth::user()->state) ? Auth::user()->state : ''}}">
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Postcode / ZIP <span style="color: red;">*</span></label>
-                                    <input type="text" name="postcode" class="form-control" required>
+                                    <input type="text" name="postcode" class="form-control" required value="{{!empty(Auth::user()->postcode) ? Auth::user()->postcode : ''}}">
                                 </div><!-- End .col-sm-6 -->
 
                                 <div class="col-sm-6">
                                     <label>Phone <span style="color: red;">*</span></label>
-                                    <input type="tel" name="phone" class="form-control" required>
+                                    <input type="tel" name="phone" class="form-control" required value="{{!empty(Auth::user()->phone) ? Auth::user()->phone : ''}}">
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
                             <label>Email address <span style="color: red;">*</span></label>
-                            <input type="email" name="email" class="form-control" required>
+                            <input type="email" name="email" class="form-control" required readonly value="{{!empty(Auth::user()->email) ? Auth::user()->email : ''}}">
 
                             @if(empty(Auth::check()))
                             <div class="custom-control custom-checkbox">

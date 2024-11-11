@@ -1,4 +1,5 @@
 <div class="products mb-3">
+    @include('sweetalert::alert')
     <div class="row justify-content-center">
         @foreach($getProduct as $value)
         @php
@@ -7,7 +8,7 @@
         <div class="col-6 col-md-4 col-lg-4">
             <div class="product product-7 text-center">
                 <figure class="product-media">
-                    <a href="{{$value->slug}}">
+                    <a href="{{url($value->slug)}}">
                         @if(!empty($getProductImage) && !empty($getProductImage->getImage()))
                         <img style="height: 280px; width: 100%; object-fit: cover;"
                             src="{{$getProductImage->getImage()}}" alt="{{$value->title}}" class="product-image">
@@ -33,7 +34,9 @@
                         <input type="hidden" name="qty" value="1">
                         <input type="hidden" name="product_name" value="{{$value->title}}">
                         <div class="product-action">
-                            <button type="submit" class="btn-product btn-cart"><span>add to cart</span>
+                            <button type="submit" style="width: 100px; " class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
+                                <span class="btn-text">add to cart</span>
+                                <span class="btn-hover-text">add to your shopping cart</span>
                             </button>
                         </div>
 
@@ -45,7 +48,7 @@
                         <a
                             href="{{url($value->category_slug.'/'.$value->sub_category_slug)}}">{{$value->sub_category_name}}</a>
                     </div>
-                    <h3 class="product-title"><a href="{{$value->slug}}">{{$value->title}}</a></h3>
+                    <h3 class="product-title"><a href="{{url($value->slug)}}">{{$value->title}}</a></h3>
                     <div class="product-price">
                         NPR {{number_format($value->price, 2)}}
                     </div>

@@ -39,7 +39,7 @@ class SubCategoryController extends Controller
         $sub_category->meta_keywords = trim($request->meta_keywords);
         $sub_category->created_by = Auth::user()->id;
         $sub_category->save();
-        return redirect('/sub_category_list')->with('success',"Sub Category created  successfully!!!");
+        return redirect('/sub_category_list');
     }
 
     public function edit_sub_category($id){
@@ -62,14 +62,14 @@ class SubCategoryController extends Controller
         $sub_category->meta_description = trim($request->meta_description);
         $sub_category->meta_keywords = trim($request->meta_keywords);
         $sub_category->save();
-        return redirect('/sub_category_list')->with('success',"Sub Category updated  successfully!!!");
+        return redirect('/sub_category_list');
     }
 
     public function delete_sub_category($id){
         $sub_category = SubCategory::getSingle($id);
         $sub_category->is_delete = 1;
         $sub_category->save();
-        return redirect('/sub_category_list')->with('success',"Sub Category deleted  successfully!!!");
+        return redirect('/sub_category_list');
     }
 
     public function get_sub_category(Request $request){

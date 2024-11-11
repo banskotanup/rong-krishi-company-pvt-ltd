@@ -18,6 +18,7 @@ use Stripe\Stripe;
 use Session;
 use App\Mail\OrderInvoiceMail;
 use Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -31,20 +32,25 @@ class CartController extends Controller
 
     public function add_to_Cart(Request $request){
         $getProduct = Product::getSingle($request->product_id);
+
+
         $total = $getProduct->price * $request->qty;
+        
         Cart::add([
             'id' => $getProduct->id,
             'name' => $getProduct->title,
             'price' => $getProduct->price,
             'qty' => $request->qty,
+            
         ]);
+        toast('Item added to cart.','success')->autoClose(3000);
         return redirect()->back();
     }
 
     public function cart_delete($rowId){
 
         Cart::remove($rowId);
-        
+        toast('Item removed from cart.','error')->autoClose(3000);
         return redirect()->back();
     }
 
@@ -55,7 +61,7 @@ class CartController extends Controller
                 'qty' => $cart['qty'],
             ));
         }
-
+        toast('Cart updated successfully.','success')->autoClose(3000);
         return redirect()->back();
     }
 
@@ -122,6 +128,7 @@ class CartController extends Controller
                 else
                 {
                     $save = new User;
+                    $save->user_number = mt_rand(100000000,999999999);
                     $save->name = trim($request->first_name);
                     $save->email = trim($request->email);
                     $save->password = Hash::make($request->password);
@@ -229,8 +236,8 @@ class CartController extends Controller
 
                     Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
                     Cart::destroy();
-
-                    return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
+                    Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
+                    return redirect('cart');
                 }
                 else if($getOrder->payment_method == 'paypal')
                 {
@@ -297,12 +304,14 @@ class CartController extends Controller
 
             Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
             Cart::destroy();
-            return redirect('cart')->with('success',"Thank you for your order! We are processing it now and will send you an email with the details shortly.");
+            Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
+            return redirect('cart');
 
         }
         else
         {
-            return redirect('cart')->with('error', "An unexpected issue occurred. Please try again later.");
+            Alert::error('ERROR!','An unexpected issue occurred. Please try again later.');
+            return redirect('cart');
         }
     }
     public function add_to_wishlist(Request $request)
@@ -316,11 +325,13 @@ class CartController extends Controller
                 $save->save();
 
                 $json['is_Wishlist'] = 1;
+                toast('Item added to wishlist.','success')->autoClose(3000);
             }
             else
             {
                 ProductWishlist::DeleteRecord($request->product_id, Auth::user()->id);
                 $json['is_Wishlist'] = 0;
+                toast('Item removed from wishlist.','error')->autoClose(3000);
             }
         $json['status'] = true;
         echo json_encode($json);

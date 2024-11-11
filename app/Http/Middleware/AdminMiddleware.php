@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminMiddleware
 {
@@ -21,7 +22,8 @@ class AdminMiddleware
         }
         else{
             Auth::logout();
-            return redirect('/')->with('warning',"⚠︎WARNING!!!⚠︎ You're not an Admin! So, You can't proceed further. Please login with your admin username & password or ask for admin credential to access the content.");
+            Alert::warning('WARNING!','You are not an Admin! So, You cannot proceed further. Please login with your admin username & password or ask for admin credential to access the content.');
+            return redirect('/');
         }
     }
 }

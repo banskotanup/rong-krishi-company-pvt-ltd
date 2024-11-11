@@ -33,6 +33,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
+                    @include('sweetalert::alert')
                     <div class="toolbox">
                         <div class="toolbox-left">
                             <div class="toolbox-info">

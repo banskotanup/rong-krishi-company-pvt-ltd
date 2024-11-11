@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Edit Member</h1>
+                    <h1 class="m-0">Edit Member (User ID: <span style="color: #D0342C;">{{$getRecords->user_number}}</span>)</h1>
                 </div>
             </div>
         </div>
@@ -16,6 +16,7 @@
     <div class="col-md-12">
 
         <div class="card card-primary">
+            
 
             <form action="" method="post">
                 @csrf
@@ -30,6 +31,18 @@
                         <input type="email" class="form-control" value="{{old('email', $getRecords->email)}}"
                             name="email" required placeholder="Enter email">
                         <div style="color: red;">{{$errors->first('email')}}</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" value="{{old('phone', $getRecords->phone)}}" name="phone" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label>Country<span style="color: red;"></span></label>
+                        <input type="country" class="form-control" value="{{old('country', $getRecords->country)}}" name="country" required placeholder="Enter country name">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="address" class="form-control" value="{{old('address', $getRecords->address)}}" name="address" placeholder="Enter address">
                     </div>
                     <div class="form-group">
                         <label>Password<span style="color: red;">*</span></label>
@@ -56,4 +69,23 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function () {
+    var shownPopup = false;
+    $("form").submit(function (event) {
+        if (shownPopup === false) {
+            event.preventDefault();
+            shownPopup = true;
+            var form = $(this);
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated!',
+                text: 'Member has been updated!'
+            }).then(function() {
+                form.trigger('submit');
+            });
+        }
+    });
+});
+</script>
 @endsection

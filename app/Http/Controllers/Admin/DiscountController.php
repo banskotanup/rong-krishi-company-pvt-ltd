@@ -31,7 +31,7 @@ class DiscountController extends Controller
         $DiscountCode->expire_date = trim($request->expire_date);
         $DiscountCode->status = trim($request->status);
         $DiscountCode->save();
-        return redirect('/discount_list')->with('success',"Discount code created  successfully!!!");
+        return redirect('/discount_list');
     }
 
     public function edit_discount($id){
@@ -48,13 +48,13 @@ class DiscountController extends Controller
         $DiscountCode->expire_date = trim($request->expire_date);
         $DiscountCode->status = trim($request->status);
         $DiscountCode->save();
-        return redirect('/discount_list')->with('success',"Discount code updated  successfully!!!");
+        return redirect('/discount_list');
     }
 
     public function delete_discount($id){
         $DiscountCode = DiscountCode::getSingle($id);
         $DiscountCode->is_delete = 1;
         $DiscountCode->save();
-        return redirect('/discount_list')->with('success',"Discount code deleted  successfully!!!");
+        return redirect('/discount_list');
     }
 }
