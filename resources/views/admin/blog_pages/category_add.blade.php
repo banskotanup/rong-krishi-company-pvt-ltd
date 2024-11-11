@@ -16,7 +16,7 @@
 
     <div class="col-md-12">
         <div class="card card-primary">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                 <div class="form-group">
@@ -34,6 +34,14 @@
                           <option value="{{ $category->id }}">{{ $category->name }}</option>
                          @endforeach
                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Image <span style="color: red;">*</span></label>
+                            <input type="file" class="form-control" name="image_name" 
+                                required>
+                        </div>
                     </div>
 
                     <div class="form-group">

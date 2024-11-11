@@ -39,4 +39,12 @@ class BlogModel extends Model
         ->where('blog.is_delete', '=',  0)
         ->first();
     }
+
+    static public function getImageSingle($id){
+        return BlogImageModel::where('blog_id','=', $id)->orderBy('order_by', 'asc')->first();
+    }
+
+    public function getImage(){
+        return $this->hasMany(BlogImageModel::class, "blog_id")->orderBy('order_by', 'asc');
+    }
 }
