@@ -506,4 +506,56 @@
     </div>
 </main>
 
+<div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="row no-gutters bg-white newsletter-popup-content">
+                <div class="col-xl-3-5col col-lg-7 banner-content-wrap" style="margin-bottom: 40px;">
+                    <div class="banner-content text-center">
+                        <h2 class="banner-title">From <span>Local<light> Farms</light></span> to Global Markets</h2>
+                        <p>Start Strong with RongKrishi – Your Partner in Agriculture Innovation!</p>
+                        <form action="#">
+                            <div class="input-group input-group-round">
+                                <div class="input-group-append">
+                                    <a href="{{url('/')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">Shop Now</span>
+                                        <span class="btn-hover-text">Shop Now</span>
+                                    </a>
+                                </div>
+                                <div class="input-group-append" style="margin-left: 20px;">
+                                    <a href="{{url('/about_us')}}" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">About Us</span>
+                                        <span class="btn-hover-text">About Us</span>
+                                    </a>
+                                </div>
+                                <div class="input-group-append" style="margin-left: 20px;">
+                                    <a href="{{url('/blog')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">View Blogs</span>
+                                        <span class="btn-hover-text">View Blogs</span>
+                                    </a>
+                                </div>
+                            </div><!-- .End .input-group -->
+                        </form>
+                        {{-- <form action="#">
+                            <div class="input-group input-group-round">
+                                <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit"><span>go</span></button>
+                                </div><!-- .End .input-group-append -->
+                            </div><!-- .End .input-group -->
+                        </form> --}}
+                        {{-- <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                            <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
+                        </div><!-- End .custom-checkbox --> --}}
+                    </div>
+                </div>
+                <div class="col-xl-2-5col col-lg-5 ">
+                    <img src="{{url('')}}/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
