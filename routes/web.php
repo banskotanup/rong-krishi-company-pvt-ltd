@@ -163,6 +163,7 @@ route::post('/contact_us',[HomeController::class, 'submit_contact']);
 route::get('/faq',[HomeController::class, 'faq']);
 route::get('/error_404',[HomeController::class, 'error_404']);
 route::get('/blog',[HomeController::class, 'blog']);
+route::get('/blog/{slug}',[HomeController::class, 'blog_detail']);
 
 
 //Home/ProductController Goes Here...

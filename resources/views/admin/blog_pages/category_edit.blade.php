@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('style')
+<link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -79,6 +80,13 @@
                                         name="description">{{ $getRecords->description }}</textarea>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Blog Content<span style="color: red;">*</span></label>
+                                    <textarea class="form-control editor"
+                                        name="blog_content">{{ $getRecords->blog_content }}</textarea>
+                                </div>
+                            </div>
 
 
                             <div class="col-md-12">
@@ -131,6 +139,7 @@
 @endsection
 
 @section('script')
+<script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function () {
     var shownPopup = false;
@@ -149,5 +158,20 @@
         }
     });
 });
+
+$(function () {
+            $('.editor').summernote()
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+            });
+        });
+
+        $('.editor').summernote({
+            height: 150,   //set editable area's height
+            codemirror: { // codemirror options
+                theme: 'monokai'
+            }
+        });
 </script>
 @endsection

@@ -84,4 +84,26 @@ class HomeController extends Controller
         $data['meta_keywords'] = '';
         return view('product.shop', $data);
     }
+
+    public function blog_detail($slug){
+        $getBlog = BlogModel::getSingleSlug($slug);
+
+        if(!empty($getBlog)){
+            $total_view = $getBlog->total_view;
+            $getBlog->total_view = $total_view + 1;
+            $getBlog->save();
+
+            $data['getBlog'] = $getBlog;
+            $data['meta_title'] = $getBlog->meta_title;
+            $data['meta_description'] = $getBlog->meta_description;
+            $data['meta_keywords'] = $getBlog->meta_keywords;
+            $data['getBlogCategory'] = BlogCategory::getCategoryActive();
+            $data['getPopular'] = BlogModel::getPopular();
+            return view('homepages.blog_detail', $data);
+        }
+        else{
+            abort(404);
+        }
+        
+    }
 }

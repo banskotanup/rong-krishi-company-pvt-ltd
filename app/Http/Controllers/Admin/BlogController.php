@@ -35,6 +35,7 @@ class BlogController extends Controller
         $blog->title = trim($request->title);
         $blog->blog_category_id = trim($request->blog_category_id);
         $blog->description = trim($request->description);
+        $blog->blog_content = trim($request->blog_content);
         $blog->status = trim($request->status);
         $blog->meta_title = trim($request->meta_title);
         $blog->meta_description = trim($request->meta_description);
@@ -81,6 +82,7 @@ class BlogController extends Controller
         $blog->title = trim($request->title);
         $blog->blog_category_id = trim($request->blog_category_id);
         $blog->description = trim($request->description);
+        $blog->blog_content = trim($request->blog_content);
         $blog->status = trim($request->status);
         $blog->meta_title = trim($request->meta_title);
         $blog->meta_description = trim($request->meta_description);

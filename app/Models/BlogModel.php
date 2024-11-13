@@ -62,4 +62,14 @@ class BlogModel extends Model
 
         return $return;
     }
+    static public function getPopular(){
+        $return = self::select('blog.*');
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->orderBy('blog.total_view', 'desc')
+        ->limit(6)
+        ->get();
+
+        return $return;
+    }
 }
