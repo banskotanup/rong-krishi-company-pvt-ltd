@@ -72,4 +72,19 @@ class BlogModel extends Model
 
         return $return;
     }
+
+    static public function getRelatedBlog($blog_id, $blog_category_id){
+        $return = self::select('blog.*');
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->where('blog.blog_category_id','=', $blog_category_id)
+        ->where('blog.id','!=', $blog_id)
+        ->orderBy('blog.total_view', 'desc')
+        ->limit(6)
+        ->get();
+
+        return $return;
+    }
+
+
 }

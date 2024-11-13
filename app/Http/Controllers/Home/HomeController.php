@@ -75,6 +75,7 @@ class HomeController extends Controller
         // $getPage = BlogModel::getSlug();
         $data['getBlog'] = BlogModel::getBlog();
         $data['getBlogCategory'] = BlogCategory::getCategoryActive();
+        $data['getPopular'] = BlogModel::getPopular();
         return view('homepages.blog', $data);
     }
 
@@ -99,6 +100,7 @@ class HomeController extends Controller
             $data['meta_keywords'] = $getBlog->meta_keywords;
             $data['getBlogCategory'] = BlogCategory::getCategoryActive();
             $data['getPopular'] = BlogModel::getPopular();
+            $data['getRelatedBlog'] = BlogModel::getRelatedBlog($getBlog->id, $getBlog->blog_category_id);
             return view('homepages.blog_detail', $data);
         }
         else{
