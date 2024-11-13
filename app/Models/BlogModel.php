@@ -47,4 +47,19 @@ class BlogModel extends Model
     public function getImage(){
         return $this->hasMany(BlogImageModel::class, "blog_id")->orderBy('order_by', 'asc');
     }
+
+    static public function getBlog(){
+        $return = self::select('blog.*');
+
+        if(!empty(Request::get('search'))){
+            $return = $return->where('blog.title', 'like', '%'.request::get('search').'%');
+        }
+
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->orderBy('blog.id', 'desc')
+        ->paginate(10);
+
+        return $return;
+    }
 }

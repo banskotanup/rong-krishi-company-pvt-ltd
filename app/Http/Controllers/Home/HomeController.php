@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\ContactUs;
+use App\Models\BlogModel;
+use App\Models\BlogCategory;
 use Auth;
 
 class HomeController extends Controller
@@ -70,6 +72,9 @@ class HomeController extends Controller
         $data['meta_title'] = 'Blog';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        // $getPage = BlogModel::getSlug();
+        $data['getBlog'] = BlogModel::getBlog();
+        $data['getBlogCategory'] = BlogCategory::getCategoryActive();
         return view('homepages.blog', $data);
     }
 
