@@ -89,7 +89,7 @@ class UserController extends Controller
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
         $json['message'] = "Status successfully updated";
-        toast('Order has been cancelled.','error')->autoClose(3000);
+        toast('Order has been cancelled.','success')->autoClose(3000);
         echo json_encode($json);
     }
     

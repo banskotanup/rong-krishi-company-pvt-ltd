@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 use App\Models\ContactUs;
 use App\Models\BlogModel;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use Auth;
 
 class HomeController extends Controller
@@ -107,5 +108,15 @@ class HomeController extends Controller
             abort(404);
         }
         
+    }
+
+    public function submit_blog_comment(Request $request){
+        $comment = new BlogComment;
+        $comment->user_id = Auth::user()->id;
+        $comment->blog_id = trim($request->blog_id);
+        $comment->comment = trim($request->comment);
+        $comment->save();
+        toast('Comment posted.','success')->autoClose(3000);
+        return redirect()->back();
     }
 }

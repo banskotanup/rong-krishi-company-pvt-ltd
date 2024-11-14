@@ -164,6 +164,7 @@ route::get('/faq',[HomeController::class, 'faq']);
 route::get('/error_404',[HomeController::class, 'error_404']);
 route::get('/blog',[HomeController::class, 'blog']);
 route::get('/blog/{slug}',[HomeController::class, 'blog_detail']);
+route::post('blog/submit_comment',[HomeController::class, 'submit_blog_comment'])->middleware('is_user');
 
 
 //Home/ProductController Goes Here...
