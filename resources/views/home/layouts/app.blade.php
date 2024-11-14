@@ -198,6 +198,40 @@
         }, 10000)
     }
     </script>
+
+<script type="text/javascript">
+    function logout_confirmation(ev) { 
+              ev.preventDefault(); 
+              var urlToRedirect = ev.currentTarget.getAttribute('href'); 
+              console.log(urlToRedirect); 
+              Swal.fire({
+                title: "Are you sure?",
+                text: "Click yes to log out. Hope to see you back soon!",
+                icon: "warning",
+                width: 400,
+                allowOutsideClick: false,
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Log Out!"
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Logged out safely🌟",
+                      text: "Thanks for visiting, and remember, we’re just a click away!",
+                      icon: "success"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        window.location.href= urlToRedirect; 
+                      }
+
+                    });
+                    
+                  }
+                });
+              }
+        
+  </script>
     
     @yield('script')
 </body>
