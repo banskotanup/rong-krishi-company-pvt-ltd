@@ -213,18 +213,20 @@ class CartController extends Controller
                 $order_item->product_id = $data->id;
                 $order_item->qty = $data->qty;
                 $order_item->price = $data->price;
-                $order_item->total_price = $data->price;
+                $order_item->total_price = $data->price * $data->qty;
                 $order_item->save();
 
                 $invUpdate = Inventory::getSingle($data->id);
                 $invUpdate->sold_quantity = $data->qty + $invUpdate->sold_quantity;
+                $invUpdate->sold_price = $data->price;
+                $invUpdate->total_selling_amount = $invUpdate->total_selling_amount + ($data->qty * $data->price);
                 $invUpdate->remaining_quantity = $invUpdate->purchase_quantity - $invUpdate->sold_quantity;
                 $invUpdate->save();
             }
             $json['status'] = true;
             $json['message'] = "success";
             $json['redirect'] = url('/checkout/payment?order_id='.base64_encode($order->id)); 
-            $html = 'Thank you for your order! We are processing it now and will send you an email with the details shortly.';
+            $html = '';
             $json['html'] = $html;
         }
         else{

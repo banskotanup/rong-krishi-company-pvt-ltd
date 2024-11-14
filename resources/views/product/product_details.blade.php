@@ -74,7 +74,7 @@
                                     <span class="btn-hover-text">add to your shopping cart</span>
                                 </button>
                                 @else
-                                <label style="color: red; margin-top: 10px; font-weight: 500;">Out of Stock</label>
+                                <label style="color: red; margin-top: 11px; margin-left:10px; font-weight: 500;">Out of Stock</label>
                                 @endif
 
                                 <div class="details-action-wrapper">

@@ -62,6 +62,7 @@ route::post('/member_edit/{id}',[MemberController::class, 'update_edit_member'])
 route::get('/member_delete/{id}',[MemberController::class, 'delete_member'])->middleware('is_admin');
 
 route::get('/inventory',[InventoryController::class, 'inventory'])->middleware('is_admin');
+route::get('/product/{id}',[InventoryController::class, 'product_view'])->middleware('is_admin');
 
 //CategoryController Routes Goes Here....
 route::get('/category_list',[CategoryController::class, 'category_list'])->middleware('is_admin');

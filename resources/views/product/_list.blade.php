@@ -25,7 +25,7 @@
                     @else
                   <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" 
                   title="Wishlist"><span>add to wishlist</span></a>
-                               @endif
+                @endif
                     </div>
 
 
