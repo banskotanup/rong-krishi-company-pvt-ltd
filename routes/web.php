@@ -163,7 +163,6 @@ route::get('/faq',[HomeController::class, 'faq']);
 route::get('/error_404',[HomeController::class, 'error_404']);
 route::get('/blog',[HomeController::class, 'blog']);
 
-
 //Home/ProductController Goes Here...
 
 route::get('/checkout',[CartController::class, 'checkout']);
