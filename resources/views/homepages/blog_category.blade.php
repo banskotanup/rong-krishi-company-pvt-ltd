@@ -4,14 +4,15 @@
 <main class="main">
     <div class="page-header text-center" style="background-image: url('/assets/images/page-header-bg.jpg')">
         <div class="container">
-            <h1 class="page-title">Blog</h1>
+            <h1 class="page-title">{{$getCategory->name}}</h1>
         </div><!-- End .container -->
     </div><!-- End .page-header -->
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('')}}">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{url('/blog')}}">Blog</a></li>
+                <li class="breadcrumb-item"><a href="{{url('/blog')}}">Blog</a></li>
+                <li class="breadcrumb-item active"><a href="#">{{$getCategory->name}}</a></li>
 
             </ol>
         </div><!-- End .container -->
@@ -27,7 +28,7 @@
                             $getImage = $value->getImageSingle($value->id);
                         @endphp
                         <div class="entry-item col-sm-6">
-                            <article class="entry entry-grid" style="height:550px;">
+                            <article class="entry entry-grid">
                                 <figure class="entry-media">
                                     <a href="{{url('/blog/'.$value->slug)}}">
                                         @if(!empty($getImage) && !empty($getImage->getImage()))
@@ -48,7 +49,7 @@
                                     </h2><!-- End .entry-title -->
 
                                     <div class="entry-content">
-                                        <p>{!! $value->description !!}</p>
+                                        <p>{{$value->meta_description}}</p>
                                         <a href="{{url('/blog/'.$value->slug)}}" class="read-more">Continue Reading</a>
                                     </div><!-- End .entry-content -->
                                 </div><!-- End .entry-body -->

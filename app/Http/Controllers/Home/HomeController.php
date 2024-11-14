@@ -119,4 +119,22 @@ class HomeController extends Controller
         toast('Comment posted.','success')->autoClose(3000);
         return redirect()->back();
     }
+
+    public function blog_category($slug){
+        $getCategory = BlogCategory::getSingleSlug($slug);
+
+        if(!empty($getCategory)){
+            $data['getCategory'] = $getCategory;
+            $data['meta_title'] = $getCategory->meta_title;
+            $data['meta_description'] = $getCategory->meta_description;
+            $data['meta_keywords'] = $getCategory->meta_keywords;
+            $data['getBlogCategory'] = BlogCategory::getCategoryActive();
+            $data['getPopular'] = BlogModel::getPopular();
+            $data['getBlog'] = BlogModel::getBlog($getCategory->id);
+            return view('homepages.blog_category', $data);
+        }
+        else{
+            abort(404);
+        }
+    }
 }
