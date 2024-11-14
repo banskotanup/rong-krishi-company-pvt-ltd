@@ -11,7 +11,10 @@ use App\Models\ContactUs;
 use App\Models\BlogModel;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\SystemSetting;
+use App\Mail\ContactUsMail;
 use Auth;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -45,14 +48,18 @@ class HomeController extends Controller
         {
             $save->user_id = Auth::user()->id;
         }
-        $save->name = trim($request->name);
+        $save->first_name = trim($request->name);
+        $save->last_name = trim($request->last_name);
         $save->email = trim($request->email);
         $save->phone = trim($request->phone);
         $save->subject = trim($request->subject);
         $save->message = trim($request->message);
         $save->save();
 
-        return redirect()->back()->with('success', "your information successfully send.");
+        $getSystemSetting = SystemSetting::getSingle();
+        Mail::to($getSystemSetting->email_one)->send(new ContactUsMail($save));
+        toast('Message sent.','success')->autoClose(3000);
+        return redirect()->back();
     }
 
     public function faq(){

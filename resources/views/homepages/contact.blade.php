@@ -2,9 +2,6 @@
 @section('content')
 
 <main class="main">
-                <div style="padding-top: 10px;padding-bottom: 10px;">
-                @include('admin.auth.message')
-                </div>
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container">
             <ol class="breadcrumb">
@@ -18,8 +15,8 @@
         <div class="page-header page-header-big text-center"
             style="background-image: url('assets/images/contact-header-bg.jpg')">
             <h1 class="page-title text-white">Contact us<span class="text-white">keep in touch with us</span></h1>
-        </div><!-- End .page-header
-    </div><!-- End .container -->
+        </div>
+    </div>
 
 
     @php
@@ -29,7 +26,7 @@
     <div class="page-content pb-0">
         <div class="container">
             <div class="row">
-            
+                @include('sweetalert::alert')
                 <div class="col-lg-6 mb-2 mb-lg-0">
                     <h2 class="title mb-1">Contact Information</h2><!-- End .title mb-2 -->
                     <p class="mb-3">Get in touch with us for any inquiries, support, or partnership opportunities. Our
@@ -85,23 +82,25 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-6">
-                                <label for="cname" class="sr-only">Name</label>
-                                <input type="text" class="form-control" name="name" id="cname" placeholder="Name *" required>
+                                <label for="cname" class="sr-only">First Name</label>
+                                <input type="text" class="form-control" name="name" id="cname" placeholder="First Name *" required value="{{!empty(Auth::user()->name) ? Auth::user()->name : ''}}">
+                            </div><!-- End .col-sm-6 -->
+                            <div class="col-sm-6">
+                                <label for="cname" class="sr-only">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="cname" placeholder="Last Name *" required value="{{!empty(Auth::user()->last_name) ? Auth::user()->last_name : ''}}">
                             </div><!-- End .col-sm-6 -->
 
                             <div class="col-sm-6">
                                 <label for="cemail" class="sr-only">Email</label>
-                                <input type="email" class="form-control" name="email" id="cemail" placeholder="Email *" required>
+                                <input type="email" class="form-control" name="email" id="cemail" placeholder="Email *" required value="{{!empty(Auth::user()->email) ? Auth::user()->email : ''}}">
                             </div><!-- End .col-sm-6 -->
-                        </div><!-- End .row -->
 
-                        <div class="row">
                             <div class="col-sm-6">
                                 <label for="cphone" class="sr-only">Phone</label>
-                                <input type="tel" class="form-control" name="phone" id="cphone" placeholder="Phone">
+                                <input type="tel" class="form-control" name="phone" id="cphone" placeholder="Phone" value="{{!empty(Auth::user()->phone) ? Auth::user()->phone : ''}}">
                             </div><!-- End .col-sm-6 -->
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <label for="csubject" class="sr-only">Subject</label>
                                 <input type="text" class="form-control" name="subject" id="csubject" placeholder="Subject" required>
                             </div><!-- End .col-sm-6 -->
