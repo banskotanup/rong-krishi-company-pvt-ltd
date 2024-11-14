@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SystemSetting;
 use App\Models\AboutUs;
 use App\Models\OurTeam;
+use App\Models\ContactUs;
 use Str;
 use App\Models\TeamImageModel;
 
@@ -151,6 +152,19 @@ class PageController extends Controller
 
         $save->save();
         return redirect('/system_setting');
+    }
+
+    public function contactus(){
+        $data['getRecords'] = ContactUs::getRecord();
+        $data['header_title'] = "Contact Us";
+        return view('admin.pages.contactus', $data)->with('no', 1);
+    }
+
+    public function contact_us_delete($id){
+        $save = ContactUs::getSingle($id);
+        $save->is_deleted = 1;
+        $save->save();
+        return redirect('/contactus');
     }
 
     public function aboutus(){

@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactUs extends Model
+class Inventory extends Model
 {
     use HasFactory;
-    protected $table = 'contact_us';
-    static public function getSingle($id)
+    protected $table = 'our_inventory';
+    static public function getSingle($product_id)
     {
-        return self::find($id);
+        return self::find($product_id);
     }
 
     static public function getRecord(){
-        return self::select('contact_us.*')
+        return self::select('our_inventory.*')
         ->where('is_deleted', '=', 0)
-        ->orderBy('contact_us.id', 'asc')
+        ->orderBy('our_inventory.title', 'asc')
         ->paginate(20);
     }
 }

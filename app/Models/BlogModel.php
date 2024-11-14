@@ -104,4 +104,21 @@ class BlogModel extends Model
     }
 
 
+    static public function getBlogs(){
+        $return = BlogModel::select('blog.*');
+        $return = $return
+        ->where('is_delete','=', 0)
+        ->orderBy('id', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $return;
+    }
+
+    static public function getTotalBlog(){
+        return self::select('id')
+        ->where('is_delete', '=', 0)
+        ->count();
+    }
+
 }

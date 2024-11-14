@@ -21,6 +21,9 @@
         <div class="card-header">
             <h3 class="card-title">Blog List</h3>
         </div>
+        <div class="card-header">
+            <h3 class="card-title">Blog <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
+        </div>
         <div class="card-body p-0 table-responsive">
             <table class="table table-striped">
                 <thead>

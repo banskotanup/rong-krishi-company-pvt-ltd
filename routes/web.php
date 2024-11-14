@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
@@ -59,6 +60,8 @@ route::get('/activate/{id}',[MemberController::class, 'activate_email']);
 route::get('/member_edit/{id}',[MemberController::class, 'edit_member'])->middleware('is_admin');
 route::post('/member_edit/{id}',[MemberController::class, 'update_edit_member'])->middleware('is_admin');
 route::get('/member_delete/{id}',[MemberController::class, 'delete_member'])->middleware('is_admin');
+
+route::get('/inventory',[InventoryController::class, 'inventory'])->middleware('is_admin');
 
 //CategoryController Routes Goes Here....
 route::get('/category_list',[CategoryController::class, 'category_list'])->middleware('is_admin');
@@ -123,6 +126,8 @@ route::get('/order_list',[OrderController::class, 'order_list'])->middleware('is
 route::get('/order_status',[OrderController::class, 'order_status'])->middleware('is_admin');
 route::get('/order_view/{id}',[OrderController::class, 'order_view'])->middleware('is_admin');
 
+route::get('/contactus',[PageController::class, 'contactus'])->middleware('is_admin');
+route::get('/contact_us_delete/{id}',[PageController::class, 'contact_us_delete'])->middleware('is_admin');
 route::get('/aboutus',[PageController::class, 'aboutus'])->middleware('is_admin');
 route::post('/aboutus',[PageController::class, 'update_about_us'])->middleware('is_admin');
 route::get('/system_setting',[PageController::class, 'index'])->middleware('is_admin');

@@ -128,7 +128,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{url('log_out')}}" role="button">
+        <a class="nav-link" onclick="logout_confirmation(event)" href="{{url('log_out')}}" role="button">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
@@ -167,6 +167,14 @@
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('inventory')}}" class="nav-link {{ Request::is('inventory') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-store-alt"></i>
+                  <p>
+                    Our Inventory
                   </p>
                 </a>
               </li>
@@ -250,6 +258,15 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('contactus')}}" class="nav-link {{ Request::is('contactus') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-inbox"></i>
+                  <p>
+                    Contact Us
+                  </p>
+                </a>
+              </li>
+              
               <li class="nav-item">
                 <a href="{{url('aboutus')}}" class="nav-link {{ Request::is('aboutus') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-info"></i>

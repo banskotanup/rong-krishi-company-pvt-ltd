@@ -9,6 +9,7 @@ use Hash;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\BlogModel;
 use Mail;
 use App\Mail\RegisterMail;
 use Str;
@@ -30,6 +31,8 @@ class AdminController extends Controller
         $data['today_product'] = Product::getTodayProduct();
         $data['recent_product'] = Product::getRecentProduct();
         $data['latest_order'] = Order::getLatestOrder();
+        $data['get_blog'] = BlogModel::getBlogs();
+        $data['total_blog'] = BlogModel::getTotalBlog();
         return view('admin.layouts.dashboard', $data)->with('no', 1);
     }
 

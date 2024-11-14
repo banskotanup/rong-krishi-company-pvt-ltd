@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\Inventory;
 use Auth;
 
 class ProductController extends Controller
@@ -32,6 +33,7 @@ class ProductController extends Controller
             $data['meta_title'] = $getProductSingle->title;
             $data['meta_description'] = $getProductSingle->short_description;
             $data['getProduct'] = $getProductSingle;
+            $data['getAvailable'] = Inventory::getSingle($getProductSingle->id);
             $data['getRelatedProduct'] = Product::getRelatedProduct($getProductSingle->id, $getProductSingle->sub_category_id);
             return view('product.product_details', $data);
         }

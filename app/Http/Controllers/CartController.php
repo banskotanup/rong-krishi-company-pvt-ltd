@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\Order;
 use App\Models\ProductWishlist;
 use App\Models\User;
+use App\Models\Inventory;
 use Auth;
 use Cart;
 use Hash;
@@ -32,19 +33,26 @@ class CartController extends Controller
 
     public function add_to_Cart(Request $request){
         $getProduct = Product::getSingle($request->product_id);
+        $remQuantity = Inventory::getSingle($request->product_id);
 
+        if($request->qty > $remQuantity->remaining_quantity){
+            Alert::warning('Warning!','The quantity you have requested exceeds our available stock. Please adjust your order to match the current stock levels.');
+            return redirect()->back();
+        }
 
-        $total = $getProduct->price * $request->qty;
-        
-        Cart::add([
-            'id' => $getProduct->id,
-            'name' => $getProduct->title,
-            'price' => $getProduct->price,
-            'qty' => $request->qty,
+        else{
+            $total = $getProduct->price * $request->qty;
             
-        ]);
-        toast('Item added to cart.','success')->autoClose(3000);
-        return redirect()->back();
+            Cart::add([
+                'id' => $getProduct->id,
+                'name' => $getProduct->title,
+                'price' => $getProduct->price,
+                'qty' => $request->qty,
+                
+            ]);
+            toast('Item added to cart.','success')->autoClose(3000);
+            return redirect()->back();
+        }
     }
 
     public function cart_delete($rowId){
@@ -207,6 +215,11 @@ class CartController extends Controller
                 $order_item->price = $data->price;
                 $order_item->total_price = $data->price;
                 $order_item->save();
+
+                $invUpdate = Inventory::getSingle($data->id);
+                $invUpdate->sold_quantity = $data->qty + $invUpdate->sold_quantity;
+                $invUpdate->remaining_quantity = $invUpdate->purchase_quantity - $invUpdate->sold_quantity;
+                $invUpdate->save();
             }
             $json['status'] = true;
             $json['message'] = "success";

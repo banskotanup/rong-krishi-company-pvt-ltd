@@ -28,6 +28,11 @@
                                @endif
                     </div>
 
+
+                    @php
+                    $getAvailable = App\Models\Inventory::getSingle($value->id);
+                    @endphp
+                    @if($getAvailable->remaining_quantity > 0)
                     <form action="{{url('/cart')}}" method="POST">
                         @csrf
                         <input type="hidden" name="product_id" value="{{$value->id}}">
@@ -41,6 +46,14 @@
                         </div>
 
                     </form>
+                    @else
+                    <div class="product-action">
+                        <a href="javascript:;" style="width: 100%; " class="btn btn-danger">
+                            <span class="btn-text">OUT OF STOCK</span>
+                            <span class="btn-hover-text">out of stock</span>
+                        </a>
+                    </div>
+                    @endif
                 </figure>
 
                 <div class="product-body">

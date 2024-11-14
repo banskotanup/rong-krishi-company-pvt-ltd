@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Product;
+use App\Models\Inventory;
 use App\Models\ProductImageModel;
 use Hash;
 use Str;
@@ -110,6 +111,12 @@ class ProductController extends Controller
                     }
                 }
             }
+
+            $inventory = new Inventory;
+            $inventory->id = $product->id;
+            $inventory->title = trim($request->title);
+            $inventory->purchase_quantity = trim($request->purchase_quantity);
+            $inventory->save();
 
             return redirect('/product_list');
         }
