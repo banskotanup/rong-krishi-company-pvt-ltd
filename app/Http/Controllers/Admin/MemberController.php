@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Hash;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\Mail\RegisterMail;
@@ -14,7 +15,10 @@ use Str;
 
 class MemberController extends Controller
 {
-    public function member_list(){
+    public function member_list(Request $request){
+        if(!empty($request->noti_id)){
+            Notification::UpdateReadNoti($request->noti_id);
+        }
         $data['getRecords'] = User::getMember();
         $data['header_title'] = 'Member';
         return view('admin.member_pages.member_list', $data)->with('no', 1);
@@ -43,6 +47,12 @@ class MemberController extends Controller
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
+
+        $user_id = $user->id;
+        $url = url('/member_list');
+        $message = "New Customer Registered #".$user->user_number." #Name".$user->name;
+        Notification::insertRecord($user_id, $url, $message);
+
         return redirect('/member_list');
     }
 

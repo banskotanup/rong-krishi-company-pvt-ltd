@@ -11,6 +11,8 @@ use App\Models\OrderItem;
 use App\Models\Order;
 use App\Models\ProductWishlist;
 use App\Models\User;
+use App\Models\Inventory;
+use App\Models\Notification;
 use Auth;
 use Cart;
 use Hash;
@@ -32,19 +34,26 @@ class CartController extends Controller
 
     public function add_to_Cart(Request $request){
         $getProduct = Product::getSingle($request->product_id);
+        $remQuantity = Inventory::getSingle($request->product_id);
 
+        if($request->qty > $remQuantity->remaining_quantity){
+            Alert::warning('Warning!','The quantity you have requested exceeds our available stock. Please adjust your order to match the current stock levels.');
+            return redirect()->back();
+        }
 
-        $total = $getProduct->price * $request->qty;
-        
-        Cart::add([
-            'id' => $getProduct->id,
-            'name' => $getProduct->title,
-            'price' => $getProduct->price,
-            'qty' => $request->qty,
+        else{
+            $total = $getProduct->price * $request->qty;
             
-        ]);
-        toast('Item added to cart.','success')->autoClose(3000);
-        return redirect()->back();
+            Cart::add([
+                'id' => $getProduct->id,
+                'name' => $getProduct->title,
+                'price' => $getProduct->price,
+                'qty' => $request->qty,
+                
+            ]);
+            toast('Item added to cart.','success')->autoClose(3000);
+            return redirect()->back();
+        }
     }
 
     public function cart_delete($rowId){
@@ -134,6 +143,11 @@ class CartController extends Controller
                     $save->password = Hash::make($request->password);
                     $save->save();
                     $user_id = $save->id;
+
+                    $user_id = 1;
+                    $url = url('/member_list');
+                    $message = "New Customer Registered #".$save->user_number." #Name".$save->name;
+                    Notification::insertRecord($user_id, $url, $message);
                 }
             }
             else
@@ -205,13 +219,20 @@ class CartController extends Controller
                 $order_item->product_id = $data->id;
                 $order_item->qty = $data->qty;
                 $order_item->price = $data->price;
-                $order_item->total_price = $data->price;
+                $order_item->total_price = $data->price * $data->qty;
                 $order_item->save();
+
+                $invUpdate = Inventory::getSingle($data->id);
+                $invUpdate->sold_quantity = $data->qty + $invUpdate->sold_quantity;
+                $invUpdate->sold_price = $data->price;
+                $invUpdate->total_selling_amount = $invUpdate->total_selling_amount + ($data->qty * $data->price);
+                $invUpdate->remaining_quantity = $invUpdate->purchase_quantity - $invUpdate->sold_quantity;
+                $invUpdate->save();
             }
             $json['status'] = true;
             $json['message'] = "success";
             $json['redirect'] = url('/checkout/payment?order_id='.base64_encode($order->id)); 
-            $html = 'Thank you for your order! We are processing it now and will send you an email with the details shortly.';
+            $html = '';
             $json['html'] = $html;
         }
         else{
@@ -235,6 +256,12 @@ class CartController extends Controller
                     $getOrder->save();
 
                     Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
+
+                    $user_id = 1;
+                    $url = url('/order_view/'.$getOrder->id);
+                    $message = "New Order Received #".$getOrder->order_number;
+                    Notification::insertRecord($user_id, $url, $message);
+
                     Cart::destroy();
                     Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
                     return redirect('cart');
@@ -303,6 +330,10 @@ class CartController extends Controller
             $getOrder->save();
 
             Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
+            $user_id = 1;
+            $url = url('/order_view/'.$getOrder->id);
+            $message = "New Order Received #".$getOrder->order_number;
+            Notification::insertRecord($user_id, $url, $message);
             Cart::destroy();
             Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
             return redirect('cart');

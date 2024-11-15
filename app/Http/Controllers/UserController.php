@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\ProductReview;
+use App\Models\Notification;
 use Auth;
 use Mail;
 use App\Mail\OrderStatusMail;
@@ -80,6 +81,12 @@ class UserController extends Controller
         $user->phone = trim($request->phone);
         $user->remember_token = Str::random(30);
         $user->save();
+
+        $user_id = 1;
+        $url = url('/member_list');
+        $message = "Customer Profile Updated #".$user->user_number." #Name".$user->name;
+        Notification::insertRecord($user_id, $url, $message);
+
         Alert::success('Success!','User profile updated.');
         return redirect(url('/user_dashboard/{id}'));
     }
@@ -89,6 +96,12 @@ class UserController extends Controller
         $getOrder->status = $request->status;
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
+
+        $user_id = 1;
+        $url = url('/order_view/'.$getOrder->id);
+        $message = "Order Status Updated #".$getOrder->order_number;
+        Notification::insertRecord($user_id, $url, $message);
+
         $json['message'] = "Status successfully updated";
         toast('Order has been cancelled.','success')->autoClose(3000);
         echo json_encode($json);

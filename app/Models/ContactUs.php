@@ -16,7 +16,8 @@ class ContactUs extends Model
 
     static public function getRecord(){
         return self::select('contact_us.*')
-        ->orderBy('contact_us.id', 'asc')
+        ->where('is_deleted', '=', 0)
+        ->orderBy('contact_us.id', 'desc')
         ->paginate(20);
     }
 }

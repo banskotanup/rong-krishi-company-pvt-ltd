@@ -63,16 +63,20 @@
                             <div class="details-filter-row details-row-size">
                                 <label for="qty">Qty:</label>
                                 <div class="product-details-quantity">
-                                    <input type="number" id="qty" class="form-control" value="1" min="1" max="100"
+                                    <input type="number" id="qty" class="form-control" value="1" min="1" max="500"
                                         step="1" name="qty" data-decimals="0" required>
                                 </div>
                             </div>
 
                             <div class="product-details-action">
+                                @if($getAvailable->remaining_quantity > 0)
                                 <button type="submit" style="width: 100px; " class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
                                     <span class="btn-text">add to cart</span>
                                     <span class="btn-hover-text">add to your shopping cart</span>
                                 </button>
+                                @else
+                                <label style="color: red; margin-top: 11px; margin-left:10px; font-weight: 500;">Out of Stock</label>
+                                @endif
 
                                 <div class="details-action-wrapper">
                                     @if(!empty(Auth::check()))

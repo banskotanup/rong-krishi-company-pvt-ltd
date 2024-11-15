@@ -130,42 +130,6 @@
 
       <div class="col-md-12">
         <div class="row">
-
-          <div class="col-md-4">
-            <div class="card" style="height: 480px;">
-              <div class="card-header">
-                <h3 class="card-title">Rong Krishi Admins</h3>
-      
-                <div class="card-tools">
-                  <span class="badge badge-danger">{{$total_admin}} Total Admin</span>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="products-list product-list-in-card pl-2 pr-2">
-                  @foreach($get_admin as $values)
-                  <li class="item">
-                    <div class="product-img">
-                      <img src="/user_logo.png" alt="Product Image" class="img-size-50">
-                    </div>
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">{{$values->name}}
-                      <span class="product-description">
-                        {{$values->email}}
-                      </span>
-                    </div>
-                  </li>
-                  @endforeach
-                  <!-- /.item -->
-                </ul>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer text-center">
-                <a href="{{url('/admin_list')}}" class="uppercase">View All Admins</a>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-          </div>
           <div class="col-md-4">
             <div class="card" style="height: 480px;">
               <div class="card-header">
@@ -219,7 +183,7 @@
                     @endphp
                   <li class="item">
                     <div class="product-img">
-                                <img style="width: 100px; height:100px;" src="{{$getProductImage->getImage()}}" alt="">      
+                                <img src="{{$getProductImage->getImage()}}" alt="">      
                     </div>
                     <div class="product-info">
                       <a href="javascript:void(0)" class="product-title" style=" margin-left:30px;"> {{$item->title}}
@@ -235,6 +199,42 @@
               <!-- /.card-body -->
               <div class="card-footer text-center">
                 <a href="{{url('/product_list')}}" class="uppercase">View All Products</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card" style="height: 480px;">
+              <div class="card-header">
+                <h3 class="card-title">Our Blogs</h3>
+      
+                <div class="card-tools">
+                  <span class="badge badge-danger">{{$total_blog}} Total Blogs</span>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <ul class="products-list product-list-in-card pl-2 pr-2">
+                  @foreach($get_blog as $values)
+                  <li class="item">
+                    @php
+                        $getBlogImage = $values->getImageSingle($values->id);
+                    @endphp
+                    <div class="product-img">
+                      <img src="{{$getBlogImage->getImage()}}" alt="Product Image" class="img-size-50">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">{{$values->title}}
+                    </div>
+                  </li>
+                  @endforeach
+                  <!-- /.item -->
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer text-center">
+                <a href="{{url('/admin_blog')}}" class="uppercase">View All Blogs</a>
               </div>
               <!-- /.card-footer -->
             </div>

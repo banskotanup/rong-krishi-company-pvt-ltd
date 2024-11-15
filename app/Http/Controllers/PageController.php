@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SystemSetting;
 use App\Models\AboutUs;
 use App\Models\OurTeam;
+use App\Models\ContactUs;
+use App\Models\SMTP;
 use Str;
 use App\Models\TeamImageModel;
 
@@ -153,6 +155,19 @@ class PageController extends Controller
         return redirect('/system_setting');
     }
 
+    public function contactus(){
+        $data['getRecords'] = ContactUs::getRecord();
+        $data['header_title'] = "Contact Us";
+        return view('admin.pages.contactus', $data)->with('no', 1);
+    }
+
+    public function contact_us_delete($id){
+        $save = ContactUs::getSingle($id);
+        $save->is_deleted = 1;
+        $save->save();
+        return redirect('/contactus');
+    }
+
     public function aboutus(){
         $data['getRecords'] = AboutUs::getSingle();
         $data['header_title'] = "About Us";
@@ -270,6 +285,27 @@ class PageController extends Controller
         $user->is_deleted = 1;
         $user->save();
         return redirect('/our_team');
+    }
+
+    public function smtp(){
+        $data['getRecords'] = SMTP::getSingle();
+        $data['header_title'] = "SMTP Setting";
+        return view('admin.pages.smtp', $data);
+    }
+
+    public function update_smtp(Request $request){
+        $save = SMTP::getSingle();
+        $save->name = trim($request->name);
+        $save->mail_mailer = trim($request->mail_mailer);
+        $save->mail_host = trim($request->mail_host);
+        $save->mail_port = trim($request->mail_port);
+        $save->mail_username = trim($request->mail_username);
+        $save->mail_password = trim($request->mail_password);
+        $save->mail_encryption = trim($request->mail_encryption);
+        $save->mail_from_address = trim($request->mail_from_address);
+        
+        $save->save();
+        return redirect('/smtp');
     }
     
 }

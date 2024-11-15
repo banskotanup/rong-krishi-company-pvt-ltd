@@ -38,7 +38,7 @@
       </li> --}}
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -94,32 +94,33 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
-      </li>
+      </li> --}}
       <!-- Notifications Dropdown Menu -->
+
+      @php
+       $getUnreadNotification = App\Models\Notification::getUnreadNotification();   
+      @endphp
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          @if($getUnreadNotification->count() > 0)
+          <span class="badge badge-warning navbar-badge">{{$getUnreadNotification->count()}}</span>
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{$getUnreadNotification->count()}} Notifications</span>
+          
+          @foreach($getUnreadNotification as $noti)
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <a href="{{$noti->url}}?noti_id={{$noti->id}}" class="dropdown-item" >
+            <div style="height: 100%; width: 100%; overflow: hidden;">
+              {{$noti->message}}
+            </div>
+            <span class="text-muted text-sm">{{$noti->created_at}}</span>
           </a>
+          @endforeach
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="/admin/#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{url('/notification')}}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -128,7 +129,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{url('log_out')}}" role="button">
+        <a class="nav-link" onclick="logout_confirmation(event)" href="{{url('log_out')}}" role="button">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
@@ -167,6 +168,14 @@
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('inventory')}}" class="nav-link {{ Request::is('inventory') ? 'active' : ''}}">
+                  <i class="nav-icon fas fa-store-alt"></i>
+                  <p>
+                    Our Inventory
                   </p>
                 </a>
               </li>
@@ -251,6 +260,15 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('contactus')}}" class="nav-link {{ Request::is('contactus') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-inbox"></i>
+                  <p>
+                    Contact Us
+                  </p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
                 <a href="{{url('aboutus')}}" class="nav-link {{ Request::is('aboutus') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-info"></i>
                   <p>
@@ -273,7 +291,16 @@
                 <a href="{{url('system_setting')}}" class="nav-link {{ Request::is('system_setting') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-cog"></i>
                   <p>
-                    System Settings
+                    System Setting
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url('smtp')}}" class="nav-link {{ Request::is('smtp') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-server"></i>
+                  <p>
+                    SMTP Setting
                   </p>
                 </a>
               </li>
