@@ -159,7 +159,7 @@ class UserController extends Controller
         $save->rating = trim($request->rating);
         $save->review = trim($request->review);
         $save->save();
-
-        return redirect()->back()->with('success', "Thankyou for your review.");
+        Alert::success('Success!','Thank you for your review.');
+        return redirect()->back();
     }
 }

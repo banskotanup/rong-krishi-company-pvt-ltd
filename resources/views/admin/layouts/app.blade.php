@@ -9,7 +9,9 @@
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
 
-
+  @php
+  $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+  @endphp
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,7 +22,7 @@
   <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
-  <link rel="icon" type="image/x-icon" href="{{url('trslogo.png')}}">
+  <link rel="icon" type="image/x-icon" href="{{$getSystemSettingApp->getFevicon()}}">
   <style>
     .hide {
       display: none;

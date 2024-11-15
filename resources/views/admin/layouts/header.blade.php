@@ -1,4 +1,7 @@
 <!-- Navbar -->
+@php
+$getSystemSettingApp = App\Models\SystemSetting::getSingle();
+@endphp
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -140,8 +143,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="/admin/index3.html" class="brand-link">
-          <span class="brand-text font-weight-light" style="margin:10px;"><img style="height: 50px; width:50px;" src="/trslogo.png" alt=""><strong style="font-weight: 500; color: white;"> Rongkrishi Admin</strong></span>
+        <a href="{{url('')}}" class="brand-link">
+          <span class="brand-text font-weight-light" style="margin:10px;"><img style="height: 50px; width:50px;" src="{{$getSystemSettingApp->getLogo()}}" alt=""><strong style="font-weight: 500; color: white;"> Rongkrishi Admin</strong></span>
         </a>
     
         <!-- Sidebar -->
@@ -152,7 +155,7 @@
               <img src="/user_logo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="/admin/#" class="d-block">{{ Auth::user()->name ?? 'None'}}</a>
+              <a href="{{url('/profile')}}" class="d-block">{{ Auth::user()->name ?? 'None'}}</a>
               {{-- {{ Auth::user()->name }} use it later & create a profile section--}}  
             </div>
           </div>

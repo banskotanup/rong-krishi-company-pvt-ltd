@@ -51,6 +51,7 @@
             <div class="container">
                 <div class="row">
                     @include('user._sidebar')
+                    @include('sweetalert::alert')
 
                     <div class="col-md-8 col-lg-9">
                         <div class="tab-content">
