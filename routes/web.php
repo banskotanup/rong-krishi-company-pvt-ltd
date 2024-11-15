@@ -177,7 +177,6 @@ route::get('/blog/{slug}',[HomeController::class, 'blog_detail']);
 route::get('/blog/category/{slug}',[HomeController::class, 'blog_category']);
 route::post('blog/submit_comment',[HomeController::class, 'submit_blog_comment'])->middleware('is_user');
 
-
 //Home/ProductController Goes Here...
 
 route::get('/checkout',[CartController::class, 'checkout']);
