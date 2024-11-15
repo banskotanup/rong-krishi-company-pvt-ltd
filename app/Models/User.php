@@ -65,7 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         $return = $return->where('is_admin','=', 1)
         ->where('is_delete','=', 0)
-        ->orderBy('id', 'asc')
+        ->orderBy('id', 'desc')
         ->paginate(20);
         return $return;
     }
@@ -93,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         $return = $return->where('is_admin','=', 0)
         ->where('is_delete','=', 0)
-        ->orderBy('id', 'asc')
+        ->orderBy('id', 'desc')
         ->paginate(20);
 
         return $return;

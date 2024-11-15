@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Hash;
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Mail;
 use App\Mail\RegisterMail;
@@ -43,6 +44,12 @@ class MemberController extends Controller
         $user->save();
 
         Mail::to($user->email)->send(new RegisterMail($user));
+
+        $user_id = $user->id;
+        $url = url('/member_list');
+        $message = "New Customer Registered #".$user->user_number." #Name".$user->name;
+        Notification::insertRecord($user_id, $url, $message);
+
         return redirect('/member_list');
     }
 

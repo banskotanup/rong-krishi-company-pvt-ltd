@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Notification;
 use Auth;
 use Mail;
 use App\Mail\OrderStatusMail;
@@ -28,6 +29,12 @@ class OrderController extends Controller
         $getOrder->status = $request->status;
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
+
+        $user_id = $getOrder->user_id;
+        $url = url('/order_view/'.$getOrder->id);
+        $message = "Order Status Updated #".$getOrder->order_number;
+        Notification::insertRecord($user_id, $url, $message);
+
         $json['message'] = "Status successfully updated";
         if($request->status == 0){
             toast('Order status: Pending','question')->autoClose(5000)->width('20rem');

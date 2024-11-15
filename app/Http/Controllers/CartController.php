@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\ProductWishlist;
 use App\Models\User;
 use App\Models\Inventory;
+use App\Models\Notification;
 use Auth;
 use Cart;
 use Hash;
@@ -142,6 +143,11 @@ class CartController extends Controller
                     $save->password = Hash::make($request->password);
                     $save->save();
                     $user_id = $save->id;
+
+                    $user_id = $user_id;
+                    $url = url('/member_list');
+                    $message = "New Customer Registered #".$save->user_number." #Name".$save->name;
+                    Notification::insertRecord($user_id, $url, $message);
                 }
             }
             else
@@ -250,6 +256,12 @@ class CartController extends Controller
                     $getOrder->save();
 
                     Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
+
+                    $user_id = $getOrder->user_id;
+                    $url = url('/order_view/'.$getOrder->id);
+                    $message = "New Order Received #".$getOrder->order_number;
+                    Notification::insertRecord($user_id, $url, $message);
+
                     Cart::destroy();
                     Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
                     return redirect('cart');
@@ -318,6 +330,10 @@ class CartController extends Controller
             $getOrder->save();
 
             Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
+            $user_id = $getOrder->user_id;
+            $url = url('/order_view/'.$getOrder->id);
+            $message = "New Order Received #".$getOrder->order_number;
+            Notification::insertRecord($user_id, $url, $message);
             Cart::destroy();
             Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
             return redirect('cart');

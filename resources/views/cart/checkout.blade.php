@@ -79,7 +79,7 @@
                             </div><!-- End .row -->
 
                             <label>Email address <span style="color: red;">*</span></label>
-                            <input type="email" name="email" class="form-control" required readonly value="{{!empty(Auth::user()->email) ? Auth::user()->email : ''}}">
+                            <input type="email" name="email" class="form-control" required value="{{!empty(Auth::user()->email) ? Auth::user()->email : ''}}">
 
                             @if(empty(Auth::check()))
                             <div class="custom-control custom-checkbox">
