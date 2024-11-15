@@ -291,7 +291,16 @@
                 <a href="{{url('system_setting')}}" class="nav-link {{ Request::is('system_setting') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-cog"></i>
                   <p>
-                    System Settings
+                    System Setting
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{url('smtp')}}" class="nav-link {{ Request::is('smtp') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-server"></i>
+                  <p>
+                    SMTP Setting
                   </p>
                 </a>
               </li>

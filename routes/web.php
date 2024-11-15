@@ -135,6 +135,8 @@ route::get('/aboutus',[PageController::class, 'aboutus'])->middleware('is_admin'
 route::post('/aboutus',[PageController::class, 'update_about_us'])->middleware('is_admin');
 route::get('/system_setting',[PageController::class, 'index'])->middleware('is_admin');
 route::post('/system_setting',[PageController::class, 'update_system_settings'])->middleware('is_admin');
+route::get('/smtp',[PageController::class, 'smtp'])->middleware('is_admin');
+route::post('/smtp',[PageController::class, 'update_smtp'])->middleware('is_admin');
 
 route::get('/our_team',[PageController::class, 'our_team'])->middleware('is_admin');
 route::get('/add_team_member',[PageController::class, 'add_team_member'])->middleware('is_admin');
