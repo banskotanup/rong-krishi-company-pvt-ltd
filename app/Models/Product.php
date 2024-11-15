@@ -147,6 +147,41 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
+    public function getTotalReview(){
+        return $this->hasMany(ProductReview::class, 'product_id')
+        ->join('users', 'users.id', 'product_review.user_id')
+        ->count();
+    }
+
+    static public function getReviewRating($product_id)
+    {
+        $avg = ProductReview::getRatingAVG($product_id); 
+        if($avg >= 1 && $avg <=1)
+        {
+            return 20;
+        }
+        else if($avg >= 1 && $avg <=2)
+        {
+            return 40;
+        }
+        else if($avg >= 1 && $avg <=3)
+        {
+            return 60;
+        }
+        else if($avg >= 1 && $avg <=4)
+        {
+            return 80;
+        }
+        else if($avg >= 1 && $avg <=5)
+        {
+            return 100;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     static public function getRelatedProduct($product_id, $sub_category_id){
         $return = Product::select('product.*', 'users.name as created_by_name', 'category.name as category_name', 
         'category.slug as category_slug','sub_category.name as sub_category_name', 'sub_category.slug as sub_category_slug')
