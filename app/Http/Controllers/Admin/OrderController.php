@@ -18,7 +18,10 @@ class OrderController extends Controller
         return view('admin.order_pages.order_list', $data)->with('no', 1);
     }
 
-    public function order_view($id){
+    public function order_view($id, Request $request){
+        if(!empty($request->noti_id)){
+            Notification::UpdateReadNoti($request->noti_id);
+        }
         $data['getRecords'] = Order::getSingle($id);
         $data['header_title'] = 'Order Details';
         return view('admin.order_pages.order_detail', $data)->with('no', 1);
@@ -30,7 +33,7 @@ class OrderController extends Controller
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
 
-        $user_id = $getOrder->user_id;
+        $user_id = 1;
         $url = url('/order_view/'.$getOrder->id);
         $message = "Order Status Updated #".$getOrder->order_number;
         Notification::insertRecord($user_id, $url, $message);

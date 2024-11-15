@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\ShippingChargeController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\InventoryController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
@@ -61,6 +62,7 @@ route::get('/member_edit/{id}',[MemberController::class, 'edit_member'])->middle
 route::post('/member_edit/{id}',[MemberController::class, 'update_edit_member'])->middleware('is_admin');
 route::get('/member_delete/{id}',[MemberController::class, 'delete_member'])->middleware('is_admin');
 
+route::get('/notification',[NotificationController::class, 'index'])->middleware('is_admin');
 route::get('/inventory',[InventoryController::class, 'inventory'])->middleware('is_admin');
 route::get('/product/{id}',[InventoryController::class, 'product_view'])->middleware('is_admin');
 

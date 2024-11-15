@@ -81,7 +81,7 @@ class UserController extends Controller
         $user->remember_token = Str::random(30);
         $user->save();
 
-        $user_id = $user->id;
+        $user_id = 1;
         $url = url('/member_list');
         $message = "Customer Profile Updated #".$user->user_number." #Name".$user->name;
         Notification::insertRecord($user_id, $url, $message);
@@ -96,7 +96,7 @@ class UserController extends Controller
         $getOrder->save();
         Mail::to($getOrder->email)->send(new OrderStatusMail($getOrder));
 
-        $user_id = $getOrder->user_id;
+        $user_id = 1;
         $url = url('/order_view/'.$getOrder->id);
         $message = "Order Status Updated #".$getOrder->order_number;
         Notification::insertRecord($user_id, $url, $message);

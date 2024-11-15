@@ -15,7 +15,10 @@ use Str;
 
 class MemberController extends Controller
 {
-    public function member_list(){
+    public function member_list(Request $request){
+        if(!empty($request->noti_id)){
+            Notification::UpdateReadNoti($request->noti_id);
+        }
         $data['getRecords'] = User::getMember();
         $data['header_title'] = 'Member';
         return view('admin.member_pages.member_list', $data)->with('no', 1);

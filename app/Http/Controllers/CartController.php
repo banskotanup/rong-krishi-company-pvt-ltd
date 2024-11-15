@@ -144,7 +144,7 @@ class CartController extends Controller
                     $save->save();
                     $user_id = $save->id;
 
-                    $user_id = $user_id;
+                    $user_id = 1;
                     $url = url('/member_list');
                     $message = "New Customer Registered #".$save->user_number." #Name".$save->name;
                     Notification::insertRecord($user_id, $url, $message);
@@ -257,7 +257,7 @@ class CartController extends Controller
 
                     Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
 
-                    $user_id = $getOrder->user_id;
+                    $user_id = 1;
                     $url = url('/order_view/'.$getOrder->id);
                     $message = "New Order Received #".$getOrder->order_number;
                     Notification::insertRecord($user_id, $url, $message);
@@ -330,7 +330,7 @@ class CartController extends Controller
             $getOrder->save();
 
             Mail::to($getOrder->email)->send(new OrderInvoiceMail($getOrder));
-            $user_id = $getOrder->user_id;
+            $user_id = 1;
             $url = url('/order_view/'.$getOrder->id);
             $message = "New Order Received #".$getOrder->order_number;
             Notification::insertRecord($user_id, $url, $message);
