@@ -26,6 +26,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Blog Image</th>
                         <th>Title</th>
                         <th>Meta Title</th>
                         <th>Meta Description</th>
@@ -37,8 +38,16 @@
                 </thead>
                 <tbody>
                     @foreach ($getRecords as $value)
+                    @php
+                        $getImage = $value->getImageSingle($value->id);
+                    @endphp
                     <tr>
                         <td>{{$no++}}</td>
+                        <td>
+                            @if(!empty($getImage) && !empty($getImage->getImage()))
+                                <img style="width: 50px; height:45px; border-radius: 80%; margin-left: 20px;" src="{{$getImage->getImage()}}" alt="">    
+                            @endif
+                        </td>
                         <td>{{$value->title}}</td>
                         <td>{{$value->meta_title}}</td>
                         <td>{{$value->meta_description}}</td>

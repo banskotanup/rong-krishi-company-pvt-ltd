@@ -19,6 +19,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Home\ProductController as ProductFront;
+use App\Http\Controllers\Home\BlogController as BlogFront;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 
@@ -148,6 +149,7 @@ route::post('/edit_profile',[UserController::class, 'update_profile'])->middlewa
 route::get('/change_password',[UserController::class, 'changePw404'])->middleware('is_user');
 route::get('/change_password/{token}',[UserController::class, 'changePw'])->middleware('is_user');
 route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
+route::post('/user/make-review', [UserController::class, 'submit_review'])->middleware('is_user');
 
 
 
@@ -162,6 +164,9 @@ route::post('/contact_us',[HomeController::class, 'submit_contact']);
 route::get('/faq',[HomeController::class, 'faq']);
 route::get('/error_404',[HomeController::class, 'error_404']);
 route::get('/blog',[HomeController::class, 'blog']);
+route::get('/blog/{slug}',[HomeController::class, 'blog_detail']);
+route::get('/blog/category/{slug}',[HomeController::class, 'blog_category']);
+route::post('blog/submit_comment',[HomeController::class, 'submit_blog_comment'])->middleware('is_user');
 
 //Home/ProductController Goes Here...
 

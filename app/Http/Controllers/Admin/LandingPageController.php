@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\BlogModel;
 
 class LandingPageController extends Controller
 {
@@ -17,6 +18,8 @@ class LandingPageController extends Controller
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
         $data['getOurProduct'] = Product::getOurProduct();
+        $data['getBlog'] = BlogModel::getBlog();
+        
         if(!empty(Auth::check()) && Auth::user()->is_admin == 1){
             return redirect('/admin_dashboard');
         }

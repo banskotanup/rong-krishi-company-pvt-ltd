@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('style')
+<link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -16,7 +17,7 @@
 
     <div class="col-md-12">
         <div class="card card-primary">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                 <div class="form-group">
@@ -36,9 +37,22 @@
                        </select>
                     </div>
 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Image <span style="color: red;">*</span></label>
+                            <input type="file" class="form-control" name="image_name" 
+                                required>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <label>Description<span style="color: red;">*</span></label>
+                        <label>Short Description<span style="color: red;">*</span></label>
                         <textarea class="form-control editor" name="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Blog Content<span style="color: red;">*</span></label>
+                        <textarea class="form-control editor" name="blog_content"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -78,6 +92,7 @@
 @endsection
 
 @section('script')
+<script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function () {
     var shownPopup = false;
@@ -96,5 +111,20 @@
         }
     });
 });
+
+$(function () {
+            $('.editor').summernote()
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+            });
+        });
+
+        $('.editor').summernote({
+            height: 150,   //set editable area's height
+            codemirror: { // codemirror options
+                theme: 'monokai'
+            }
+        });
 </script>
 @endsection

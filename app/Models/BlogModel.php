@@ -39,4 +39,69 @@ class BlogModel extends Model
         ->where('blog.is_delete', '=',  0)
         ->first();
     }
+
+    static public function getImageSingle($id){
+        return BlogImageModel::where('blog_id','=', $id)->orderBy('order_by', 'asc')->first();
+    }
+
+    public function getImage(){
+        return $this->hasMany(BlogImageModel::class, "blog_id")->orderBy('order_by', 'asc');
+    }
+
+    static public function getBlog($blog_category_id = ''){
+        $return = self::select('blog.*');
+
+        if(!empty(Request::get('search'))){
+            $return = $return->where('blog.title', 'like', '%'.request::get('search').'%');
+        }
+        if(!empty($blog_category_id)){
+            $return = $return->where('blog.blog_category_id', '=', $blog_category_id);
+        }
+
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->orderBy('blog.id', 'desc')
+        ->paginate(10);
+
+        return $return;
+    }
+    static public function getPopular(){
+        $return = self::select('blog.*');
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->orderBy('blog.total_view', 'desc')
+        ->limit(6)
+        ->get();
+
+        return $return;
+    }
+
+    static public function getRelatedBlog($blog_id, $blog_category_id){
+        $return = self::select('blog.*');
+        $return = $return->where('blog.is_delete','=', 0)
+        ->where('blog.status','=', 0)
+        ->where('blog.blog_category_id','=', $blog_category_id)
+        ->where('blog.id','!=', $blog_id)
+        ->orderBy('blog.total_view', 'desc')
+        ->limit(6)
+        ->get();
+
+        return $return;
+    }
+
+    public function getComment(){
+        return $this->hasMany(BlogComment::class, "blog_id")
+        ->select('blog_comment.*')
+        ->join('users', 'users.id', '=', 'blog_comment.user_id')
+        ->orderBy('blog_comment.id', 'desc');
+    }
+    
+    public function getCommentCount(){
+        return $this->hasMany(BlogComment::class, "blog_id")
+        ->select('blog_comment.id')
+        ->join('users', 'users.id', '=', 'blog_comment.user_id')
+        ->count();
+    }
+
+
 }

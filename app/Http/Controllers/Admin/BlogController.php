@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\BlogModel;
 use App\Models\BlogCategory;
 use Str;
+use App\Models\BlogImageModel;
 
 
 class BlogController extends Controller
@@ -34,6 +35,7 @@ class BlogController extends Controller
         $blog->title = trim($request->title);
         $blog->blog_category_id = trim($request->blog_category_id);
         $blog->description = trim($request->description);
+        $blog->blog_content = trim($request->blog_content);
         $blog->status = trim($request->status);
         $blog->meta_title = trim($request->meta_title);
         $blog->meta_description = trim($request->meta_description);
@@ -51,7 +53,19 @@ class BlogController extends Controller
         }
 
         $blog->save();
+        
+        if(!empty($request->file('image_name'))){
+            $file = $request->file('image_name');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/blog/', $filename);
 
+            $imageupload  = new BlogImageModel;
+            $imageupload->image_name = $filename; 
+            $imageupload->blog_id = $blog->id;
+            $imageupload->save(); 
+        }
         return redirect('/admin_blog');
     }
 
@@ -68,12 +82,37 @@ class BlogController extends Controller
         $blog->title = trim($request->title);
         $blog->blog_category_id = trim($request->blog_category_id);
         $blog->description = trim($request->description);
+        $blog->blog_content = trim($request->blog_content);
         $blog->status = trim($request->status);
         $blog->meta_title = trim($request->meta_title);
         $blog->meta_description = trim($request->meta_description);
         $blog->meta_keywords = trim($request->meta_keywords);
 
+        $slug = str::slug($request->title);
+        $count = BlogModel::where('slug', '=', $slug)->count();
+        if(!empty($count))
+        {
+            $blog->slug = $slug.'-'.$blog->id;
+        }
+        else
+        {
+            $blog->slug = trim($slug);
+        }
+
         $blog->save();
+        
+        if(!empty($request->file('image_name'))){
+            $file = $request->file('image_name');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = Str::random(10);
+            $filename = strtolower($randomStr).'.'.$ext;
+            $file->move('upload/blog/', $filename);
+
+            $imageupload  = BlogImageModel::getSingle($id);
+            $imageupload->image_name = $filename; 
+            $imageupload->blog_id = $blog->id;
+            $imageupload->save(); 
+        }
         return redirect('/admin_blog');
     }
 

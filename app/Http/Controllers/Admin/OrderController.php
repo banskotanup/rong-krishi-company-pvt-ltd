@@ -42,7 +42,7 @@ class OrderController extends Controller
             toast('Order status: Completed','success')->autoClose(5000)->width('20rem');
         }
         if($request->status == 4){
-            toast('Order status: Cancelled','error')->autoClose(5000)->width('20rem');
+            toast('Order status: Cancelled','success')->autoClose(5000)->width('20rem');
         }
 
 

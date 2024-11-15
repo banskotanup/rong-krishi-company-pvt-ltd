@@ -212,7 +212,6 @@ class PageController extends Controller
             $filename = strtolower($randomStr).'.'.$ext;
             $file->move('upload/our_team/', $filename);
 
-            $user->profile_picture = trim($filename);
 
             $imageupload  = new TeamImageModel;
             $imageupload->image_name = $filename; 
@@ -256,8 +255,6 @@ class PageController extends Controller
             $randomStr = Str::random(10);
             $filename = strtolower($randomStr).'.'.$ext;
             $file->move('upload/our_team/', $filename);
-
-            $user->profile_picture = trim($filename);
 
             $imageupload  = TeamImageModel::getSingle($id);
             $imageupload->image_name = $filename; 

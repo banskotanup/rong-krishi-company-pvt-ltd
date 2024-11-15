@@ -348,77 +348,35 @@
                             }
                         }
                     }'>
+                @foreach($getBlog->take(7) as $value)
+                        @php
+                            $getImage = $value->getImageSingle($value->id);
+                        @endphp
                 <article class="entry entry-display">
                     <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-1.jpg" alt="image desc">
+                        <a href="{{url('/blog/'.$value->slug)}}">
+                            @if(!empty($getImage) && !empty($getImage->getImage()))
+                            <img style="width: 100%; height: 300px;" src="{{$getImage->getImage()}}" alt="image desc">
+                            @endif
                         </a>
                     </figure><!-- End .entry-media -->
 
                     <div class="entry-body pb-4 text-center">
                         <div class="entry-meta">
-                            <a href="#">Nov 22, 2018</a>, 0 Comments
+                            <a href="#">{{date('M d, Y', strtotime($value->created_at))}}</a>, {{$value->getCommentCount()}} Comments
                         </div><!-- End .entry-meta -->
 
                         <h3 class="entry-title">
-                            <a href="single.html">Sed adipiscing ornare.</a>
+                            <a href="{{url('/blog/'.$value->slug)}}">{{$value->title}}</a>
                         </h3><!-- End .entry-title -->
 
                         <div class="entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-                                hendrerit.<br>Pelletesque aliquet nibh necurna. </p>
-                            <a href="single.html" class="read-more">Read More</a>
+                            <p>{!! $value->description !!}</p>
+                            <a href="{{url('/blog/'.$value->slug)}}" class="read-more">Read More</a>
                         </div><!-- End .entry-content -->
                     </div><!-- End .entry-body -->
                 </article><!-- End .entry -->
-
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-2.jpg" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body pb-4 text-center">
-                        <div class="entry-meta">
-                            <a href="#">Dec 12, 2018</a>, 0 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Fusce lacinia arcuet nulla.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Sed pretium, ligula sollicitudin laoreet<br>viverra, tortor libero sodales leo, eget
-                                blandit nunc tortor eu nibh. Nullam mollis justo. </p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div><!-- End .entry-content -->
-                    </div><!-- End .entry-body -->
-                </article><!-- End .entry -->
-
-                <article class="entry entry-display">
-                    <figure class="entry-media">
-                        <a href="single.html">
-                            <img src="assets/images/blog/home/post-3.jpg" alt="image desc">
-                        </a>
-                    </figure><!-- End .entry-media -->
-
-                    <div class="entry-body pb-4 text-center">
-                        <div class="entry-meta">
-                            <a href="#">Dec 19, 2018</a>, 2 Comments
-                        </div><!-- End .entry-meta -->
-
-                        <h3 class="entry-title">
-                            <a href="single.html">Quisque volutpat mattis eros.</a>
-                        </h3><!-- End .entry-title -->
-
-                        <div class="entry-content">
-                            <p>Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae
-                                luctus metus libero eu augue. </p>
-                            <a href="single.html" class="read-more">Read More</a>
-                        </div>
-                    </div>
-                </article>
+                @endforeach
             </div>
         </div>
 
@@ -426,48 +384,6 @@
             <a href="{{url('/blog')}}" class="btn btn-outline-darker btn-more"><span>View more articles</span><i
                     class="icon-long-arrow-right"></i></a>
         </div>
-    </div>
-    <div class="about-testimonials bg-light-2 pt-6 pb-6">
-        <div class="container">
-            <h2 class="title text-center mb-3">What Customer Say About Us</h2><!-- End .title text-center -->
-
-            <div class="owl-carousel owl-simple owl-testimonials-photo" data-toggle="owl" data-owl-options='{
-                    "nav": false, 
-                    "dots": true,
-                    "margin": 20,
-                    "loop": false,
-                    "responsive": {
-                        "1200": {
-                            "nav": true
-                        }
-                    }
-                }'>
-                <blockquote class="testimonial text-center">
-                    <img src="assets/images/testimonials/user-1.jpg" alt="user">
-                    <p>“ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque aliquet nibh nec urna.
-                        <br>In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin
-                        laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut
-                        justo. Suspendisse potenti. ”</p>
-                    <cite>
-                        Jenson Gregory
-                        <span>Customer</span>
-                    </cite>
-                </blockquote><!-- End .testimonial -->
-
-                <blockquote class="testimonial text-center">
-                    <img src="assets/images/testimonials/user-2.jpg" alt="user">
-                    <p>“ Impedit, ratione sequi, sunt incidunt magnam et. Delectus obcaecati optio eius error libero
-                        perferendis nesciunt atque dolores magni recusandae! Doloremque quidem error eum quis similique
-                        doloribus natus qui ut ipsum.Velit quos ipsa exercitationem, vel unde obcaecati impedit eveniet
-                        non. ”</p>
-
-                    <cite>
-                        Victoria Ventura
-                        <span>Customer</span>
-                    </cite>
-                </blockquote><!-- End .testimonial -->
-            </div><!-- End .testimonials-slider owl-carousel -->
-        </div><!-- End .container -->
     </div>
     <hr>
     <div class="row" style="margin-top: 20px;">
@@ -505,5 +421,57 @@
         </div>
     </div>
 </main>
+
+<div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="row no-gutters bg-white newsletter-popup-content">
+                <div class="col-xl-3-5col col-lg-7 banner-content-wrap" style="margin-bottom: 40px;">
+                    <div class="banner-content text-center">
+                        <h2 class="banner-title">From <span>Local<light> Farms</light></span> to Global Markets</h2>
+                        <p>Start Strong with RongKrishi – Your Partner in Agriculture Innovation!</p>
+                        <form action="#">
+                            <div class="input-group input-group-round">
+                                <div class="input-group-append">
+                                    <a href="{{url('/')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">Shop Now</span>
+                                        <span class="btn-hover-text">Shop Now</span>
+                                    </a>
+                                </div>
+                                <div class="input-group-append" style="margin-left: 20px;">
+                                    <a href="{{url('/about_us')}}" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">About Us</span>
+                                        <span class="btn-hover-text">About Us</span>
+                                    </a>
+                                </div>
+                                <div class="input-group-append" style="margin-left: 20px;">
+                                    <a href="{{url('/blog')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">View Blogs</span>
+                                        <span class="btn-hover-text">View Blogs</span>
+                                    </a>
+                                </div>
+                            </div><!-- .End .input-group -->
+                        </form>
+                        {{-- <form action="#">
+                            <div class="input-group input-group-round">
+                                <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit"><span>go</span></button>
+                                </div><!-- .End .input-group-append -->
+                            </div><!-- .End .input-group -->
+                        </form> --}}
+                        {{-- <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                            <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
+                        </div><!-- End .custom-checkbox --> --}}
+                    </div>
+                </div>
+                <div class="col-xl-2-5col col-lg-5 ">
+                    <img src="{{url('')}}/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

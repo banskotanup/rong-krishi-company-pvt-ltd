@@ -54,6 +54,7 @@
 
                     <div class="col-md-8 col-lg-9">
                         <div class="tab-content">
+                        @include('admin.auth.message')
                             <h3 class="card-title" style="margin-bottom: 10px; margin-left: 20px;">Order Details</h3>
 
                             <div class="col-md-12">
@@ -242,7 +243,22 @@
                                                     <td id="img_">
                                                         <img  src="{{$getProductImage->getImage()}}" alt="">
                                                     </td>
-                                                    <td id="name">{{$item->getProduct->title}}</td>
+                                                    <td id="name">{{$item->getProduct->title}}
+                                                    @if($getRecords->status == 3)
+                                                    @php
+                                                        $getReview = $item->getReview($item->getProduct->id, $getRecords->id);
+                                                    @endphp <br> <br>
+                                                    
+                                                    @if(!empty($getReview))
+                                                        <b> Rating : </b> {{ $getReview->rating }} <br>
+                                                        <b> review : </b> {{ $getReview->review }} <br> 
+                                                    @else
+                                                    <br> <button class="btn btn-primary MakeReview" id="{{ $item->getProduct->id }}" data-order={{ $getRecords->id }}>
+                                                    Make Review</button>
+                                                    @endif
+                                                     
+                                                    @endif
+                                                    </td>
                                                     <td id="cen">{{$item->qty}}</td>
                                                     <td id="cen">{{number_format($item->price, 2)}}</td>
                                                     <td id="cen">{{number_format($item->price * $item->qty, 2)}}</td>
@@ -286,4 +302,58 @@
     </div><!-- End .page-content -->
 </main><!-- End .main -->
 
+<div class="modal fade" id="MakeReviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Make Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url('user/make-review') }}" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" required id="getProductId" name="product_id">
+        <input type="hidden" required id="getOrderId" name="order_id">
+      <div class="modal-body" style="padding: 20px;">
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>How many rating? *</label>
+            <select class="form-control" required name="rating">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Review *</label>
+                <textarea class="form-control" required name="review"></textarea>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $('body').delegate('.MakeReview', 'click', function(){
+            var product_id = $(this).attr('id');
+            var order_id = $(this).attr('data-order');
+            $('#getProductId').val(product_id);
+            $('#getOrderId').val(order_id);
+            $('#MakeReviewModal').modal('show');
+            
+        });
+    </script>
 @endsection
