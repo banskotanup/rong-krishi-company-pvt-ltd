@@ -13,6 +13,7 @@ use App\Models\ProductWishlist;
 use App\Models\User;
 use App\Models\Inventory;
 use App\Models\Notification;
+use App\Models\PaymentSetting;
 use Auth;
 use Cart;
 use Hash;
@@ -79,6 +80,7 @@ class CartController extends Controller
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
         $data['getShipping'] = ShippingCharge::getRecordActive();
+        $data['getPaymentSetting'] = PaymentSetting::getSingle();
         return view('cart.checkout', $data);
     }
 
@@ -250,6 +252,7 @@ class CartController extends Controller
             $getOrder = OrderModel::getSingle($order_id);
             if(!empty($getOrder))
             {
+                $getPaymentSetting = PaymentSetting::getSingle();
                 if($getOrder->payment_method == 'cash')
                 {
                     $getOrder->is_payment = 1;
@@ -266,13 +269,19 @@ class CartController extends Controller
                     Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
                     return redirect('cart');
                 }
-                else if($getOrder->payment_method == 'paypal')
+                else if($getOrder->payment_method == 'esewa')
                 {
+                    // if($getPaymentSetting->esewa_status == 'live'){
+
+                    // }
+                    // else{
+
+                    // }
 
                 }
                 else if($getOrder->payment_method == 'stripe')
                 {
-                    Stripe::setApikey(env('STRIPE_SECRET'));
+                    Stripe::setApikey($getPaymentSetting->stripe_secret_key);
                     $finalprice = $getOrder->total_amount * 100;
 
                     $session = \Stripe\Checkout\Session::create([
@@ -298,7 +307,7 @@ class CartController extends Controller
 
                         $data['session_id'] = $session['id'];
                         Session::put('stripe_session_id', $session['id']);
-                        $data['setPublicKey'] = env('STRIPE_KEY');
+                        $data['setPublicKey'] = $getPaymentSetting->stripe_public_key;
 
                         return view('cart.stripe_charge', $data);
                 }
@@ -316,8 +325,9 @@ class CartController extends Controller
 
     public function stripe_success_payment(Request $request)
     {
+        $getPaymentSetting = PaymentSetting::getSingle();
         $trans_id = Session::get('stripe_session_id');
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        \Stripe\Stripe::setApiKey($getPaymentSetting->stripe_secret_key);
         $getdata = \Stripe\Checkout\Session::retrieve($trans_id);
 
         $getOrder = OrderModel::where('stripe_session_id', '=', $getdata->id)->first();

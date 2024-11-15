@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">System Settings</h1>
+                    <h1 class="m-0">System Setting</h1>
                 </div>
             </div>
         </div>

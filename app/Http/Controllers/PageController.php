@@ -8,6 +8,7 @@ use App\Models\AboutUs;
 use App\Models\OurTeam;
 use App\Models\ContactUs;
 use App\Models\SMTP;
+use App\Models\PaymentSetting;
 use Str;
 use App\Models\TeamImageModel;
 
@@ -307,5 +308,26 @@ class PageController extends Controller
         $save->save();
         return redirect('/smtp');
     }
+
+    public function payment_setting(){
+        $data['getRecords'] = PaymentSetting::getSingle();
+        $data['header_title'] = "Payment Setting";
+        return view('admin.pages.payment_setting', $data);
+    }
     
+    
+    public function update_payment_setting(Request $request){
+        $save = PaymentSetting::getSingle();
+        $save->esewa_id = trim($request->esewa_id);
+        $save->esewa_status = trim($request->esewa_status);
+        $save->stripe_public_key = trim($request->stripe_public_key);
+        $save->stripe_secret_key = trim($request->stripe_secret_key);
+        
+        $save->is_cod = !empty($request->is_cod) ? 1 : 0;
+        $save->is_esewa = !empty($request->is_esewa) ? 1 : 0;
+        $save->is_stripe = !empty($request->is_stripe) ? 1 : 0;
+        
+        $save->save();
+        return redirect('/payment_setting');
+    }
 }

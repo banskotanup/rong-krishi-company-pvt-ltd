@@ -297,6 +297,15 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{url('payment_setting')}}" class="nav-link {{ Request::is('payment_setting') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-cogs"></i>
+                  <p>
+                    Payment Setting
+                  </p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{url('smtp')}}" class="nav-link {{ Request::is('smtp') ? 'active' : ''}}">
                   <i class="nav-icon 	fas fa-server"></i>
                   <p>

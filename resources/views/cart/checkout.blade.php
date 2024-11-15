@@ -176,23 +176,29 @@
 
                                 <div class="accordion-summary" id="accordion-payment">
 
+                    @if(!empty($getPaymentSetting->is_cod))
                     <div class="custom-control custom-radio">
                     <input type="radio" value="cash" id="Cashondelivery" name="payment_method" required
                      class="custom-control-input">
                     <label class="custom-control-label" for="Cashondelivery">Cash on delivery</label>
                     </div>
+                    @endif
 
+                    @if(!empty($getPaymentSetting->is_esewa))
                     <div class="custom-control custom-radio" style="margin-top: 0px;">
-                    <input type="radio" value="paypal" id="PayPal" name="payment_method" required
+                    <input type="radio" value="esewa" id="esewa" name="payment_method" required
                      class="custom-control-input">
-                    <label class="custom-control-label" for="PayPal">e-Sewa</label>
+                    <label class="custom-control-label" for="esewa">e-Sewa</label>
                     </div>
+                    @endif
 
+                    @if(!empty($getPaymentSetting->is_stripe))
                     <div class="custom-control custom-radio" style="margin-top: 0px;">
                     <input type="radio" value="stripe" id="CreditCard" name="payment_method" required
                      class="custom-control-input">
                     <label class="custom-control-label" for="CreditCard"> Credit Card (Stripe)</label>
                     </div>
+                    @endif
                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
                                     <span class="btn-text">Place Order</span>
                                     <span class="btn-hover-text">Proceed to Checkout</span>

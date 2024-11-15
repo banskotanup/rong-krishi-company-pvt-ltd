@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">SMTP Settings</h1>
+                    <h1 class="m-0">SMTP Setting</h1>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">SMTP Settings Warning</h1>
+                    <h1 class="m-0">SMTP Setting Warning</h1>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Updated!',
-                text: 'SMTP Setting has been updated.'
+                text: 'SMTP setting has been updated.'
             }).then(function() {
                 form.trigger('submit');
             });
