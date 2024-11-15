@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\ProductReview;
 use App\Models\Notification;
 use Auth;
 use Mail;
@@ -147,5 +148,18 @@ class UserController extends Controller
             return redirect()->back()->with('err', "Old password is not correct.");
         }
         
+    }
+    
+    public function submit_review(Request $request)
+    {
+        $save = new ProductReview;
+        $save->product_id = trim($request->product_id);
+        $save->order_id = trim($request->order_id);
+        $save->user_id = Auth::user()->id;
+        $save->rating = trim($request->rating);
+        $save->review = trim($request->review);
+        $save->save();
+
+        return redirect()->back()->with('success', "Thankyou for your review.");
     }
 }

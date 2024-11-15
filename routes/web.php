@@ -159,6 +159,7 @@ route::post('/edit_profile',[UserController::class, 'update_profile'])->middlewa
 route::get('/change_password',[UserController::class, 'changePw404'])->middleware('is_user');
 route::get('/change_password/{token}',[UserController::class, 'changePw'])->middleware('is_user');
 route::post('/change_password/{token}', [UserController::class, 'authChangePw'])->middleware('is_user');
+route::post('/user/make-review', [UserController::class, 'submit_review'])->middleware('is_user');
 
 
 
