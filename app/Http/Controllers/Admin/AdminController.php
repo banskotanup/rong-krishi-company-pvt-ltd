@@ -100,4 +100,10 @@ class AdminController extends Controller
         $user->save();
         return redirect('/admin_list');
     }
+
+    public function profile($id){
+        $data['header_title'] = 'Profile';
+        $data['getRecords'] = User::getSingleUser(Auth::user()->id);
+        return view('admin.profile.profile', $data);
+    }
 }

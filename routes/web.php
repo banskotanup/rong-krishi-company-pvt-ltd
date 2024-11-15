@@ -45,6 +45,7 @@ route::post('/changePw/{token}', [AuthController::class, 'authChangePw']);
 route::get('/log_out',[AuthController::class, 'log_out']);
 
 // AdminController Routes Goes Here...
+route::get('/profile/{id}',[AdminController::class, 'profile'])->middleware('is_admin');
 route::get('/admin_dashboard',[AdminController::class, 'index'])->middleware('is_admin');
 route::get('/admin_list',[AdminController::class, 'admin_list'])->middleware('is_admin');
 route::get('/admin_add',[AdminController::class, 'admin_add'])->middleware('is_admin');
@@ -139,6 +140,8 @@ route::get('/smtp',[PageController::class, 'smtp'])->middleware('is_admin');
 route::post('/smtp',[PageController::class, 'update_smtp'])->middleware('is_admin');
 route::get('/payment_setting',[PageController::class, 'payment_setting'])->middleware('is_admin');
 route::post('/payment_setting',[PageController::class, 'update_payment_setting'])->middleware('is_admin');
+
+route::get('/about_developers',[PageController::class, 'about_developers'])->middleware('is_admin');
 
 route::get('/our_team',[PageController::class, 'our_team'])->middleware('is_admin');
 route::get('/add_team_member',[PageController::class, 'add_team_member'])->middleware('is_admin');

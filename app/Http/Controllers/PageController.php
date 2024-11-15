@@ -330,4 +330,9 @@ class PageController extends Controller
         $save->save();
         return redirect('/payment_setting');
     }
+
+    public function about_developers(){
+        $data['header_title'] = "About Developer";
+        return view('admin.pages.about_developer', $data);
+    }
 }

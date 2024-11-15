@@ -9,13 +9,14 @@
     $getAboutUs = App\Models\AboutUs::getSingle();
     @endphp
     @php
-        $getSystemSettingApp = App\Models\SystemSetting::getSingle();
+    $getSystemSettingApp = App\Models\SystemSetting::getSingle();
     @endphp
     @include('sweetalert::alert')
     <div class="intro-section bg-lighter pt-5 pb-6">
         <h3 style="font-family: 'Barcelony Signature'; margin-top:10px;" class="cursor typewriter-animation">Welcome To
             <span style="color: rgb(5, 136, 5); font-family:'Barcelony Signature';">Rong</span> <span
-                style="color: rgb(65, 107, 65);">Krishi</span>!</h3>
+                style="color: rgb(65, 107, 65);">Krishi</span>!
+        </h3>
         <div class="container">
             <div class="row" style="margin-top:5px;">
                 <div class="col-lg-8">
@@ -109,7 +110,9 @@
                                         <h4 class="banner-subtitle text-darkwhite"><a href="#"><span
                                                     style="background: rgb(11, 32, 41);">Shop with us today!</span></a>
                                         </h4><!-- End .banner-subtitle -->
-                                        <h3 class="banner-title text-white"><a href="#">{{$getSystemSettingApp->slogan4}}</a></h3><!-- End .banner-title -->
+                                        <h3 class="banner-title text-white"><a
+                                                href="#">{{$getSystemSettingApp->slogan4}}</a></h3>
+                                        <!-- End .banner-title -->
                                         <a href="#products" class="btn btn-outline-white banner-link">Shop Now<i
                                                 class="icon-long-arrow-right"></i></a>
                                     </div><!-- End .banner-content -->
@@ -127,7 +130,8 @@
                                         <h4 class="banner-subtitle text-darkwhite"><a href="#"><span
                                                     style="background: rgb(11, 32, 41);">New in</span></a></h4>
                                         <!-- End .banner-subtitle -->
-                                        <h3 class="banner-title text-white"><a href="#">{{$getSystemSettingApp->slogan5}}</a></h3>
+                                        <h3 class="banner-title text-white"><a
+                                                href="#">{{$getSystemSettingApp->slogan5}}</a></h3>
                                         <!-- End .banner-title -->
                                         <a href="{{url('/blog')}}" class="btn btn-outline-white banner-link">Discover
                                             Now<i class="icon-long-arrow-right"></i></a>
@@ -157,7 +161,8 @@
             <div>
                 <h1 style="text-align: center; font-family: 'Courier New', monospace;">Let’s Introduce us</h1>
                 <hr>
-                <p style="text-align: center; font-size:22px; center; font-family: 'Times New Roman';">{!! $getAboutUs->intro !!}</p>
+                <p style="text-align: center; font-size:22px; center; font-family: 'Times New Roman';">{!!
+                    $getAboutUs->intro !!}</p>
                 <div style="display: flex; justify-content:center; align-items:center; margin-top:20px;">
                     <a href="{{url('/about_us')}}"><button class="btn btn-primary"
                             style="padding: 10px 20px; margin-button:1px;">Learn More</button></a>
@@ -172,10 +177,12 @@
                                 <p style="font-weight: 510px; font-size:18px; color:black;">Empowering Agriculture,
                                     <span
                                         style="color: green; font-family:'Barcelony Signature'; font-size:20px;">Enriching
-                                        Lives</span></p><!-- End .lead text-primary -->
+                                        Lives</span>
+                                </p><!-- End .lead text-primary -->
                                 <p class="mb-2">{!! $getAboutUs->who_we_are !!}</p>
 
-                                <a href="{{url('/blog')}}" class="btn btn-sm btn-minwidth btn-outline-primary-2" style="margin-top: 10px;">
+                                <a href="{{url('/blog')}}" class="btn btn-sm btn-minwidth btn-outline-primary-2"
+                                    style="margin-top: 10px;">
                                     <span>VIEW OUR BLOGS</span>
                                     <i class="icon-long-arrow-right"></i>
                                 </a>
@@ -221,33 +228,44 @@
 
                                         <div class="product-action-vertical">
                                             @if(!empty(Auth::check()))
-                                                            
-                                              <a href="javascript:;" data-toggle="modal" class="add_to_wishlist add_to_wishlist{{ $value->id }}
+
+                                            <a href="javascript:;" data-toggle="modal" class="add_to_wishlist add_to_wishlist{{ $value->id }}
                                              btn-product-icon btn-wishlist btn-expandable
-                                             {{ !empty($value->checkWishlist($value->id)) ? 'btn-wishlist-add' : '' }}" id="{{ $value->id }}"
-                                            title="Wishlist"><span>add to wishlist</span></a>
+                                             {{ !empty($value->checkWishlist($value->id)) ? 'btn-wishlist-add' : '' }}"
+                                                id="{{ $value->id }}" title="Wishlist"><span>add to wishlist</span></a>
                                             @else
-                                          <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" 
-                                          title="Wishlist"><span>add to wishlist</span></a>
-                                                       @endif
-                                            </div>
-                                        
+                                            <a href="#signin-modal" data-toggle="modal"
+                                                class="btn-product-icon btn-wishlist btn-expandable"
+                                                title="Wishlist"><span>add to wishlist</span></a>
+                                            @endif
+                                        </div>
 
 
+                                        @php
+                                        $getAvailable = App\Models\Inventory::getSingle($value->id);
+                                        @endphp
+                                        @if($getAvailable->remaining_quantity > 0)
                                         <form action="{{url('/cart')}}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{$value->id}}">
                                             <input type="hidden" name="qty" value="1">
                                             <input type="hidden" name="product_name" value="{{$value->title}}">
                                             <div class="product-action">
-                                                <button type="submit" style="width: 100px; " class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
+                                                <button type="submit" style="width: 100px; "
+                                                    class="btn-product btn-cart btn btn-outline-primary-2 btn-order btn-block">
                                                     <span class="btn-text">add to cart</span>
                                                     <span class="btn-hover-text">add to your shopping cart</span>
                                                 </button>
                                             </div>
-                                            
-
                                         </form>
+                                        @else
+                                        <div class="product-action">
+                                            <a href="javascript:;" style="width: 100%; " class="btn btn-danger">
+                                                <span class="btn-text">OUT OF STOCK</span>
+                                                <span class="btn-hover-text">out of stock</span>
+                                            </a>
+                                        </div>
+                                        @endif
                                     </figure>
 
                                     <div class="product-body">
@@ -349,9 +367,9 @@
                         }
                     }'>
                 @foreach($getBlog->take(7) as $value)
-                        @php
-                            $getImage = $value->getImageSingle($value->id);
-                        @endphp
+                @php
+                $getImage = $value->getImageSingle($value->id);
+                @endphp
                 <article class="entry entry-display">
                     <figure class="entry-media">
                         <a href="{{url('/blog/'.$value->slug)}}">
@@ -363,7 +381,8 @@
 
                     <div class="entry-body pb-4 text-center">
                         <div class="entry-meta">
-                            <a href="#">{{date('M d, Y', strtotime($value->created_at))}}</a>, {{$value->getCommentCount()}} Comments
+                            <a href="#">{{date('M d, Y', strtotime($value->created_at))}}</a>,
+                            {{$value->getCommentCount()}} Comments
                         </div><!-- End .entry-meta -->
 
                         <h3 class="entry-title">
@@ -433,19 +452,22 @@
                         <form action="#">
                             <div class="input-group input-group-round">
                                 <div class="input-group-append">
-                                    <a href="{{url('/')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <a href="{{url('/')}}#products"
+                                        class="btn btn-outline-primary-2 btn-order btn-block">
                                         <span class="btn-text">Shop Now</span>
                                         <span class="btn-hover-text">Shop Now</span>
                                     </a>
                                 </div>
                                 <div class="input-group-append" style="margin-left: 20px;">
-                                    <a href="{{url('/about_us')}}" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <a href="{{url('/about_us')}}"
+                                        class="btn btn-outline-primary-2 btn-order btn-block">
                                         <span class="btn-text">About Us</span>
                                         <span class="btn-hover-text">About Us</span>
                                     </a>
                                 </div>
                                 <div class="input-group-append" style="margin-left: 20px;">
-                                    <a href="{{url('/blog')}}#products" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <a href="{{url('/blog')}}#products"
+                                        class="btn btn-outline-primary-2 btn-order btn-block">
                                         <span class="btn-text">View Blogs</span>
                                         <span class="btn-hover-text">View Blogs</span>
                                     </a>
@@ -454,7 +476,8 @@
                         </form>
                         {{-- <form action="#">
                             <div class="input-group input-group-round">
-                                <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
+                                <input type="email" class="form-control form-control-white"
+                                    placeholder="Your Email Address" aria-label="Email Adress" required>
                                 <div class="input-group-append">
                                     <button class="btn" type="submit"><span>go</span></button>
                                 </div><!-- .End .input-group-append -->
@@ -462,12 +485,14 @@
                         </form> --}}
                         {{-- <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-                            <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
+                            <label class="custom-control-label" for="register-policy-2">Do not show this popup
+                                again</label>
                         </div><!-- End .custom-checkbox --> --}}
                     </div>
                 </div>
                 <div class="col-xl-2-5col col-lg-5 ">
-                    <img src="{{url('')}}/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
+                    <img src="{{url('')}}/assets/images/popup/newsletter/img-1.jpg" class="newsletter-img"
+                        alt="newsletter">
                 </div>
             </div>
         </div>

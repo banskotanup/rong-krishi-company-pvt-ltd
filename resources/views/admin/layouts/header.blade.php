@@ -155,7 +155,7 @@ $getSystemSettingApp = App\Models\SystemSetting::getSingle();
               <img src="/user_logo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="{{url('/profile')}}" class="d-block">{{ Auth::user()->name ?? 'None'}}</a>
+              <a href="{{url('/profile/'.Auth::user()->id)}}" class="d-block">{{ Auth::user()->name ?? 'None'}}</a>
               {{-- {{ Auth::user()->name }} use it later & create a profile section--}}  
             </div>
           </div>
@@ -313,6 +313,14 @@ $getSystemSettingApp = App\Models\SystemSetting::getSingle();
                   <i class="nav-icon 	fas fa-server"></i>
                   <p>
                     SMTP Setting
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('about_developers')}}" class="nav-link {{ Request::is('about_developers') ? 'active' : ''}}">
+                  <i class="nav-icon 	fas fa-server"></i>
+                  <p>
+                    About Developers
                   </p>
                 </a>
               </li>
