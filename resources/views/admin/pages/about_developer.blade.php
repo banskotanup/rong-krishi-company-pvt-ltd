@@ -175,13 +175,13 @@
                                 <hr>
                                 <ul>
                                     <li>
-                                        <a href="https://adminlte.io/" style="color: black;">
-                                            Molla | Multi-Purpose WooCommerce Theme
+                                        <a target="_blank" href="https://adminlte.io/" style="color: black;">
+                                            AdminLTE Bootstrap Admin Dashboard Template
                                         </a>
                                     </li>
                                     <li>
-                                        <a style="color: black;" href="https://themeforest.net/item/molla-multipurpose-woocommerce-theme/28487727?srsltid=AfmBOorE3jUWYGfGklwBD0fez4C52aJ-kZZK1QsGRn-gfhxFNCWQ_B4N">
-                                            AdminLTE Bootstrap Admin Dashboard Template
+                                        <a target="_blank" style="color: black;" href="https://themeforest.net/item/molla-ecommerce-html5-template/25119280">
+                                            Molla - eCommerce HTML5 Template
                                         </a>
                                     </li>
                                 </ul>

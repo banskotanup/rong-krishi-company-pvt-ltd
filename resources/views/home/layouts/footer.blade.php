@@ -27,6 +27,7 @@
                             <li><a href="{{url('/faq')}}">FAQ</a></li>
                             <li><a href="{{url('/contact_us')}}">Contact us</a></li>
                             <li><a href="#signin-modal" data-toggle="modal">Log in</a></li>
+                            <li><a href="{{url('about_devs')}}">About Developers</a></li>
                         </ul>
                     </div>
                 </div>

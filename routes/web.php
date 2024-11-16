@@ -142,6 +142,7 @@ route::get('/payment_setting',[PageController::class, 'payment_setting'])->middl
 route::post('/payment_setting',[PageController::class, 'update_payment_setting'])->middleware('is_admin');
 
 route::get('/about_developers',[PageController::class, 'about_developers'])->middleware('is_admin');
+route::get('/about_devs',[PageController::class, 'about_devs']);
 
 route::get('/our_team',[PageController::class, 'our_team'])->middleware('is_admin');
 route::get('/add_team_member',[PageController::class, 'add_team_member'])->middleware('is_admin');

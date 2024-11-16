@@ -335,4 +335,9 @@ class PageController extends Controller
         $data['header_title'] = "About Developer";
         return view('admin.pages.about_developer', $data);
     }
+
+    public function about_devs(){
+        $data['meta_title'] = "About Developer";
+        return view('homepages.about_developer', $data);
+    }
 }

@@ -23,6 +23,7 @@ class HomeController extends Controller
         $data['meta_title'] = 'Rong Krishi Company';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        $data['getBlog'] = BlogModel::getBlog();
         $data['getOurProduct'] = Product::getOurProduct();
         return view('index', $data);
     }
