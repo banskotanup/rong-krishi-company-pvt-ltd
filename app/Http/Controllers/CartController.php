@@ -16,12 +16,15 @@ use App\Models\Notification;
 use App\Models\PaymentSetting;
 use Auth;
 use Cart;
+use Surfsidemedia\Shoppingcart\CartItem;
+use Surfsidemedia\Shoppingcart\CartItemOptions;
 use Hash;
 use Stripe\Stripe;
 use Session;
 use App\Mail\OrderInvoiceMail;
 use Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -29,6 +32,12 @@ class CartController extends Controller
         $data['meta_title'] = 'Shopping Cart';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
+        
+        if(!empty(Auth::check()))
+        {
+            $user_id = Auth::user()->id;   
+            Cart::restore($user_id);
+        }
         $cartItems = Cart::content();
         return view('cart.cart',compact('cartItems'), $data);
     }
@@ -52,13 +61,23 @@ class CartController extends Controller
                 'qty' => $request->qty,
                 
             ]);
+            if(!empty(Auth::check()))
+            {
+                $user_id = Auth::user()->id;   
+                Cart::store($user_id);
+            }
+            
             toast('Item added to cart.','success')->autoClose(3000);
             return redirect()->back();
         }
     }
 
     public function cart_delete($rowId){
-
+        if(!empty(Auth::check()))
+        {
+            DB::table('shoppingcart')->where('identifier', Auth::user()->id)->delete();
+        }
+        
         Cart::remove($rowId);
         toast('Item removed from cart.','error')->autoClose(3000);
         return redirect()->back();

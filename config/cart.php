@@ -26,7 +26,7 @@ return [
 
     'database' => [
 
-        'connection' => 'rongkrishicompany',
+        'connection' => 'mysql',
 
         'table' => 'shoppingcart',
 

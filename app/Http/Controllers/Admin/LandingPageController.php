@@ -9,6 +9,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\BlogModel;
+use Cart;
+use Surfsidemedia\Shoppingcart\CartItem;
+use Surfsidemedia\Shoppingcart\CartItemOptions;
 
 class LandingPageController extends Controller
 {
@@ -23,6 +26,12 @@ class LandingPageController extends Controller
         if(!empty(Auth::check()) && Auth::user()->is_admin == 1){
             return redirect('/admin_dashboard');
         }
-        return view('index', $data);
+        if(!empty(Auth::check())){
+            $user_id = Auth::user()->id;   
+            Cart::restore($user_id);
+            $cartItems = Cart::content();
+        }
+        $cartItems = Cart::content();
+        return view('index', compact('cartItems'), $data);
     }
 }

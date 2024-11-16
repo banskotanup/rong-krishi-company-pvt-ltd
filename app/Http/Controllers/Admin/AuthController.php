@@ -13,6 +13,9 @@ use Str;
 use App\Mail\RegisterMail;
 use App\Mail\ForgotPasswordMail;
 use App\Mail\ipChangeMail;
+use Cart;
+use Surfsidemedia\Shoppingcart\CartItem;
+use Surfsidemedia\Shoppingcart\CartItemOptions;
 
 class AuthController extends Controller
 {
@@ -20,10 +23,16 @@ class AuthController extends Controller
     {
         // dd(Hash::make('password'));
         if(!empty(Auth::check()) && Auth::user()->is_admin == 1){
-            return redirect('/admin_dashboard');
+            $user_id = Auth::user()->id;   
+            Cart::restore($user_id);
+            $cartItems = Cart::content();
+            return redirect('/admin_dashboard', compact('cartItems'));
         }
         elseif(!empty(Auth::check()) && Auth::user()->is_admin == 0){
-            return redirect('/home');
+            $user_id = Auth::user()->id;   
+            Cart::restore($user_id);
+            $cartItems = Cart::content();
+            return redirect('/home', compact('cartItems'));
         }
         return view('admin.auth.login');
     }

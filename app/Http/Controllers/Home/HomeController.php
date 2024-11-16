@@ -15,6 +15,9 @@ use App\Models\SystemSetting;
 use App\Mail\ContactUsMail;
 use Auth;
 use Mail;
+use Cart;
+use Surfsidemedia\Shoppingcart\CartItem;
+use Surfsidemedia\Shoppingcart\CartItemOptions;
 
 class HomeController extends Controller
 {
@@ -25,7 +28,13 @@ class HomeController extends Controller
         $data['meta_keywords'] = '';
         $data['getBlog'] = BlogModel::getBlog();
         $data['getOurProduct'] = Product::getOurProduct();
-        return view('index', $data);
+        if(!empty(Auth::check())){
+            $user_id = Auth::user()->id;   
+            Cart::restore($user_id);
+            $cartItems = Cart::content();
+        }
+        $cartItems = Cart::content();
+        return view('index', compact('cartItems'), $data);
     }
 
     public function about_us(){
