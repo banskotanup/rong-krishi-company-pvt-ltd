@@ -73,22 +73,46 @@ class CartController extends Controller
     }
 
     public function cart_delete($rowId){
-        if(!empty(Auth::check()))
-        {
-            DB::table('shoppingcart')->where('identifier', Auth::user()->id)->delete();
+        if (!$rowId) {
+            toast('Invalid item selected.','error');
+            return redirect()->back();
         }
-        
+
         Cart::remove($rowId);
+        DB::table('shoppingcart')
+        ->where('identifier', Auth::user()->id)
+        ->update([
+            'content' => serialize(Cart::content()),
+        ]);
         toast('Item removed from cart.','error')->autoClose(3000);
         return redirect()->back();
     }
 
     public function update_cart(Request $request){
+        $cartItems = $request->input('cart'); // Retrieve the cart array from the request
 
-        foreach($request->cart as $cart){
-            Cart::update($cart['rowId'], array(
-                'qty' => $cart['qty'],
-            ));
+        if (!is_array($cartItems)) {
+            toast('Invalid cart data.','error')-autoClose(3000);
+            return redirect()->back();
+        }
+
+        // Loop through each cart item to update
+        foreach ($cartItems as $item) {
+            $rowId = $item['rowId'] ?? null;  // Retrieve the rowId
+            $newQty = $item['qty'] ?? null;   // Retrieve the new quantity
+
+            // Validate the input
+            if ($rowId && is_numeric($newQty) && $newQty > 0) {
+                // Update the cart session
+                Cart::update($rowId, ['qty' => $newQty]);
+
+                // Update the database
+                DB::table('shoppingcart')
+                    ->where('identifier', Auth::id())  // Match the current user's cart
+                    ->update([
+                        'content' => serialize(Cart::content()) // Serialize the updated cart content
+                    ]);
+            }
         }
         toast('Cart updated successfully.','success')->autoClose(3000);
         return redirect()->back();
@@ -284,6 +308,9 @@ class CartController extends Controller
                     $message = "New Order Received #".$getOrder->order_number;
                     Notification::insertRecord($user_id, $url, $message);
 
+                    if(!empty(Auth::user()->id)){
+                        DB::table('shoppingcart')->where('identifier', Auth::user()->id)->delete();
+                    }
                     Cart::destroy();
                     Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
                     return redirect('cart');
@@ -363,6 +390,9 @@ class CartController extends Controller
             $url = url('/order_view/'.$getOrder->id);
             $message = "New Order Received #".$getOrder->order_number;
             Notification::insertRecord($user_id, $url, $message);
+            if(!empty(Auth::user()->id)){
+                DB::table('shoppingcart')->where('identifier', Auth::user()->id)->delete();
+            }
             Cart::destroy();
             Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
             return redirect('cart');
