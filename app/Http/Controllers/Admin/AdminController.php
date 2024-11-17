@@ -13,6 +13,8 @@ use App\Models\BlogModel;
 use Mail;
 use App\Mail\RegisterMail;
 use Str;
+use App\Exports\AdminExportExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -105,5 +107,10 @@ class AdminController extends Controller
         $data['header_title'] = 'Profile';
         $data['getRecords'] = User::getSingleUser(Auth::user()->id);
         return view('admin.profile.profile', $data);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new AdminExportExcel, 'admin_list.xlsx');
     }
 }

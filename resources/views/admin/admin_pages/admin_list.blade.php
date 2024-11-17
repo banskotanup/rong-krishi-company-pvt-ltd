@@ -20,8 +20,14 @@
   <form action="" method="GET">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Admin Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
+            <h3 class="card-title">Admin Search <span style="color: #D0342C;">(Record Found: {{ $getRecords instanceof \Illuminate\Pagination\LengthAwarePaginator ? $getRecords->total() : $getRecords->count() }})</span></h3>
+            <div class="col-sm-6" style="text-align:right; float:right;">
+              <a href="{{ url('/export_excel') }}" class="btn btn-success">Export to Excel</a>
+            </div>
         </div>
+
+        
+
         <div class="card-body">
 
             <div class="row">
@@ -115,8 +121,10 @@
         </tbody>
       </table>
       <div style="padding: 10px; float: right;">
-        {!! $getRecords->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-      </div>
+        @if ($getRecords instanceof \Illuminate\Pagination\LengthAwarePaginator)
+            {!! $getRecords->appends(request()->except('page'))->links() !!}
+        @endif
+    </div>
     </div>
   </div>
 </div>

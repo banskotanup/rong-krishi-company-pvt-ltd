@@ -186,9 +186,9 @@
 
                     @if(!empty($getPaymentSetting->is_esewa))
                     <div class="custom-control custom-radio" style="margin-top: 0px;">
-                    <input type="radio" value="esewa" id="esewa" name="payment_method" required
+                    <input type="radio" value="khalti" id="khalti" name="payment_method" required
                      class="custom-control-input">
-                    <label class="custom-control-label" for="esewa">e-Sewa</label>
+                    <label class="custom-control-label" for="khalti">Khalti</label>
                     </div>
                     @endif
 

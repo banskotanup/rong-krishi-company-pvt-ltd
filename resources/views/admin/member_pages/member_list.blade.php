@@ -22,6 +22,9 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Member Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
+            <div class="col-sm-6" style="text-align:right; float:right;">
+              <a href="{{ url('/export-members') }}" class="btn btn-success">Export to Excel</a>
+            </div>
         </div>
         <div class="card-body">
 

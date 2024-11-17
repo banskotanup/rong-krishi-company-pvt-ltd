@@ -25,6 +25,18 @@ use App\Http\Controllers\Home\BlogController as BlogFront;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\UserMiddleware;
 
+use App\Exports\MemberExportExcel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\InventoryExportExcel;
+use App\Exports\OrderListExport;
+use App\Exports\ProductListExport;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Product;
+use App\Models\Inventory;
+
+use App\Http\Controllers\ExportController;
+
 //welcome route..... 
 route::get('/',[LandingPageController::class, 'welcome']);
 
@@ -53,6 +65,43 @@ route::post('/admin_add',[AdminController::class, 'insert_admin'])->middleware('
 route::get('/admin_edit/{id}',[AdminController::class, 'edit_admin'])->middleware('is_admin');
 route::post('/admin_edit/{id}',[AdminController::class, 'update_edit_admin'])->middleware('is_admin');
 route::get('/admin_delete/{id}',[AdminController::class, 'delete_admin'])->middleware('is_admin');
+
+
+//excel export
+route::get('/export_excel',[AdminController::class, 'exportExcel'])->middleware('is_admin');
+Route::get('/export-members', function () {
+    return Excel::download(new MemberExportExcel, 'member_list.xlsx');
+})->middleware('is_admin');
+Route::get('/export-inventory', function () {
+    return Excel::download(new InventoryExportExcel, 'inventory_list.xlsx');
+})->middleware('is_admin'); 
+Route::get('/export-order-list', function () {
+    return Excel::download(new OrderListExport, 'order_list.xlsx');
+})->middleware('is_admin');
+Route::get('/export-product-list', function () {
+    return Excel::download(new ProductListExport, 'product_list.xlsx');
+})->middleware('is_admin');
+Route::get('/product-export-pdf', function () {
+    // Fetch data from the database (example using Product model)
+    $products = Product::where('is_deleted', 0)->get(); // Customize this query as needed
+    
+    // Load the view for the PDF (you can customize this view to fit your data and layout)
+    $pdf = Pdf::loadView('pdf.product_list', compact('products'));
+    
+    // Download the PDF file
+    return $pdf->download('product_list.pdf');
+})->middleware('is_admin');
+Route::get('/inventory-export-pdf', function () {
+    // Get the inventory records from the database
+    $inventory = Inventory::all();  // You can modify this query as needed
+
+    // Load the view with the inventory data
+    $pdf = Pdf::loadView('pdf.inventory_pdf', compact('inventory'));
+
+    // Return the PDF as a download
+    return $pdf->download('inventory_list.pdf');
+})->middleware('is_admin');
+
 
 //MemberController Routes Goes Here....
 route::get('/member_list',[MemberController::class, 'member_list'])->middleware('is_admin');

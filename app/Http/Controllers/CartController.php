@@ -315,14 +315,23 @@ class CartController extends Controller
                     Alert::success('Success!','Thank you for your order! We are processing it now and will send you an email with the details shortly.');
                     return redirect('cart');
                 }
-                else if($getOrder->payment_method == 'esewa')
+                else if($getOrder->payment_method == 'khalti')
                 {
-                    // if($getPaymentSetting->esewa_status == 'live'){
+                    $finalPrice = $getOrder->total_amount * 100; // Convert to paisa
 
-                    // }
-                    // else{
+                    $data = [
+                        'amount' => $finalPrice,
+                        'product_identity' => $getOrder->id, // Unique identifier for the product
+                        'product_name' => 'Rongkrishi',
+                        'product_url' => url('products/rongkrishi'),
+                        'payment_success_url' => url('khalti/payment-success'),
+                        'payment_failure_url' => url('checkout'),
+                        'public_key' => $getPaymentSetting->khalti_public_key,
+                    ];
 
-                    // }
+                    $getOrder->save();
+
+                    return view('cart.khalti_charge', $data);
 
                 }
                 else if($getOrder->payment_method == 'stripe')
