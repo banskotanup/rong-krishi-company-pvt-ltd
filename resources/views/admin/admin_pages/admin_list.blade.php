@@ -22,6 +22,7 @@
         <div class="card-header">
             <h3 class="card-title">Admin Search <span style="color: #D0342C;">(Record Found: {{ $getRecords instanceof \Illuminate\Pagination\LengthAwarePaginator ? $getRecords->total() : $getRecords->count() }})</span></h3>
             <div class="col-sm-6" style="text-align:right; float:right;">
+              <a href="{{ url('/export_admin_list_pdf') }}" class="btn btn-secondary">Export to PDF</a>
               <a href="{{ url('/export_excel') }}" class="btn btn-success">Export to Excel</a>
             </div>
         </div>

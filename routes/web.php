@@ -102,6 +102,43 @@ Route::get('/inventory-export-pdf', function () {
     return $pdf->download('inventory_list.pdf');
 })->middleware('is_admin');
 
+Route::get('/export_admin_list_pdf', function () {
+    // Fetch filtered data
+    $admins = \App\Models\User::where('is_admin', 1)
+        ->where('is_delete', 0)
+        ->where('status', 0)
+        ->get();
+
+    // Load a Blade view and pass the data to it
+    $pdf = Pdf::loadView('pdf.admin_list', ['admins' => $admins]);
+
+    // Return the PDF for download
+    return $pdf->download('admin_list.pdf');
+})->middleware('is_admin');
+
+Route::get('/export-members-pdf', function () {
+    $members = \App\Models\User::where([
+        ['is_admin', '=', 0],
+        ['is_delete', '=', 0],
+        ['status', '=', 0],
+    ])->get();
+
+    $pdf = Pdf::loadView('pdf.member_list', ['members' => $members]);
+    return $pdf->download('member_list.pdf');
+})->middleware('is_admin');
+
+Route::get('/export-order-list-pdf', function () {
+    $orders = \App\Models\Order::where([
+        ['is_payment', '=', 1],
+        ['is_delete', '=', 0],
+    ])->get();
+
+    $pdf = Pdf::loadView('pdf.order_list', ['orders' => $orders])
+              ->setPaper('a4', 'landscape'); // Set to landscape mode
+              
+    return $pdf->download('order_list_landscape.pdf');
+})->middleware('is_admin');
+
 
 //MemberController Routes Goes Here....
 route::get('/member_list',[MemberController::class, 'member_list'])->middleware('is_admin');

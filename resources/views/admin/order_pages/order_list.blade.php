@@ -21,6 +21,7 @@
             <div class="card-header">
                 <h3 class="card-title">Order Search <span style="color: #D0342C;">(Record Found: {{$getRecords->total()}})</span></h3>
                 <div class="col-sm-6" style="text-align:right; float:right;">
+                    <a href="{{ url('/export-order-list-pdf') }}" class="btn btn-secondary">Export to PDF</a>
                     <a href="{{ url('/export-order-list') }}" class="btn btn-success">Export to Excel</a>
                   </div>
             </div>

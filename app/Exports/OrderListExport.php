@@ -14,7 +14,9 @@ class OrderListExport implements FromCollection, WithHeadings, WithMapping, With
     public function collection()
     {
         // Fetch orders with 'is_deleted = 0'
-        return Order::where('is_delete', 0)->get();
+        return Order::where('is_delete', 0)
+        ->where('is_payment', '=', 1)
+        ->get();
     }
 
     public function headings(): array
