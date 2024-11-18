@@ -273,7 +273,7 @@
         <div class="card card-primary">
             <div class="card-body">
                 <div class="form-group">
-                    <p>I would like to extend my deepest gratitude to everyone who contributed to the development of the RongKrishi software. Your dedication, hard work, and expertise have been invaluable in bringing this project to life...</p>
+                    <p>I would like to extend my deepest gratitude to everyone who contributed to the development of the RongKrishi software. Your dedication, hard work, and expertise have been invaluable in bringing this project to life. Special thanks to Prajwal Tamang, whose technical skills and commitment played a key role in making this software a reality. I am truly grateful for your support and collaboration. Together, we have created something impactful, and I look forward to achieving even greater milestones in the future. Thank you once again for your time, effort, and unwavering belief in this vision.</p>
                     <hr>
                     <h3>References & Credits</h3>
                     <hr>
