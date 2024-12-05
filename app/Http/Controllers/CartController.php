@@ -25,6 +25,7 @@ use App\Mail\OrderInvoiceMail;
 use Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class CartController extends Controller
 {
@@ -326,13 +327,12 @@ class CartController extends Controller
                         'product_url' => url('products/rongkrishi'),
                         'payment_success_url' => url('khalti/payment-success'),
                         'payment_failure_url' => url('checkout'),
-                        'public_key' => $getPaymentSetting->khalti_public_key,
+                        'public_key' => env('KHALTI_PUBLIC_KEY'),
                     ];
 
                     $getOrder->save();
 
                     return view('cart.khalti_charge', $data);
-
                 }
                 else if($getOrder->payment_method == 'stripe')
                 {
@@ -413,6 +413,8 @@ class CartController extends Controller
             return redirect('cart');
         }
     }
+
+
     public function add_to_wishlist(Request $request)
     {
         $check = ProductWishlist::checkAlready($request->product_id, Auth::user()->id);

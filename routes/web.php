@@ -277,6 +277,8 @@ route::post('/checkout/apply_discount_code',[CartController::class, 'apply_disco
 route::post('/checkout/place_order',[CartController::class, 'place_order']);
 route::get('/checkout/payment',[CartController::class, 'checkout_payment']);
 route::get('/stripe/payment-success',[CartController::class, 'stripe_success_payment']);
+Route::post('/khalti/verify-payment', [CartController::class, 'verifyKhaltiPayment'])->name('khalti.verify');
+
 route::post('add_to_wishlist', [CartController::class, 'add_to_wishlist']);
 route::get('my-wishlist', [ProductFront::class, 'my_wishlist']);
 
