@@ -11,6 +11,7 @@ use App\Models\ContactUs;
 use App\Models\BlogModel;
 use App\Models\BlogCategory;
 use App\Models\BlogComment;
+use App\Models\Inventory;
 use App\Models\SystemSetting;
 use App\Mail\ContactUsMail;
 use Auth;
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $data['meta_keywords'] = '';
         $data['getBlog'] = BlogModel::getBlog();
         $data['getOurProduct'] = Product::getOurProduct();
+        $data['total_product'] = Product::getTotalProduct();
         if(!empty(Auth::check())){
             $user_id = Auth::user()->id;   
             Cart::restore($user_id);

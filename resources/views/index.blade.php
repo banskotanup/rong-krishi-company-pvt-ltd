@@ -197,6 +197,7 @@
                     </div><!-- End .container -->
                 </div>
                 <div class="mb-6"></div><!-- End .mb-6 -->
+                
                 <div class="container" style="margin-top: 1px;" id="products">
                     <div class="heading heading-center mb-3">
                         <h2 class="title-lg">Our Products</h2><!-- End .title -->
@@ -208,6 +209,7 @@
                             </li>
                         </ul>
                     </div><!-- End .heading -->
+                    @if(!empty($total_product))
                     <div class="products mb-3">
                         <div class="row justify-content-center">
                             @foreach($getOurProduct as $value)
@@ -289,6 +291,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -449,31 +452,17 @@
                     <div class="banner-content text-center">
                         <h2 class="banner-title">From <span>Local<light> Farms</light></span> to Global Markets</h2>
                         <p>Start Strong with RongKrishi – Your Partner in Agriculture Innovation!</p>
-                        <form action="#">
-                            <div class="input-group input-group-round">
+                        {{-- <form action="#">
+                            <div class="input-group input-group-round" style="margin-left: 125px;">
                                 <div class="input-group-append">
                                     <a href="{{url('/')}}#products"
                                         class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Shop Now</span>
+                                        <span class="btn-text">Go to Shop</span>
                                         <span class="btn-hover-text">Shop Now</span>
                                     </a>
                                 </div>
-                                <div class="input-group-append" style="margin-left: 20px;">
-                                    <a href="{{url('/about_us')}}"
-                                        class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">About Us</span>
-                                        <span class="btn-hover-text">About Us</span>
-                                    </a>
-                                </div>
-                                <div class="input-group-append" style="margin-left: 20px;">
-                                    <a href="{{url('/blog')}}#products"
-                                        class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">View Blogs</span>
-                                        <span class="btn-hover-text">View Blogs</span>
-                                    </a>
-                                </div>
                             </div><!-- .End .input-group -->
-                        </form>
+                        </form> --}}
                         {{-- <form action="#">
                             <div class="input-group input-group-round">
                                 <input type="email" class="form-control form-control-white"

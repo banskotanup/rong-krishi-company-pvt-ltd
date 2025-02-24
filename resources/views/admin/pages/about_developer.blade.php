@@ -107,7 +107,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">About Developers</h1>
+                    <h1 class="m-0">About Developer</h1>
                 </div>
             </div>
         </div>
@@ -188,75 +188,6 @@
         </div>
     </div>
 
-    <!-- Developer Profile 2: Prajwal Moktan -->
-    <div class="col-md-12">
-        <div class="card card-primary">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <img src="/Developers/prajwal.jpg" alt="Prajwal Moktan" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <h3><strong>Prajwal Moktan</strong></h3>
-                            <hr>
-                            <p style="font-style: italic; color: gray;">"Learning never stops, and every challenge is an opportunity to grow. Technology is about finding creative solutions that make a real difference."</p>
-                            <p>A passionate programmer and football enthusiast who recently completed his BCA (IT) from Gomendra College and is awaiting his final results. Prajwal played a key role in developing the RongKrishi software, contributing his technical skills and dedication to the project.</p>
-                        </div>
-                    </div>
-                    <!-- Key Skills -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <hr>
-                            <h4>Key Skills</h4>
-                            <hr>
-                            <ul>
-                                <li><strong>Programming Expertise:</strong> Java, JavaScript, PHP, and C++.</li>
-                                <li><strong>Frameworks & Tools:</strong> Laravel.</li>
-                                <li><strong>Web Development:</strong> Skilled in front-end technologies like HTML, CSS, JavaScript; back-end framework i.e. Laravel.</li>
-                                <li><strong>Database Management:</strong> Experience with MySQL and MongoDB.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Achievements -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <hr>
-                            <h4>Achievements</h4>
-                            <hr>
-                            <ul>
-                                <li>Contributed significantly to the development of RongKrishi software, helping streamline agricultural processes with innovative tech solutions.</li>
-                                <li>Completed the BCA (IT) program from Gomendra College with strong academic performance.</li>
-                                <li>Successfully developed several personal programming projects, showcasing skills in web development and software design.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <hr>
-                            <h4>Interests</h4>
-                            <hr>
-                            <p style="text-align: justify;">
-                                A strong passion for programming, constantly exploring new technologies and improving his skills to create innovative solutions. Alongside coding, he is an avid football player, enjoying the teamwork and strategy involved in the sport. Prajwal is always eager to learn, with a particular interest in areas like software development and AI, and he aims to use his knowledge to solve real-world problems. His enthusiasm for technology and problem-solving drives his continuous growth both personally and professionally.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Contact Information -->
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <hr>
-                            <h4>Contact Information</h4>
-                            <hr>
-                            <p style="margin-left: 20px;">📞 Phone: +977 <a href="tel:9824081947">9824081947</a></p>
-                            <p style="margin-left: 20px;">✉️ Email: <a href="mailto:tamangprajwal667@gmail.com">tamangprajwal667@gmail.com</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Thank You & References Section -->
     <div class="content-header">
