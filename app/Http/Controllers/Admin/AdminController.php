@@ -56,6 +56,7 @@ class AdminController extends Controller
         $user = new User;
         $user->user_number = mt_rand(100000000,999999999);
         $user->name = $request->name;
+        $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->country = $request->country;
@@ -82,6 +83,7 @@ class AdminController extends Controller
         ]);
         $user = User::getSingle($id);
         $user->name = $request->name;
+        $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->country = $request->country;

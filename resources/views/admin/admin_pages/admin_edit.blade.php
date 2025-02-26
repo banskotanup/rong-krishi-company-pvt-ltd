@@ -18,8 +18,12 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" value="{{old('name', $getRecords->name)}}" name="name" required placeholder="Enter name">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" value="{{old('name', $getRecords->name)}}" name="name" required placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" value="{{old('last_name', $getRecords->last_name)}}" name="last_name" required placeholder="Enter last name">
                     </div>
                     <div class="form-group">
                         <label>Email</label>

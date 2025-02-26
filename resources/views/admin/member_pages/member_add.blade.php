@@ -20,9 +20,14 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Name<span style="color: red;">*</span></label>
+                        <label>First Name<span style="color: red;">*</span></label>
                         <input type="text" class="form-control" value="{{old('name')}}" name="name" required
-                            placeholder="Enter name">
+                            placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" value="{{old('last_name')}}" name="last_name" required
+                            placeholder="Enter last name">
                     </div>
                     <div class="form-group">
                         <label>Email<span style="color: red;">*</span></label>

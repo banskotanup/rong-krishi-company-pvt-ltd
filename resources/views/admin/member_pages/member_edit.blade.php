@@ -27,6 +27,11 @@
                             required placeholder="Enter name">
                     </div>
                     <div class="form-group">
+                        <label>Last Name<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" value="{{old('last_name', $getRecords->last_name)}}" name="last_name"
+                            required placeholder="Enter last name">
+                    </div>
+                    <div class="form-group">
                         <label>Email<span style="color: red;">*</span></label>
                         <input type="email" class="form-control" value="{{old('email', $getRecords->email)}}"
                             name="email" required placeholder="Enter email">
